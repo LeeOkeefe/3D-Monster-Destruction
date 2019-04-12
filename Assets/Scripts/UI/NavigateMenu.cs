@@ -48,7 +48,7 @@ namespace UI
         /// </summary>
         public void ReturnToMainMenu()
         {
-            SceneManager.LoadSceneAsync("Main Menu");
+            SceneManager.LoadScene("Main Menu");
             Time.timeScale = 1;
         }
 

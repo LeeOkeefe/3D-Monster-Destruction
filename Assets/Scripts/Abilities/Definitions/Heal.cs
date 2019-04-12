@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Abilities.Definitions
 {
@@ -8,21 +7,11 @@ namespace Abilities.Definitions
         private PlayerAbility m_PlayerAbility;
 
         [SerializeField]
-        private float healAmount = 10f;
+        private float healAmount = 15f;
 
         private void Start()
         {
             m_PlayerAbility = new PlayerAbility();
-        }
-
-        private void Update()
-        {
-            // TODO : REMOVE THIS AFTER TESTING IS COMPLETE!
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                GameManager.instance.playerStats.Damage(10);
-                ScoreManager.AddScore(15000);
-            }
         }
 
         // Ensure we can't use the button whilst the ability is active,

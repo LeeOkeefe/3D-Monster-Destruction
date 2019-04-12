@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TankController : MonoBehaviour
 {
@@ -24,13 +22,6 @@ public class TankController : MonoBehaviour
 
     float speed = 1;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         shootTimer += Time.deltaTime;
@@ -54,11 +45,7 @@ public class TankController : MonoBehaviour
 
             // Move our position a step closer to the target.
             turret.transform.rotation = Quaternion.LookRotation(newDir);
-
-
-
         }
-
     }
 
     void Looker()
@@ -66,8 +53,6 @@ public class TankController : MonoBehaviour
         Vector3 targetDir = player.transform.position - turret.transform.position;
         float angle = Vector3.Angle(targetDir, turret.transform.forward);
         float distance = Vector3.Distance(transform.position, player.transform.position);
-
-        Debug.Log(distance);
 
         if (distance > 30)
         {
@@ -88,9 +73,5 @@ public class TankController : MonoBehaviour
                 //Need to add a raycast to player to make sure it won't shoot a building instead
             }
         }
-
     }
-
-
-
 }
