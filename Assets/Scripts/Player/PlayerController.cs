@@ -26,10 +26,13 @@ namespace Player
         private float Speed => m_Animator.GetFloat("Speed");
         public bool PlayerIsMoving => Speed > 0f;
 
+        private Rigidbody m_Rb;
+
         private void Start()
         {
             m_Animator = GetComponent<Animator>();
             m_PlayerStats = GetComponent<PlayerStats>();
+            m_Rb = GetComponent<Rigidbody>();
         }
 
         // Check input keys every frame to call control methods i.e. sprint, attack and camera control
