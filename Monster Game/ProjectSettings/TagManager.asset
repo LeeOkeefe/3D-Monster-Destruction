@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Damage
+  - Left Hand
+  - Right Hand
+  - TurnRight
+  - Car
+  - Building
+  - Flamethrower
+  - Right Foot
+  - Left Foot
+  - Road
+  - Plane
+  - Tank
+  - FxTemporaire
+  - PickupHand
+  - Tree
+  - Grass
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - PostProcessing
+  - NavMeshIgnore
+  - CarDirectors
+  - Cars
+  - Plane
+  - UnderOcean
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
