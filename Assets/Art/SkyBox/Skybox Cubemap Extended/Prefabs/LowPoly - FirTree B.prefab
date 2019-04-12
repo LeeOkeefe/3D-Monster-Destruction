@@ -30,7 +30,7 @@ GameObject:
   m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 72
+  m_StaticEditorFlags: 64
   m_IsActive: 1
 --- !u!4 &4870204933709518
 Transform:
@@ -38,13 +38,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593950697155818}
-  m_LocalRotation: {x: -0.70394385, y: -0.13434333, z: -0.10358276, w: 0.6896996}
-  m_LocalPosition: {x: -51.990005, y: 27.59736, z: -100.51}
-  m_LocalScale: {x: 1, y: 0.9999999, z: 0.9999999}
+  m_LocalRotation: {x: 0.4453207, y: -0.52709436, z: -0.554938, w: -0.46465558}
+  m_LocalPosition: {x: 62.909332, y: 27.64, z: 0.96980286}
+  m_LocalScale: {x: 0.8004905, y: 0.80049026, z: 0.8004901}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -92.746994, y: 55.463997, z: -74.841}
+  m_LocalEulerAnglesHint: {x: -92.746994, y: -185.287, z: -74.84}
 --- !u!23 &23109063448187470
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -142,9 +142,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1.8290001, y: 1.5860001, z: 3.3960001}
+  m_Extents: {x: 1.25, y: 1.25, z: 1.25}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0.0050000004, y: 0, z: 3.2580001}
+  m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5

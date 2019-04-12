@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4849914472098990}
   - component: {fileID: 33536708146967432}
   - component: {fileID: 23307119900889778}
-  - component: {fileID: 65904098278397486}
   m_Layer: 0
   m_Name: Hull
   m_TagString: Tank
@@ -129,8 +128,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863472590780012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 137.04318, y: 3.54, z: 77.06391}
-  m_LocalScale: {x: 52.40135, y: 52.401356, z: 52.401356}
+  m_LocalPosition: {x: 145.5, y: 0, z: 77.06391}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 4849914472098990}
   - {fileID: 4044359818559654}
@@ -248,18 +247,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1085729861277176}
   m_Mesh: {fileID: 4300002, guid: dda169bff63b25f46b93001f34d4ffb9, type: 3}
---- !u!65 &65904098278397486
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121144657667214}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.04211886, y: 0.017475303, z: 0.06517474}
-  m_Center: {x: 0, y: 0, z: 0.000038431957}
 --- !u!65 &65934752530314714
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -268,10 +255,10 @@ BoxCollider:
   m_GameObject: {fileID: 1863472590780012}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04692393, y: 0.028647032, z: 0.104211845}
-  m_Center: {x: 0.0015935417, y: 0.016529072, z: 0.003358072}
+  m_Size: {x: 0.038959876, y: 0.022879032, z: 0.062092055}
+  m_Center: {x: 0.003515981, y: 0.007835383, z: -0.00016990979}
 --- !u!114 &114245814184779164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,11 +297,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.06
-  m_Speed: 4.72
+  m_Speed: 6
   m_Acceleration: 9.3
   avoidancePriority: 99
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 30
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

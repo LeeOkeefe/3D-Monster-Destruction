@@ -1,41 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LampCollision : MonoBehaviour
+internal sealed class LampCollision : MonoBehaviour
 {
-    
-    public GameObject lamp;
+    private GameObject m_StreetLamp;
 
-    bool destroyed = false;
-
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (destroyed)
-        {
-            
-
-        }
+        m_StreetLamp = GetComponentInChildren<LampCollision>().gameObject;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && !destroyed)
+        if (other.gameObject.CompareTag("Player"))
         {
-            if (lamp != null)
+            if (gameObject != null)
             {
-                lamp.transform.Rotate(Vector3.forward, 90, Space.Self);
-                lamp.transform.Rotate(Vector3.right, 90, Space.Self);
+                m_StreetLamp.transform.Rotate(Vector3.forward, 90, Space.Self);
+                m_StreetLamp.transform.Rotate(Vector3.right, 90, Space.Self);
             }
-            
-            destroyed = true;
+
+            Destroy(this);
         }
     }
 }
