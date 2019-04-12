@@ -20,6 +20,7 @@ TagManager:
   - PickupHand
   - Tree
   - Grass
+  - StreetLight
   layers:
   - Default
   - TransparentFX
