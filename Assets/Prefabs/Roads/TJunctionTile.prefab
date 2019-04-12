@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 33781641682574494}
   - component: {fileID: 23679794324372422}
   - component: {fileID: 65312767695621062}
-  - component: {fileID: 114850040956042502}
   m_Layer: 0
   m_Name: TrafficLight2
   m_TagString: Untagged
@@ -127,7 +126,6 @@ GameObject:
   - component: {fileID: 4119900180849270}
   - component: {fileID: 33134389114641000}
   - component: {fileID: 23185956355809326}
-  - component: {fileID: 114355357528435568}
   - component: {fileID: 65648757880138456}
   m_Layer: 0
   m_Name: TrafficLight1
@@ -232,7 +230,6 @@ GameObject:
   - component: {fileID: 33867241717707990}
   - component: {fileID: 23397930620768946}
   - component: {fileID: 65724410985985066}
-  - component: {fileID: 114059145683458830}
   m_Layer: 0
   m_Name: TrafficLight3
   m_TagString: Untagged
@@ -1138,8 +1135,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1445664237523740}
-  m_LocalRotation: {x: -0, y: -0.000000014901161, z: -0, w: 1}
-  m_LocalPosition: {x: 20, y: 0, z: 60}
+  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.7071078}
+  m_LocalPosition: {x: 20, y: 0, z: -80}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4412358231255778}
@@ -2654,18 +2651,6 @@ MonoBehaviour:
   rightTurn: 0
   rightTurnOrForward: 0
   leftTurnOrForward: 1
---- !u!114 &114059145683458830
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1247142284268892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lamp: {fileID: 1869634260751488}
 --- !u!114 &114059537225120140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2717,18 +2702,6 @@ MonoBehaviour:
   rightTurn: 0
   rightTurnOrForward: 1
   leftTurnOrForward: 0
---- !u!114 &114355357528435568
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1181036796862746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lamp: {fileID: 1151451265106108}
 --- !u!114 &114373021832094432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2834,15 +2807,3 @@ MonoBehaviour:
   rightTurn: 0
   rightTurnOrForward: 0
   leftTurnOrForward: 0
---- !u!114 &114850040956042502
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1105046835153456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lamp: {fileID: 1963667715480432}
