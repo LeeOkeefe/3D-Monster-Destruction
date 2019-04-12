@@ -30,7 +30,7 @@ GameObject:
   m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4775219554002278
 Transform:
@@ -38,9 +38,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1069289201138886}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 25.915365, y: 27.59736, z: -129.6}
-  m_LocalScale: {x: 1.2, y: 1.0000005, z: 1.0000005}
+  m_LocalRotation: {x: -0.539759, y: 0.42356676, z: 0.42700964, w: 0.58899426}
+  m_LocalPosition: {x: -32.630005, y: 27.59736, z: -145.17}
+  m_LocalScale: {x: 1.2000002, y: 1.0000001, z: 1.2000002}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -144,7 +144,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 2.569, y: 2.9060001, z: 4.7640004}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 4.6260004}
   m_TimeToStationary: 0.5

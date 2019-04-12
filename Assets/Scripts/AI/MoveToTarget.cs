@@ -5,25 +5,13 @@ namespace Assets.Scripts.AI
 {
     internal sealed class MoveToTarget : MonoBehaviour
     {
-        [SerializeField]
-        private float stoppingDistance;
-
         private NavMeshAgent m_NavMeshAgent;
         private Transform PlayerTransform => GameManager.instance.player.transform;
 
         private void Start()
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
-        }
-
-        private void Update()
-        {
-            if (m_NavMeshAgent == null)
-            {
-                Debug.Log($"Nav Mesh Agent is null on {gameObject.name}");
-            }
-
-            Invoke("SetTarget", RandomNumberGenerator(2, 7));
+            InvokeRepeating("SetTarget", 2F, RandomNumberGenerator(2, 10));
         }
 
         /// <summary>
@@ -31,9 +19,14 @@ namespace Assets.Scripts.AI
         /// </summary>
         private void SetTarget()
         {
-            if (PlayerTransform == null)
+            if (m_NavMeshAgent == null)
             {
                 Debug.Log($"Nav Mesh Agent is null on {gameObject.name}");
+            }
+
+            if (PlayerTransform == null)
+            {
+                Debug.Log($"{PlayerTransform} was null");
             }
 
             if (!m_NavMeshAgent.isOnNavMesh)
