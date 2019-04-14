@@ -30,9 +30,7 @@ namespace Objects.Destructible.Objects
 
             if (IsObjectDestroyed)
             {
-                var position = transform.position;
-                Instantiate(particleEffect, position, Quaternion.identity);
-                Instantiate(treeStump, position, Quaternion.identity);
+                Destruct();
             }
         }
 
@@ -48,6 +46,13 @@ namespace Objects.Destructible.Objects
             AddScore();
             DestroyObject();
             Instantiate(burntStump, position, Quaternion.identity);
+        }
+
+        public override void Destruct()
+        {
+            var position = transform.position;
+            Instantiate(particleEffect, position, Quaternion.identity);
+            Instantiate(treeStump, position, Quaternion.identity);
         }
     }
 }

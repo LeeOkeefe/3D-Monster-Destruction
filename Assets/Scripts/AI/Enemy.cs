@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AI
 {
-    internal abstract class Enemy : MonoBehaviour
+    internal abstract class Enemy : MonoBehaviour, IAttack, IDeathHandler
     {
         [ReadOnly]
         protected float currentHealth;
@@ -13,7 +13,7 @@ namespace AI
         [SerializeField]
         protected float distanceToAttackTarget;
         [SerializeField]
-        protected float dealDamage = 5f;
+        protected float environmentalDamage = 5f;
         [SerializeField]
         protected float timeBetweenAttacks = 5f;
         [SerializeField]
@@ -21,6 +21,10 @@ namespace AI
 
         protected Transform PlayerTransform => GameManager.instance.player.transform;
         protected PlayerStats PlayerStats => GameManager.instance.playerStats;
+
+        public abstract void Attack();
+
+        public abstract void HandleDeath();
 
         /// <summary>
         /// Set the current health to be the max, so we can avoid exposing the currentHealth

@@ -22,6 +22,7 @@ internal sealed class GameManager : MonoBehaviour
     public SettingsManager settingsManager;
     public CanvasGroup gameOverUi;
     public GameObject playerPickupHand;
+    public GameObject playerShootingPosition;
     public Animator playerAnim;
     public MouseSensitivity mouseSensitivity;
 

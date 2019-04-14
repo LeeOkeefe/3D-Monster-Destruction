@@ -1,4 +1,5 @@
 ﻿using Objects.Destructible.Definition;
+using Objects.Destructible.Objects;
 using Player;
 using UnityEngine;
 
@@ -45,6 +46,9 @@ internal sealed class Projectile : MonoBehaviour
     //
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Tank") || other.gameObject.CompareTag("Projectile"))
+            return;
+
         if (other.gameObject.CompareTag("Player"))
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
@@ -52,11 +56,12 @@ internal sealed class Projectile : MonoBehaviour
             playerHealth.Damage(projectileDamage);
         }
 
-        if (other.gameObject.CompareTag("Building"))
+        if (other.gameObject.GetComponent(typeof(DestructibleObject)))
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
-            var building = GetComponent<DestructibleObject>();
-            building.currentHealth -= 20;
+            var destructibleObject = GetComponent(typeof(DestructibleObject)) as IDestructible;
+            destructibleObject?.Damage(20);
+            destructibleObject?.Destruct();
         }
 
         Destroy(gameObject);

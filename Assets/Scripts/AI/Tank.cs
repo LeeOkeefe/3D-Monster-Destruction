@@ -1,72 +1,51 @@
-﻿using Objects.Destructible.Definition;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AI
 {
-    internal sealed class Tank : Enemy
+    internal abstract class Tank : Enemy
     {
         [SerializeField]
-        private GameObject firingPoint;
+        protected GameObject firingPoint;
         [SerializeField]
-        private GameObject firingEffect;
+        protected GameObject firingEffect;
         [SerializeField]
-        private GameObject tankExplodingPrefab;
+        protected GameObject tankExplodingPrefab;
         [SerializeField]
-        private GameObject tankDamagePrefab;
+        protected GameObject tankDamagePrefab;
+        [SerializeField]
+        protected GameObject turret;
+        [SerializeField]
+        private GameObject projectile;
 
-        private RaycastHit m_Hit;
-        private bool CanShootPlayer => m_TimeTillShoot <= 0;
-        private float m_TimeTillShoot;
+        protected static GameObject FireToPoint => GameManager.instance.playerShootingPosition;
 
-        private void Start()
-        {
-            InitializeHealth();
-        }
-
-        void Update()
-        {
-            if (!CanShootPlayer)
-            {
-                m_TimeTillShoot -= Time.deltaTime;
-            }
-
-            if (IsPlayerInRange(distanceToAttackTarget) && CanShootPlayer)
-            {
-                ShootPlayer();
-            }
-        }
+        protected RaycastHit hit;
+        protected bool CanShootPlayer => timeTillShoot <= 0;
+        protected float timeTillShoot;
 
         /// <summary>
         /// Looks toward the player, if raycast hits the player and we can shoot,
         /// then we shoot the player
         /// </summary>
-        private void ShootPlayer()
+        public override void Attack()
         {
-            firingPoint.transform.LookAt(PlayerTransform);
+            firingPoint.transform.LookAt(FireToPoint.transform.position);
 
-            if (Physics.Raycast(firingPoint.transform.position, Vector3.forward, out m_Hit))
-            {
-                if (!m_Hit.transform.CompareTag("Player") && !(m_TimeTillShoot <= 0))
-                    return;
-
-                Instantiate(firingEffect, firingPoint.transform.position, Quaternion.identity);
-                PlayerStats.Damage(dealDamage);
-                m_TimeTillShoot = timeBetweenAttacks;
-            }
-        }
-
-        // Deals damage to the building it collides with, and itself
-        // Checks whether it is dead and adds score/destroys itself
-        //
-        private void OnCollisionEnter(Collision other)
-        {
-            if (!other.gameObject.CompareTag("Building"))
+            if (!Physics.Raycast(firingPoint.transform.position, Vector3.forward, out hit))
                 return;
 
-            var destructibleObject = other.gameObject.GetComponent<DestructibleObject>();
-            destructibleObject.currentHealth -= dealDamage * 6f;
+            if (!hit.transform.CompareTag("Player") && !(timeTillShoot <= 0))
+                return;
 
-            currentHealth -= dealDamage * 7.5f;
+            var position = firingPoint.transform.position;
+            Instantiate(firingEffect, position, Quaternion.identity);
+            Instantiate(projectile, position, firingPoint.transform.rotation);
+            timeTillShoot = timeBetweenAttacks;
+        }
+
+        public override void HandleDeath()
+        {
+            Damage(50);
 
             if (currentHealth <= 0)
             {
@@ -78,6 +57,14 @@ namespace AI
             {
                 Instantiate(tankDamagePrefab, transform.position, Quaternion.identity);
             }
+        }
+
+        /// <summary>
+        /// Damages the current health of the tank
+        /// </summary>
+        protected void Damage(float damage)
+        {
+            currentHealth -= damage;
         }
     }
 }

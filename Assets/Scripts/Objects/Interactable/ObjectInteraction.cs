@@ -6,7 +6,6 @@ namespace Objects.Interactable
 {
     internal class ObjectInteraction : InteractableObject
     {
-        [SerializeField]
         private GameObject tempParent;
         [SerializeField]
         private float throwingForce = 100f;

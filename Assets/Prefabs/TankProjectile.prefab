@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114352655049122380}
   m_Layer: 0
   m_Name: TankProjectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,6 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1599017527472068}
-  projectileDamage: 10
-  projectileSpeed: 25
-  explosion: {fileID: 100004, guid: bd5a7ae3e8bd4c8499f69e8e45138021, type: 2}
+  projectileDamage: 5
+  projectileSpeed: 50
+  explosion: {fileID: 100008, guid: 8f611da60097c85438a2947021f045cf, type: 2}
