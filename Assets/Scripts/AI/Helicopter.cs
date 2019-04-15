@@ -12,9 +12,6 @@ namespace AI
         [SerializeField]
         private GameObject projectile;
         [SerializeField]
-        private Transform playerHead;
-
-        [SerializeField]
         private GameObject topRotor;
         [SerializeField]
         private GameObject backRotor;
@@ -34,7 +31,7 @@ namespace AI
             if (IsHoldingObject)
                 return;
 
-            transform.LookAt(playerHead);
+            transform.LookAt(PlayerTransform);
 
             HandleRotors();
 

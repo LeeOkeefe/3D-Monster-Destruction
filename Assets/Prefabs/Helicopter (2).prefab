@@ -349,7 +349,6 @@ MonoBehaviour:
   scoreAwarded: 250
   helicopterExplosion: {fileID: 100002, guid: 4bf22a1d8d9e7724b9af67921436851d, type: 2}
   projectile: {fileID: 1147455225852942, guid: 4f0acdebb6b619d44b0152fd45b6f612, type: 2}
-  playerHead: {fileID: 0}
   topRotor: {fileID: 1307193217127504}
   backRotor: {fileID: 1707118616888498}
   gun: {fileID: 1540943978027526}
@@ -375,8 +374,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.5
-  m_Speed: 5
-  m_Acceleration: 8
+  m_Speed: 8
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 15
