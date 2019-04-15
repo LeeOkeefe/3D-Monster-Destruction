@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
 
-internal sealed class LampCollision : MonoBehaviour
+namespace Objects.Destructible.Objects
 {
-    private GameObject m_StreetLamp;
-
-    private void Start()
+    internal sealed class LampCollision : MonoBehaviour
     {
-        m_StreetLamp = GetComponentInChildren<LampCollision>().gameObject;
-    }
+        private GameObject m_StreetLamp;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
+        private void Start()
         {
-            if (gameObject != null)
-            {
-                m_StreetLamp.transform.Rotate(Vector3.forward, 90, Space.Self);
-                m_StreetLamp.transform.Rotate(Vector3.right, 90, Space.Self);
-            }
+            m_StreetLamp = GetComponentInChildren<LampCollision>().gameObject;
+        }
 
-            Destroy(this);
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                if (gameObject != null)
+                {
+                    m_StreetLamp.transform.Rotate(Vector3.forward, 90, Space.Self);
+                    m_StreetLamp.transform.Rotate(Vector3.right, 90, Space.Self);
+                }
+
+                Destroy(this);
+            }
         }
     }
 }

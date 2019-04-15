@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TESTING
+namespace Objects.Destructible.Objects
 {
     internal sealed class FireHydrant : MonoBehaviour
     {

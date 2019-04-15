@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Objects.Destructible.Objects;
+using UnityEngine;
 
 namespace Objects.Destructible.Definition
 {
-    public abstract class DestructibleObject : MonoBehaviour
+    public abstract class DestructibleObject : MonoBehaviour, IDestructible
     {
         // Shared properties across all destructible objects
         //
@@ -12,6 +13,13 @@ namespace Objects.Destructible.Definition
 
         protected bool IsObjectDestroyed => currentHealth <= 0;
         protected void AddScore() => ScoreManager.AddScore(scoreAwarded);
+
+        public void Damage(float damage)
+        {
+            currentHealth -= damage;
+        }
+
+        public abstract void Destruct();
 
         /// <summary>
         /// If object health is less than or equal to 0,

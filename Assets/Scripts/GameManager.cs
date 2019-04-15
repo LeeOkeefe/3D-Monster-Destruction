@@ -7,6 +7,7 @@ using UI.Settings;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = System.Random;
 
 internal sealed class GameManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ internal sealed class GameManager : MonoBehaviour
     public SettingsManager settingsManager;
     public CanvasGroup gameOverUi;
     public GameObject playerPickupHand;
+    public GameObject playerShootingPosition;
     public Animator playerAnim;
     public MouseSensitivity mouseSensitivity;
 

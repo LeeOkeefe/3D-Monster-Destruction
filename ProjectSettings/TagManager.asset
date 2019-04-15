@@ -21,6 +21,8 @@ TagManager:
   - Tree
   - Grass
   - StreetLight
+  - Projectile
+  - Helicopter
   layers:
   - Default
   - TransparentFX
@@ -36,7 +38,7 @@ TagManager:
   - Cars
   - Plane
   - UnderOcean
-  - 
+  - Player
   - 
   - 
   - 

@@ -20,10 +20,27 @@ namespace Player
 
         public float TotalDamage => baseDamage + BoostedDamage;
 
+        [SerializeField]
+        private Renderer m_Renderer;
+
+        private Color m_OriginalColor;
+
         private void Start()
         {
+            m_OriginalColor = m_Renderer.material.color;
+
             CurrentHealth = maxHealth;
             CurrentStamina = maxStamina;
+        }
+
+        /// <summary>
+        /// Switches material colour to produce a flash effect
+        /// </summary>
+        private IEnumerator DamageFeedback()
+        {
+            m_Renderer.material.SetColor("_Color", Color.red);
+            yield return new WaitForSeconds(0.1F);
+            m_Renderer.material.SetColor("_Color", m_OriginalColor);
         }
 
         /// <summary>
@@ -45,6 +62,8 @@ namespace Player
         /// </summary>
         public void Damage(float damage)
         {
+            StartCoroutine(nameof(DamageFeedback));
+
             if (BoostedDefence > 0)
             {
                 var total = damage / 100 * BoostedDefence;

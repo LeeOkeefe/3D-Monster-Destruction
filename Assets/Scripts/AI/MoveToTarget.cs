@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace Assets.Scripts.AI
+namespace AI
 {
     internal sealed class MoveToTarget : MonoBehaviour
     {
         private NavMeshAgent m_NavMeshAgent;
-        private Transform PlayerTransform => GameManager.instance.player.transform;
+        private static Transform PlayerTransform => GameManager.instance.player.transform;
 
         private void Start()
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
-            InvokeRepeating("SetTarget", 2F, RandomNumberGenerator(2, 10));
+            InvokeRepeating(nameof(SetTarget), 2F, RandomNumberGenerator(2, 10));
         }
 
         /// <summary>

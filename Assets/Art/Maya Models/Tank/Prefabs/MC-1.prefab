@@ -510,10 +510,10 @@ GameObject:
   - component: {fileID: 400066}
   - component: {fileID: 54176924169706320}
   - component: {fileID: 65429165065219926}
-  - component: {fileID: 114388608179102106}
   - component: {fileID: 114797682493366338}
   - component: {fileID: 195041249023734948}
   - component: {fileID: 114900423812787394}
+  - component: {fileID: 114389735861185416}
   m_Layer: 0
   m_Name: MC-1
   m_TagString: Tank
@@ -556,7 +556,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.52418697, y: 0.00000021491276, z: -0.23423111}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4152696674415664}
   m_Father: {fileID: 400006}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -566,13 +567,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: -3.551745e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07191026, y: -0.000028711582, z: -1.3424342}
+  m_LocalRotation: {x: 0.50000006, y: 0.49999997, z: -0.50000006, w: 0.49999997}
+  m_LocalPosition: {x: -0.000030517578, y: 1.3424377, z: -0.07191473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
-  m_Father: {fileID: 400060}
-  m_RootOrder: 26
+  m_Father: {fileID: 4216892863172064}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &400008
 Transform:
@@ -948,7 +949,6 @@ Transform:
   - {fileID: 400012}
   - {fileID: 400010}
   - {fileID: 400008}
-  - {fileID: 400006}
   m_Father: {fileID: 400064}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -978,6 +978,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400060}
+  - {fileID: 4216892863172064}
   m_Father: {fileID: 400066}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -987,13 +988,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100066}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 194, y: 0.1, z: 98.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 41.642487, y: 136.32578, z: -250.44653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400064}
   - {fileID: 400062}
-  - {fileID: 4152696674415664}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1171,7 +1171,7 @@ Prefab:
   m_IsPrefabParent: 1
 --- !u!1 &1663789298282106
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -1184,18 +1184,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1889230549277188
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4216892863172064}
+  m_Layer: 0
+  m_Name: Turret Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4152696674415664
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663789298282106}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.595, z: 1.717}
+  m_LocalRotation: {x: -0.50000006, y: -0.49999997, z: 0.50000006, w: 0.49999997}
+  m_LocalPosition: {x: -1.58, y: -0, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 400066}
-  m_RootOrder: 2
+  m_Father: {fileID: 400004}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4216892863172064
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1889230549277188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 400006}
+  m_Father: {fileID: 400064}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &54176924169706320
 Rigidbody:
@@ -1222,9 +1251,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4218254, y: 1.8320961, z: 3.9467697}
-  m_Center: {x: 0.20271683, y: 1.0733585, z: -0.18272018}
---- !u!114 &114388608179102106
+  m_Size: {x: 1.7393894, y: 1.8320961, z: 3.9467697}
+  m_Center: {x: 0.043934822, y: 1.0733585, z: -0.18272018}
+--- !u!114 &114389735861185416
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1232,18 +1261,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 100066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90b3ce4ac42e76f45834372097debb3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 38f4cb32a4521bf45ba97e1918f71003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 75
+  maxHealth: 100
   distanceToAttackTarget: 25
-  dealDamage: 5
+  environmentalDamage: 40
   timeBetweenAttacks: 5
-  scoreAwarded: 250
+  scoreAwarded: 150
   firingPoint: {fileID: 1663789298282106}
-  firingEffect: {fileID: 100008, guid: 8f611da60097c85438a2947021f045cf, type: 2}
-  tankExplodingPrefab: {fileID: 100002, guid: 4bf22a1d8d9e7724b9af67921436851d, type: 2}
-  tankDamagePrefab: {fileID: 100004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 2}
+  firingEffect: {fileID: 100004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 2}
+  tankExplodingPrefab: {fileID: 100006, guid: 808e73d863fcde3499fd5301563ffd3d, type: 2}
+  tankDamagePrefab: {fileID: 100006, guid: 28ccd38a41e256a4e8fea96f5a8d039d, type: 2}
+  turret: {fileID: 1889230549277188}
+  projectile: {fileID: 1215711560662934, guid: 80ce4a26ccd86424aadfecb867405be6, type: 2}
 --- !u!114 &114797682493366338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1267,8 +1298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 7
-  tempParent: {fileID: 0}
-  throwingForce: 100
+  throwingForce: 250
 --- !u!195 &195041249023734948
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -1278,11 +1308,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 15
+  m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

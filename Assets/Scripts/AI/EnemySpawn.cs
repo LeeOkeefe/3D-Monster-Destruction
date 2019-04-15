@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Random = System.Random;
 
 namespace AI
@@ -6,7 +7,7 @@ namespace AI
     internal sealed class EnemySpawn : MonoBehaviour
     {
         [SerializeField]
-        private Enemy enemy;
+        private Enemy[] enemies;
         [SerializeField]
         private GameObject[] spawnPositions;
         [SerializeField]
@@ -20,20 +21,20 @@ namespace AI
 
             if (m_Timer >= timeTillSpawn)
             {
-                Instantiate(enemy, RandomSpawnLoc().transform.position, Quaternion.identity);
+                Instantiate(RandomSpawn(enemies), RandomSpawn(spawnPositions).transform.position, Quaternion.identity);
                 m_Timer = 0;
             }
         }
 
         /// <summary>
-        /// Get random GameObject from the array of position
+        /// Returns a random element from the array
         /// </summary>
-        private GameObject RandomSpawnLoc()
+        private static T RandomSpawn<T>(IReadOnlyList<T> array)
         {
             var rand = new Random();
-            var pos = rand.Next(0, spawnPositions.Length);
+            var pos = rand.Next(0, array.Count);
 
-            return spawnPositions[pos];
+            return array[pos];
         }
     }
 }

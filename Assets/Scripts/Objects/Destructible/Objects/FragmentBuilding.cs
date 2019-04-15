@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using AI;
 using Objects.Destructible.Definition;
 using Player;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Objects.Destructible.Objects
 
         private Building m_Building;
         public void HandleFlamethrower() => m_Building.FlamethrowerDamage(this, DestroyObject);
-        private void TriggerExplosion() => Instantiate(explosion, m_Pos, Quaternion.identity);
+        private void InstantiateExplosion() => Instantiate(explosion, m_Pos, Quaternion.identity);
 
         private Vector3 m_Pos;
         private bool m_SpawnedRubble;
@@ -26,6 +27,8 @@ namespace Objects.Destructible.Objects
         private Color m_Colour;
         private Color m_EmissionColour;
         private float m_Intensity;
+
+        private const float BelowGroundLevel = -10;
 
         // Instantiate new building, grab and set random colour (within range)
         // for the building colour and lights (emission) which includes intensity
@@ -59,7 +62,7 @@ namespace Objects.Destructible.Objects
 
             if (!m_HasHappenedOnce)
             {
-                TriggerExplosion();
+                InstantiateExplosion();
                 ScoreManager.AddScore(scoreAwarded);
                 m_HasHappenedOnce = true;
             }
@@ -68,7 +71,7 @@ namespace Objects.Destructible.Objects
         /// <summary>
         /// Checks the health, and activates fragments depending on the percentage
         /// </summary>
-        private void CheckHealth()
+        public override void Destruct()
         {
             var healthPercentage = maxHealth / 100;
 
@@ -81,6 +84,8 @@ namespace Objects.Destructible.Objects
             {
                 EnableFragments(fragments[1]);
             }
+
+            HandleBuildingDestroyed();
         }
 
         /// <summary>
@@ -112,7 +117,7 @@ namespace Objects.Destructible.Objects
             transform.Rotate(Random.insideUnitSphere * 0.5f);
             transform.Translate(Vector3.down * 3 * Time.deltaTime);
 
-            if (transform.position.y < -10 && !m_SpawnedRubble)
+            if (transform.position.y < BelowGroundLevel && !m_SpawnedRubble)
             {
                 Instantiate(rubble, m_Pos, Quaternion.identity);
                 m_SpawnedRubble = true;
@@ -133,7 +138,7 @@ namespace Objects.Destructible.Objects
             {
                 var playerStats = other.GetComponentInParent<PlayerStats>();
                 m_Building.Damage(this, playerStats.TotalDamage);
-                CheckHealth();
+                Destruct();
             }
         }
 
@@ -141,11 +146,14 @@ namespace Objects.Destructible.Objects
         //
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Car"))
+            if (other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("Tank"))
             {
                 m_Building.Damage(this, 25);
-                CheckHealth();
+                Destruct();
             }
+
+            var enemy = other.gameObject.GetComponent(typeof(Enemy)) as IDeathHandler;
+            enemy?.HandleDeath();
         }
     }
 }
