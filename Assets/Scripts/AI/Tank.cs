@@ -43,11 +43,13 @@ namespace AI
             timeTillShoot = timeBetweenAttacks;
         }
 
+        // Handles the tank being damaged/killed
+        //
         public override void HandleDeath()
         {
-            Damage(50);
+            Damage(environmentalDamage);
 
-            if (currentHealth <= 0)
+            if (EnemyIsDead)
             {
                 Instantiate(tankExplodingPrefab, transform.position, Quaternion.identity);
                 ScoreManager.AddScore(scoreAwarded);
@@ -57,14 +59,6 @@ namespace AI
             {
                 Instantiate(tankDamagePrefab, transform.position, Quaternion.identity);
             }
-        }
-
-        /// <summary>
-        /// Damages the current health of the tank
-        /// </summary>
-        protected void Damage(float damage)
-        {
-            currentHealth -= damage;
         }
     }
 }

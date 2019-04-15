@@ -10,17 +10,17 @@ namespace Objects.Interactable
         [SerializeField]
         private float throwingForce = 100f;
 
-        private BoxCollider m_BoxCollider;
+        private Collider m_Collider;
         private Rigidbody m_Object;
 
-        private bool m_HoldingObject;
+        public bool m_HoldingObject { get; private set; }
 
         private Animator anim => GameManager.instance.playerAnim;
 
         private void Start()
         {
             m_Object = GetComponent<Rigidbody>();
-            m_BoxCollider = GetComponent<BoxCollider>();
+            m_Collider = GetComponentInChildren<Collider>();
             tempParent = GameManager.instance.playerPickupHand;
         }
 
@@ -58,7 +58,7 @@ namespace Objects.Interactable
 
             m_HoldingObject = true;
             m_Object.useGravity = false;
-            m_BoxCollider.enabled = false;
+            m_Collider.enabled = false;
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Objects.Interactable
             m_HoldingObject = false;
             m_Object.useGravity = true;
             m_Object.transform.parent = null;
-            m_BoxCollider.enabled = true;
+            m_Collider.enabled = true;
         }
 
         /// <summary>

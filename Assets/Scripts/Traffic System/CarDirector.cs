@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TESTING
+namespace Traffic_System
 {
     internal sealed class CarDirector : MonoBehaviour
     {

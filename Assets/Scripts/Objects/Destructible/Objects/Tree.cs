@@ -48,11 +48,15 @@ namespace Objects.Destructible.Objects
             Instantiate(burntStump, position, Quaternion.identity);
         }
 
+        // Instantiate particle effect and gameObject, then check health
+        //
         public override void Destruct()
         {
             var position = transform.position;
             Instantiate(particleEffect, position, Quaternion.identity);
             Instantiate(treeStump, position, Quaternion.identity);
+
+            DestroyObject();
         }
     }
 }

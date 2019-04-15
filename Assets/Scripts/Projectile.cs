@@ -1,4 +1,5 @@
-﻿using Objects.Destructible.Definition;
+﻿using AI;
+using Objects.Destructible.Definition;
 using Objects.Destructible.Objects;
 using Player;
 using UnityEngine;
@@ -46,9 +47,14 @@ internal sealed class Projectile : MonoBehaviour
     //
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Tank") || other.gameObject.CompareTag("Projectile"))
+        // If we collide with another enemy or projectile, do nothing
+        // (We may want to change this in future)
+        //
+        if (other.GetComponentInParent(typeof(Enemy)) || other.gameObject.CompareTag("Projectile"))
             return;
 
+        // If we collide with the player, damage the player health
+        //
         if (other.gameObject.CompareTag("Player"))
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
@@ -56,12 +62,16 @@ internal sealed class Projectile : MonoBehaviour
             playerHealth.Damage(projectileDamage);
         }
 
+        // Checks if we hit a destructibleObject, if we have then
+        // call the methods on the IDestructible 
+        //
         if (other.gameObject.GetComponent(typeof(DestructibleObject)))
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
-            var destructibleObject = GetComponent(typeof(DestructibleObject)) as IDestructible;
-            destructibleObject?.Damage(20);
-            destructibleObject?.Destruct();
+
+            var destructible = other.GetComponent<IDestructible>();
+            destructible?.Damage(20);
+            destructible?.Destruct();
         }
 
         Destroy(gameObject);

@@ -26,13 +26,10 @@ namespace Player
         private float Speed => m_Animator.GetFloat("Speed");
         public bool PlayerIsMoving => Speed > 0f;
 
-        private Rigidbody m_Rb;
-
         private void Start()
         {
             m_Animator = GetComponent<Animator>();
             m_PlayerStats = GetComponent<PlayerStats>();
-            m_Rb = GetComponent<Rigidbody>();
         }
 
         // Check input keys every frame to call control methods i.e. sprint, attack and camera control
@@ -91,22 +88,22 @@ namespace Player
 
             if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
             {
-                direction = (Vector3.left + Vector3.forward).normalized;
+                direction = (Vector3.left + Vector3.forward);
             }
             else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
             {
-                direction = (Vector3.right + Vector3.forward).normalized;
+                direction = (Vector3.right + Vector3.forward);
             }
             else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
             {
-                direction = (Vector3.left + Vector3.back).normalized;
+                direction = (Vector3.left + Vector3.back);
             }
             else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
             {
-                direction = (Vector3.right + Vector3.back).normalized;
+                direction = (Vector3.right + Vector3.back);
             }
 
-            transform.Translate(direction * Time.deltaTime * movementSpeed);
+            transform.Translate(direction.normalized * Time.deltaTime * movementSpeed);
 
             // If direction is not equal to zero, use walk animation
             if (direction != Vector3.zero)

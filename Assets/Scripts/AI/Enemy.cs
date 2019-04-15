@@ -13,7 +13,7 @@ namespace AI
         [SerializeField]
         protected float distanceToAttackTarget;
         [SerializeField]
-        protected float environmentalDamage = 5f;
+        protected float environmentalDamage = 50f;
         [SerializeField]
         protected float timeBetweenAttacks = 5f;
         [SerializeField]
@@ -21,6 +21,7 @@ namespace AI
 
         protected Transform PlayerTransform => GameManager.instance.player.transform;
         protected PlayerStats PlayerStats => GameManager.instance.playerStats;
+        protected bool EnemyIsDead => currentHealth <= 0;
 
         public abstract void Attack();
 
@@ -39,7 +40,15 @@ namespace AI
         /// </summary>
         protected bool IsPlayerInRange(float distance)
         {
-            return Vector3.Distance(transform.position, PlayerTransform.position) < distance;
+            return Vector3.Distance(transform.position, PlayerTransform.position) <= distance;
+        }
+
+        /// <summary>
+        /// Damages the current health of the enemy
+        /// </summary>
+        protected void Damage(float damage)
+        {
+            currentHealth -= damage;
         }
     }
 }

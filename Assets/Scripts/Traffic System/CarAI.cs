@@ -1,7 +1,6 @@
-﻿using System.Security.Cryptography;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TESTING
+namespace Traffic_System
 {
     internal sealed class CarAI : MonoBehaviour
     {

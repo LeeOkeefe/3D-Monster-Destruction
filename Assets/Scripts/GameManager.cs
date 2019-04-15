@@ -7,6 +7,7 @@ using UI.Settings;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = System.Random;
 
 internal sealed class GameManager : MonoBehaviour
 {

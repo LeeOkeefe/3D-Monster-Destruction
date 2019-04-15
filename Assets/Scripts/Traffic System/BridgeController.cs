@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TESTING
+namespace Traffic_System
 {
     public class BridgeController : MonoBehaviour
     {
