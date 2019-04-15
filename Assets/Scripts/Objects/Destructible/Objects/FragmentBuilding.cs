@@ -15,6 +15,8 @@ namespace Objects.Destructible.Objects
         [SerializeField]
         private GameObject rubble;
 
+        public GameObject burntRubble;
+
         private Building m_Building;
         public void HandleFlamethrower() => m_Building.FlamethrowerDamage(this, DestroyObject);
         private void InstantiateExplosion() => Instantiate(explosion, m_Pos, Quaternion.identity);

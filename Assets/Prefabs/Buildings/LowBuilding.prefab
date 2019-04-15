@@ -1192,6 +1192,8 @@ MonoBehaviour:
   - {fileID: 1125775312746406}
   explosion: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 2}
   rubble: {fileID: 1447191628214894, guid: 2b1897816d31ee8499305dba502ac44e, type: 2}
+  burntRubble: {fileID: 1116758171201644, guid: b8faff09ddaf4344080eded1fe385921,
+    type: 2}
 --- !u!208 &208330353106952922
 NavMeshObstacle:
   m_ObjectHideFlags: 1
