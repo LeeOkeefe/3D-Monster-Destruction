@@ -14,6 +14,9 @@ namespace Abilities
             {
                 var building = other.GetComponent<FragmentBuilding>();
                 building.HandleFlamethrower();
+
+                if (building.currentHealth <= 0)
+                    Instantiate(building.burntRubble, other.gameObject.transform.position, Quaternion.identity);
             }
 
             if (other.gameObject.CompareTag("Tree"))

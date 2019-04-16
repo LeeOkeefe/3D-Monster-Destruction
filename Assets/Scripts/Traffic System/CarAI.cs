@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using AI;
+using UnityEngine;
 
 namespace Traffic_System
 {
-    internal sealed class CarAI : MonoBehaviour
+    internal sealed class CarAI : MonoBehaviour, IDeathHandler
     {
         [SerializeField]
         private float speed = 10;
@@ -83,11 +84,9 @@ namespace Traffic_System
             if (other.gameObject.CompareTag("Right Foot") && player.PlayerIsMoving ||
                 other.gameObject.CompareTag("Left Foot") && player.PlayerIsMoving ||
                 other.gameObject.CompareTag("Tree"))
-                
+
             {
-                Destroy(gameObject);
-                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-                ScoreManager.AddScore(scoreAwarded, 10);
+                HandleDeath();
             }
         }
 
@@ -96,6 +95,11 @@ namespace Traffic_System
             if (!other.gameObject.CompareTag("Building"))
                 return;
 
+            HandleDeath();
+        }
+
+        public void HandleDeath()
+        {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             ScoreManager.AddScore(scoreAwarded, 30);
             Destroy(gameObject);
