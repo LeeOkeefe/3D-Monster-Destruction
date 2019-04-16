@@ -11,6 +11,7 @@ namespace AI
         private GameObject helicopterExplosion;
         [SerializeField]
         private GameObject projectile;
+
         [SerializeField]
         private GameObject topRotor;
         [SerializeField]
@@ -25,13 +26,14 @@ namespace AI
         private RaycastHit m_Hit;
 
         private bool IsHoldingObject => GetComponent<ObjectInteraction>().m_HoldingObject;
+        private GameObject Target => GameManager.instance.playerShootingPosition;
 
         private void Update()
         {
             if (IsHoldingObject)
                 return;
 
-            transform.LookAt(PlayerTransform);
+            transform.LookAt(Target.transform);
 
             HandleRotors();
 

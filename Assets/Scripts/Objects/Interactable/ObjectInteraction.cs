@@ -95,6 +95,7 @@ namespace Objects.Interactable
         private IEnumerator Delay()
         {
             yield return new WaitForSeconds(0.5f);
+            m_Object.gameObject.layer = 16;
             m_Object.velocity = Player.transform.forward * throwingForce;
             anim.SetBool("IsThrowing", false);
             DropObject();
