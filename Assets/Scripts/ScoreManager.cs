@@ -20,11 +20,6 @@ internal static class ScoreManager
     /// </summary>
     public static void AddScore(float score)
     {
-        if (score <= 0)
-        {
-            throw new ArgumentException("Score was equal to or less than 0.");
-        }
-
         PlayerTotalScore += score;
         ScoreText.text = PlayerTotalScore.ToString();
     }
@@ -35,11 +30,6 @@ internal static class ScoreManager
     /// </summary>
     public static void AddScore(float score, float percentage)
     {
-        if (score <= 0)
-        {
-            throw new ArgumentException("Score was equal to or less than 0.");
-        }
-
         var minScore = score - (score / 100 * percentage);
         var maxScore = score + (score / 100 * percentage);
 
@@ -55,10 +45,11 @@ internal static class ScoreManager
     public static void SubtractScore(int amount)
     {
         PlayerTotalScore -= amount;
-        ScoreText.text = PlayerTotalScore.ToString();
 
         if (PlayerTotalScore <= 0)
             PlayerTotalScore = 0;
+
+        ScoreText.text = PlayerTotalScore.ToString();
     }
 
     /// <summary>

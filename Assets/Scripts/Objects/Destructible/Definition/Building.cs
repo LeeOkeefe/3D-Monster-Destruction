@@ -24,9 +24,7 @@ namespace Objects.Destructible.Definition
         public void FlamethrowerDamage(DestructibleObject destructibleObject, Action action)
         {
             if (PlayerStats.TotalDamage <= 10)
-            {
-                throw new Exception("Total damage is default.");
-            }
+                return;
 
             Damage(destructibleObject, PlayerStats.TotalDamage);
 
