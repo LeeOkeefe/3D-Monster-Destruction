@@ -1,4 +1,6 @@
-﻿using Objects.Destructible.Definition;
+﻿using AI;
+using Objects.Destructible.Definition;
+using Traffic_System;
 using UnityEngine;
 
 namespace Objects.Destructible.Objects
@@ -31,6 +33,13 @@ namespace Objects.Destructible.Objects
 
                 ScoreManager.AddScore(scoreAwarded);
             }
+
+            if (!other.gameObject.GetComponent(typeof(IDeathHandler)))
+                return;
+
+            var death = other.gameObject.GetComponent(typeof(IDeathHandler)) as IDeathHandler;
+            death?.HandleDeath();
+            Destruct();
         }
     }
 }
