@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33901885698958660}
   - component: {fileID: 23462304054247288}
   - component: {fileID: 64510486144665048}
-  m_Layer: 15
+  m_Layer: 16
   m_Name: Plane004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 54017891039725572}
   - component: {fileID: 114327160080423340}
   - component: {fileID: 208280575756233906}
-  m_Layer: 15
+  m_Layer: 16
   m_Name: Chainlink Fence Segment Crushed Type 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -25,7 +25,7 @@ namespace AI
 
         private RaycastHit m_Hit;
 
-        private bool IsHoldingObject => GetComponent<ObjectInteraction>().m_HoldingObject;
+        private bool IsHoldingObject => GetComponent<ObjectInteraction>().HoldingObject;
         private GameObject Target => GameManager.instance.playerShootingPosition;
 
         private void Update()

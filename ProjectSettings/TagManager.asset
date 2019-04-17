@@ -23,6 +23,7 @@ TagManager:
   - StreetLight
   - Projectile
   - Helicopter
+  - Fragment
   layers:
   - Default
   - TransparentFX
@@ -39,9 +40,9 @@ TagManager:
   - Plane
   - UnderOcean
   - Player
-  - MetalFences
+  - Building
   - ThrownObject
-  - 
+  - Fragment
   - 
   - 
   - 

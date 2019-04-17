@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4200542724181104}
   - component: {fileID: 33548354614291870}
   - component: {fileID: 23666361610471982}
-  - component: {fileID: 64271654442704658}
+  - component: {fileID: 64132610262479916}
   m_Layer: 0
   m_Name: RubblePile
   m_TagString: Untagged
@@ -157,7 +157,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1447191628214894}
   m_Mesh: {fileID: 4300032, guid: 1b90a1dc60bd8654aa4cd7b82fefb35d, type: 3}
---- !u!64 &64271654442704658
+--- !u!64 &64132610262479916
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

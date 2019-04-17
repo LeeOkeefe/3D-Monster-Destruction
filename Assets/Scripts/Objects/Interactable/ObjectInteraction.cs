@@ -6,14 +6,14 @@ namespace Objects.Interactable
 {
     internal class ObjectInteraction : InteractableObject
     {
-        private GameObject tempParent;
+        private GameObject m_TempParent;
         [SerializeField]
         private float throwingForce = 100f;
 
         private Collider m_Collider;
         private Rigidbody m_Object;
 
-        public bool m_HoldingObject { get; private set; }
+        public bool HoldingObject { get; private set; }
 
         private Animator anim => GameManager.instance.playerAnim;
 
@@ -21,7 +21,7 @@ namespace Objects.Interactable
         {
             m_Object = GetComponent<Rigidbody>();
             m_Collider = GetComponentInChildren<Collider>();
-            tempParent = GameManager.instance.playerPickupHand;
+            m_TempParent = GameManager.instance.playerPickupHand;
         }
 
         // Check mouse button clicked to determine which method to call
@@ -29,20 +29,20 @@ namespace Objects.Interactable
         //
         private void Update()
         {
-            if (m_HoldingObject)
+            if (HoldingObject)
             {
-                m_Object.gameObject.transform.position = tempParent.transform.position;
+                m_Object.gameObject.transform.position = m_TempParent.transform.position;
             }
 
-            if (Input.GetMouseButtonDown(0) && !m_HoldingObject)
+            if (Input.GetMouseButtonDown(0) && !HoldingObject)
             {
                 PickupObject();
             }
-            else if (Input.GetMouseButtonDown(0) && m_HoldingObject)
+            else if (Input.GetMouseButtonDown(0) && HoldingObject)
             {
                 DropObject();
             }
-            else if (Input.GetMouseButtonDown(1) && m_HoldingObject)
+            else if (Input.GetMouseButtonDown(1) && HoldingObject)
             {
                 ThrowObject();
             }
@@ -56,7 +56,7 @@ namespace Objects.Interactable
             if (!IsPlayerInRange())
                 return;
 
-            m_HoldingObject = true;
+            HoldingObject = true;
             m_Object.useGravity = false;
             m_Collider.enabled = false;
         }
@@ -66,13 +66,13 @@ namespace Objects.Interactable
         /// </summary>
         private void DropObject()
         {
-            if (!m_HoldingObject)
+            if (!HoldingObject)
             {
                 throw new NullReferenceException("Not holding an object");
             }
 
             m_Object.isKinematic = false;
-            m_HoldingObject = false;
+            HoldingObject = false;
             m_Object.useGravity = true;
             m_Object.transform.parent = null;
             m_Collider.enabled = true;
