@@ -7,7 +7,6 @@ using UI.Settings;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Random = System.Random;
 
 internal sealed class GameManager : MonoBehaviour
 {
@@ -26,6 +25,8 @@ internal sealed class GameManager : MonoBehaviour
     public GameObject playerShootingPosition;
     public Animator playerAnim;
     public MouseSensitivity mouseSensitivity;
+    public Collider playerRightHand;
+    public Collider playerLeftHand;
 
     public bool IsGamePaused => Math.Abs(Time.timeScale) < 0;
     public float PlayerScore => ScoreManager.PlayerTotalScore;

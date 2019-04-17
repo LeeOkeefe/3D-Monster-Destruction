@@ -12,18 +12,17 @@ namespace Player
         private PlayerStats m_PlayerStats;
 
         [SerializeField]
-        private BoxCollider rightHandCollider;
-        [SerializeField]
-        private BoxCollider leftHandCollider;
-        [SerializeField]
         private GameObject cameraPivot;
         [SerializeField]
         private float walkSpeed = 15f;
         [SerializeField]
         private float runSpeed = 30f;
 
-        private float MouseSensitivity => GameManager.instance.MouseSensitivity;
-        private float Speed => m_Animator.GetFloat("Speed");
+        private static readonly int AnimationSpeed = Animator.StringToHash("Speed");
+        private static readonly int AnimatorCanRun = Animator.StringToHash("CanRun");
+
+        private static float MouseSensitivity => GameManager.instance.MouseSensitivity;
+        private float Speed => m_Animator.GetFloat(AnimationSpeed);
         public bool PlayerIsMoving => Speed > 0f;
 
         private void Start()
@@ -48,11 +47,11 @@ namespace Player
                 m_PlayerStats.RegenerateStamina();
             }
 
-            m_Animator.SetBool("CanRun", m_PlayerStats.CurrentStamina > 0);
+            m_Animator.SetBool(AnimatorCanRun, m_PlayerStats.CurrentStamina > 0);
 
             if (Input.GetKey(KeyCode.Space))
             {
-                Attack();
+                m_Animator.Play("Attack");
             }
 
             if (Input.GetMouseButton(2) || Input.GetKey(KeyCode.LeftAlt))
@@ -108,35 +107,12 @@ namespace Player
             // If direction is not equal to zero, use walk animation
             if (direction != Vector3.zero)
             {
-                m_Animator.SetFloat("Speed", Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ? Run : Walk);
+                m_Animator.SetFloat(AnimationSpeed, Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ? Run : Walk);
             }
             else
             {
-                m_Animator.SetFloat("Speed", Idle);
+                m_Animator.SetFloat(AnimationSpeed, Idle);
             }
-        }
-
-        /// <summary>
-        /// Triggers attack animation and the hands collision trigger
-        /// </summary>
-        private void Attack()
-        {
-            m_Animator.Play("Attack");
-
-            if (m_Animator.GetBool("IsAttacking"))
-            {
-                leftHandCollider.isTrigger = true;
-                rightHandCollider.isTrigger = true;
-                Invoke(nameof(ResetTrigger), 1.5f);
-            }
-        }
-
-        // Resets the collision triggers
-        //
-        private void ResetTrigger()
-        {
-            leftHandCollider.isTrigger = false;
-            rightHandCollider.isTrigger = false;
         }
 
         /// <summary>

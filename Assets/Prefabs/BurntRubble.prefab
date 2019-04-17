@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4361436090334116}
   - component: {fileID: 33672843696880128}
   - component: {fileID: 23777800300051526}
-  - component: {fileID: 64542711823767518}
+  - component: {fileID: 64307211115778950}
   m_Layer: 0
   m_Name: BurntRubble
   m_TagString: Untagged
@@ -157,7 +157,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1008465976502498}
   m_Mesh: {fileID: 4300034, guid: 1b90a1dc60bd8654aa4cd7b82fefb35d, type: 3}
---- !u!64 &64542711823767518
+--- !u!64 &64307211115778950
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

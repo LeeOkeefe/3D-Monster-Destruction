@@ -30,7 +30,7 @@ namespace Objects.Destructible.Objects
         private Color m_EmissionColour;
         private float m_Intensity;
 
-        private const float BelowGroundLevel = -10;
+        private const float BelowGroundLevel = -8;
 
         // Instantiate new building, grab and set random colour (within range)
         // for the building colour and lights (emission) which includes intensity
@@ -115,6 +115,11 @@ namespace Objects.Destructible.Objects
         {
             if (!IsObjectDestroyed)
                 return;
+
+            foreach (var fragment in fragments)
+            {
+                fragment.transform.parent = null;
+            }
 
             transform.Rotate(Random.insideUnitSphere * 0.5f);
             transform.Translate(Vector3.down * 3 * Time.deltaTime);
