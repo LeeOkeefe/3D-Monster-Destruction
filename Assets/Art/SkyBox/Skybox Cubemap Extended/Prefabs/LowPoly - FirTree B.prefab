@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 64463340396578530}
   - component: {fileID: 114639783772313608}
   - component: {fileID: 208525596698381864}
-  - component: {fileID: 136240569368538968}
   m_Layer: 0
   m_Name: LowPoly - FirTree B
   m_TagString: Tree
@@ -38,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593950697155818}
-  m_LocalRotation: {x: -0.70394385, y: -0.13434333, z: -0.10358276, w: 0.6896996}
-  m_LocalPosition: {x: -48.72, y: 27.59736, z: -103.57}
-  m_LocalScale: {x: 0.8004905, y: 0.80049026, z: 1}
+  m_LocalRotation: {x: -0.42452034, y: -0.5826857, z: -0.571007, w: 0.39269698}
+  m_LocalPosition: {x: 58.05002, y: 27.59736, z: -127.45998}
+  m_LocalScale: {x: 1.0000005, y: 1.0000005, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -92.746994, y: -185.287, z: -74.84}
+  m_LocalEulerAnglesHint: {x: -92.746994, y: -34.53601, z: -74.84}
 --- !u!23 &23109063448187470
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -115,24 +114,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 1
   maxHealth: 1
-  scoreAwarded: 7.5
+  scoreAwarded: 3.5
   particleEffect: {fileID: 100748, guid: cd4d7020429cde74db076ffa72495419, type: 2}
   treeStump: {fileID: 1957179249956944, guid: fc93ac52a188bb44c8024a97d64482a4, type: 2}
   fireEffect: {fileID: 100002, guid: 2522b91780559a44794173d3dae9723b, type: 2}
   burntStump: {fileID: 1138838564699330, guid: 4ce13464f9b06b646872aabb8ff40958, type: 2}
---- !u!136 &136240569368538968
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1593950697155818}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.58337986
-  m_Height: 6.791965
-  m_Direction: 2
-  m_Center: {x: 0.004731895, y: -0.06788315, z: 3.2577405}
 --- !u!208 &208525596698381864
 NavMeshObstacle:
   m_ObjectHideFlags: 1

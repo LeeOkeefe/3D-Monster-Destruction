@@ -97,15 +97,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1006228638348990}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: -50.910076, y: 0.367, z: 21.93976}
-  m_LocalScale: {x: 0.42716277, y: 0.42716268, z: 0.42716292}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.000014305113}
+  m_LocalPosition: {x: -40.78, y: 0.367, z: -33.46}
+  m_LocalScale: {x: 0.42716023, y: 0.42716, z: 0.42716023}
   m_Children:
   - {fileID: 4264569926720004}
   - {fileID: 4119474021050210}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -899.998, z: 0}
 --- !u!23 &23390917195295170
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -197,7 +197,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1006228638348990}
   serializedVersion: 2
-  m_Mass: 0.0000001
+  m_Mass: 15
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -241,7 +241,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 4
-  tempParent: {fileID: 0}
   throwingForce: 100
 --- !u!114 &114526368605340544
 MonoBehaviour:
@@ -254,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b0a71698ca4594f8826a01f056fe0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 0
   explosionPrefab: {fileID: 100004, guid: 6e8c7c425e5bc374daf95a774767b1e3, type: 2}
-  scoreAwarded: 30
+  scoreAwarded: 10
   m_Colour: {r: 0, g: 0, b: 0, a: 0}
