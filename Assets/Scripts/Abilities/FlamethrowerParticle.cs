@@ -1,5 +1,6 @@
-﻿using Objects.Destructible.Objects;
-using UnityEngine;
+﻿using UnityEngine;
+using AI;
+using Objects.Destructible.Objects;
 using Tree = Objects.Destructible.Objects.Tree;
 
 namespace Abilities
@@ -23,6 +24,12 @@ namespace Abilities
             {
                 var tree = other.GetComponent<Tree>();
                 tree.BurnTree();
+            }
+
+            if (other.gameObject.CompareTag("Helicopter"))
+            {
+                var enemy = other.GetComponent<Helicopter>();
+                enemy.BurnHelicopter();
             }
         }
     }

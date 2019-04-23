@@ -2,11 +2,14 @@
 using Objects.Destructible.Objects;
 using Objects.Interactable;
 using UnityEngine;
+using UnityEngine.Experimental.Audio.Google;
 
 namespace AI
 {
     internal sealed class Helicopter : Enemy
     {
+        [SerializeField]
+        private GameObject fireEffect;
         [SerializeField]
         private GameObject helicopterExplosion;
         [SerializeField]
@@ -116,6 +119,22 @@ namespace AI
 
                 HandleDeath();
             }
+        }
+
+        // Deal damage and instantiate particle effects
+        // for burning helicopter
+        //
+        public void BurnHelicopter()
+        {
+            var position = transform.position;
+
+            Instantiate(fireEffect, position, Quaternion.identity);
+
+            currentHealth -= currentHealth;
+
+            ScoreManager.AddScore(scoreAwarded);
+            Destroy(gameObject);
+            Instantiate(helicopterExplosion, position, Quaternion.identity);
         }
     }
 }

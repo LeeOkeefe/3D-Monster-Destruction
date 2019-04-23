@@ -7,7 +7,7 @@ namespace Abilities.Definitions
         private PlayerAbility m_PlayerAbility;
 
         [SerializeField]
-        private float healAmount = 15f;
+        private float healAmount = 20f;
 
         private void Start()
         {
