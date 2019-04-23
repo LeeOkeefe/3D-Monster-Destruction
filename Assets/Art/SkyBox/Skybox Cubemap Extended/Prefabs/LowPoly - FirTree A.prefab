@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 64241052736447956}
   - component: {fileID: 114808656433995948}
   - component: {fileID: 208366854152562840}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LowPoly - FirTree A
   m_TagString: Tree
   m_Icon: {fileID: 0}
@@ -37,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1069289201138886}
-  m_LocalRotation: {x: -0.68360865, y: -0.116973914, z: -0.07972482, w: 0.71598905}
-  m_LocalPosition: {x: 41.838455, y: 27.59736, z: -131.25328}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -52.1, y: 27.59736, z: -121}
   m_LocalScale: {x: 1.2000002, y: 1.0000001, z: 1.3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 1
   maxHealth: 1
-  scoreAwarded: 7
+  scoreAwarded: 7.5
   particleEffect: {fileID: 175238, guid: 26d069e6f78e6f8478e4dc0152bd6939, type: 2}
   treeStump: {fileID: 1982809151907176, guid: 6b0683345d1898d449449ebf8a44f53a, type: 2}
   fireEffect: {fileID: 100002, guid: 2522b91780559a44794173d3dae9723b, type: 2}
