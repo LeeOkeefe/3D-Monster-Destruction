@@ -1,58 +1,49 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-//Controls light traffic's lights
+internal sealed class Junction : MonoBehaviour
+{
+	public bool free;
+	public bool waiting;
 
-public class Junction : MonoBehaviour {
-	//used to save light traffic's state
-	public bool free = false;
-	public bool waiting = false;
+    [SerializeField]
+	private Renderer trafficLight;
 
-	public Renderer trafficLight;
+	private const int Red = 1;
+	private const int Yellow = 2;
+	private const int Green = 3;
 
-	//used to know which material is which color
-	public int redLightMatNum;
-	public int yelloLightMatNum;
-	public int greenLightMatNum;
-
-	//used to change color for corresponding material
-	private Material redLight;
-	private Material yelloLight;
-	private Material greenLight;
+    private IList<Material> m_Materials; 
 	
-	void Start()
-	{
-		//get materials from traffic light's object
-		Material[] mats = trafficLight.materials;
-		redLight = mats[redLightMatNum];
-		yelloLight = mats[yelloLightMatNum];
-		greenLight = mats[greenLightMatNum];
+	private void Start()
+    {
+        m_Materials = new List<Material>(trafficLight.materials);
 
-		//make all color gray (disabled)
-		redLight.color = Color.gray;
-		yelloLight.color = Color.gray;
-		greenLight.color = Color.gray;
+        foreach (var material in m_Materials)
+        {
+            material.color = Color.grey;
+        }
+
+        m_Materials[0].color = Color.black;
 	}
 
-	void Update ()
+	private void Update ()
 	{
-		//change colors depending on state
 		if (free)
 		{
-			greenLight.color = Color.green;
-			yelloLight.color = Color.gray;
+            m_Materials[Green].color = Color.green;
+            m_Materials[Yellow].color = Color.grey;
 		}
-		else if(waiting)
+		else if (waiting)
 		{
-			yelloLight.color = Color.yellow;
-			redLight.color = Color.gray;
-			greenLight.color = Color.gray;
+            m_Materials[Yellow].color = Color.yellow;
+            m_Materials[Red].color = Color.grey;
+            m_Materials[Green].color = Color.grey;
 		}
 		else
 		{
-			redLight.color = Color.red;
-			yelloLight.color = Color.gray;
-		}
-
+            m_Materials[Red].color = Color.red;
+            m_Materials[Yellow].color = Color.grey;
+        }
 	}
 }

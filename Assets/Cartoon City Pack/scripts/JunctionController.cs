@@ -1,51 +1,64 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-//Controls junction trigger's states
+internal sealed class JunctionController : MonoBehaviour
+{
+    [SerializeField]
+	private Junction[] junctions;
 
-public class JunctionController : MonoBehaviour {
-	public Junction[] junctions;
-	public float greenLightTime = 5.0f; //time in seconds green light will be activated for each traffic light
-	public float yellowLightTime = 2.0f; //time in seconds for yellow light
+    private const float GreenLightTime = 7.5F;
+    private const float AmberLightTime = 2;
 
-	private float timer = 0.0f;
-	private int junctionIndex = 0;
-	private bool waiting = false;
-	
+    private float m_Timer;
+	private int m_JunctionIndex;
+	private bool m_IsWaiting;
 
-	void Update ()
+	private void Update ()
 	{
-		timer += Time.deltaTime;
+		m_Timer += Time.deltaTime;
 
-		//time for green light is over, change states on current and next traffic lights
-		if(!waiting && timer >= greenLightTime)
-		{
-			junctions[junctionIndex].free = false;
-			junctions[junctionIndex].waiting = true;
+        GreenLight();
+        AmberLight();
+	}
 
-			if(junctionIndex == junctions.Length - 1)
-				junctionIndex = 0;
-			else
-				junctionIndex ++;
+    private void GreenLight()
+    {
+        if (!m_IsWaiting && m_Timer >= GreenLightTime)
+        {
+            junctions[m_JunctionIndex].free = false;
+            junctions[m_JunctionIndex].waiting = true;
 
-			junctions[junctionIndex].waiting = true;
+            if (m_JunctionIndex == junctions.Length - 1)
+            {
+                m_JunctionIndex = 0;
+            }
+            else
+            {
+                m_JunctionIndex++;
+            }
 
-			waiting = true;
-		}
+            junctions[m_JunctionIndex].waiting = true;
+            m_IsWaiting = true;
+        }
+    }
 
-		//time for yellow light is over, change states on current and next traffic lights
-		if(waiting && timer >= greenLightTime + yellowLightTime)
-		{
-			if(junctionIndex == 0)
-				junctions[junctions.Length - 1].waiting = false;
-			else
-				junctions[junctionIndex - 1].waiting = false;
+    private void AmberLight()
+    {
+        if (m_IsWaiting && m_Timer >= GreenLightTime + AmberLightTime)
+        {
+            if (m_JunctionIndex == 0)
+            {
+                junctions[junctions.Length - 1].waiting = false;
+            }
+            else
+            {
+                junctions[m_JunctionIndex - 1].waiting = false;
+            }
 
-			junctions[junctionIndex].waiting = false;
-			junctions[junctionIndex].free = true;
+            junctions[m_JunctionIndex].waiting = false;
+            junctions[m_JunctionIndex].free = true;
 
-			waiting = false;
-			timer = 0.0f;
-		}
+            m_IsWaiting = false;
+            m_Timer = 0;
+        }
 	}
 }

@@ -1,168 +1,153 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
-public class CarAI : MonoBehaviour {
-	public Transform waypointsHolder;   //parent of all waypoints
-	public int startWaypointIndex = 0;   //waypoint's index in array which will be car's first destination
-	public bool freezeYAxis = true;   //used to decide move car on Y axis or not when following the path
+internal sealed class CarAI : MonoBehaviour
+{
+    [SerializeField]
+    private Transform waypointsParent;
+    [SerializeField]
+    private int startWaypointIndex;
 
-	[Range (0.1f, 10.0f)]
-	public float acceleration = 1.5f;
-	[Range (0.1f, 10.0f)]
-	public float deceleration = 2.5f;
-	[Range(1.0f, 10.0f)]
-	public float maxMoveSpeed = 5.0f;
-	[Range(1.0f, 10.0f)]
-	public float rotationSpeed = 5.0f;
-	[Range(1.0f, 10.0f)]
-	public float distanceBeforeDeceleration = 8.0f;   //distance between car and obstacle when car must start's deceleration
+    [SerializeField]
+    private float acceleration = 1.5f;
+    [SerializeField]
+    private float deceleration = 2.5f;
+    [SerializeField]
+    private float maxMoveSpeed = 5.0f;
+    [SerializeField]
+    private float rotationSpeed = 5.0f;
 
-	public LayerMask decelerationLayer;   //car checks on these layers if there is something in front of it
-	public Transform[] wheels;
-	public bool loop = true;   //used to decide loop infinitely on path or not
+    [SerializeField]
+    private Transform[] wheels;
 
+    private Transform m_Transform;
 
-	private Transform myTransform;
-	private List<Transform> waypoints = new List<Transform>();
-	private int waypointIndex = 0;
-	private int lastWaypointID = 0;
-	private float currentSpeed = 0.0f;
-	private bool accelerating = true;
-	private bool stopped = false;
-	private bool onJunction = false;
-	private Junction currentJunction;
+    private readonly IList<Transform> m_Waypoints = new List<Transform>();
 
+    private int m_WaypointIndex;
+    private int m_LastWaypointId;
+    private float m_CurrentSpeed;
+    private bool m_Accelerating = true;
 
-	void Start ()
-	{
-		//if waypointsHolder variable is null give warning
-		if(!waypointsHolder)
-		{
-			Debug.LogWarning ("'WaypointsHolder' isn't set'");
-			enabled = false;
-			return;
-		}
+    private Junction m_CurrentJunction;
 
-		//cache transform component, good for performance
-		myTransform = GetComponent<Transform>();
+    private const int MinMoveSpeed = 0;
 
-		//fill waypoints array
-		foreach(Transform child in waypointsHolder)
-			waypoints.Add (child);
+    private void Start()
+    {
+        if (waypointsParent == null)
+        {
+            throw new NullReferenceException("waypointsParent was null.");
+        }
 
-		//set first waypoint index
-		if(startWaypointIndex < waypoints.Count)
-			waypointIndex = startWaypointIndex;
-	}
+        m_Transform = GetComponent<Transform>();
 
+        foreach (Transform child in waypointsParent)
+        {
+            m_Waypoints.Add(child);
+        }
 
-	void FixedUpdate()
-	{
-		if(onJunction)
-			return;
+        if (startWaypointIndex < m_Waypoints.Count)
+        {
+            m_WaypointIndex = startWaypointIndex;
+        }
+    }
 
-		//cast ray, check if there is anyting in front of the car
-		RaycastHit hit;
-		if(Physics.SphereCast (myTransform.position, 0.5f, myTransform.forward, out hit, distanceBeforeDeceleration, decelerationLayer))
-			accelerating = false;
-		else
-			accelerating = true;
-	}
+    private void Update()
+    {
+        Movement();
+    }
 
+    /// <summary>
+    /// Handles the movement speed and calls Rotation
+    /// </summary>
+    private void Movement()
+    {
+        if (m_Accelerating)
+        {
+            m_CurrentSpeed += acceleration * Time.deltaTime;
+        }
+        else
+        {
+            m_CurrentSpeed -= deceleration * Time.deltaTime;
+        }
 
-	void Update ()
-	{
-		if(!stopped)
-		{
-			//controll the speed
-			if(accelerating)
-				currentSpeed += acceleration * Time.deltaTime;
-			else
-				currentSpeed -= deceleration * Time.deltaTime;
+        m_CurrentSpeed = Mathf.Clamp(m_CurrentSpeed, MinMoveSpeed, maxMoveSpeed);
+        m_Transform.Translate(0, 0, m_CurrentSpeed * Time.deltaTime);
 
-			//clamp speed, it won't go more than value entered in 'maxMoveSpeed'
-			currentSpeed = Mathf.Clamp(currentSpeed, 0.0f, maxMoveSpeed);
+        Rotation();
+    }
 
-			Vector3 direction = (waypoints[waypointIndex].position - myTransform.position).normalized;
+    /// <summary>
+    /// Set the rotation of the vehicle towards the next waypoint (excludes Y axis),
+    /// and rotate the wheels
+    /// </summary>
+    private void Rotation()
+    {
+        var direction = (m_Waypoints[m_WaypointIndex].position - m_Transform.position).normalized;
 
-			//if freezeYAxis is true, car won't follow the path on Y axis
-			if(freezeYAxis)
-				direction = new Vector3(direction.x, 0.0f, direction.z);
+        direction = new Vector3(direction.x, 0.0f, direction.z);
 
-			Quaternion newRotation = Quaternion.LookRotation(direction);
+        var newRotation = Quaternion.LookRotation(direction);
 
-			//rotate car towards waypoint
-			myTransform.rotation = Quaternion.Slerp (myTransform.rotation, newRotation, rotationSpeed * Time.deltaTime);
-			myTransform.Translate (0,0, currentSpeed * Time.deltaTime);
+        m_Transform.rotation = Quaternion.Slerp(m_Transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
 
-			//rotate wheels depending on speed
-			foreach (Transform wheel in wheels)
-				wheel.Rotate(Vector3.right, currentSpeed * Time.deltaTime * 90, Space.Self);
-		}
-	}
+        foreach (var wheel in wheels)
+        {
+            wheel.Rotate(Vector3.right, m_CurrentSpeed * Time.deltaTime * 90, Space.Self);
+        }
+    }
 
+    // Check waypoint and distance, ensure we don't set it to the previous waypoint
+    // set the waypoint to the next one, and start accelerating
+    //
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Waypoint") && Vector3.Distance(m_Transform.position, m_Waypoints[m_WaypointIndex].position) < 1)
+        {
+            if (other.GetInstanceID() == m_LastWaypointId)
+                return;
 
-	void OnTriggerStay(Collider col)
-	{
-		//if car enters in the waypoint
-		if(col.tag == "Waypoint" && Vector3.Distance(myTransform.position, waypoints[waypointIndex].position) < 1.0f)
-		{
-			if(col.GetInstanceID() == lastWaypointID)
-				return;
+            m_WaypointIndex++;
 
-			waypointIndex ++ ;
+            if (m_WaypointIndex >= m_Waypoints.Count)
+            {
+                m_WaypointIndex = 0;
+            }
 
-			//if this is last waypoint, check loop value, if it isn't true then stop the car, else continue moving
-			if(waypointIndex >= waypoints.Count)
-			{
-				if(loop)
-					waypointIndex = 0;
-				else
-					stopped = true;
-			}
+            m_LastWaypointId = other.GetInstanceID();
+        }
 
-			lastWaypointID = col.GetInstanceID();
-		}
+        if (!m_Accelerating && other.CompareTag("Junction") && m_CurrentJunction.free)
+        {
+            m_Accelerating = true;
+        }
+    }
 
-		//if car is standing in junction and its state is 'free' than start moving
-		if(!accelerating && col.tag == "Junction" && currentJunction.free)
-		{
-			onJunction = false;
-			accelerating = true;
-		}
-	}
+    // Check we have hit the junction and stop accelerating
+    // unless the junction is "free"
+    //
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Junction"))
+        {
+            m_CurrentJunction = other.GetComponent<Junction>();
 
+            if (m_CurrentJunction.free)
+                return;
 
-	void OnTriggerEnter(Collider col)
-	{
-		//if car enters in junction check its state and if it's not 'free' stop the car
-		if(col.tag == "Junction")
-		{
-			currentJunction = col.GetComponent<Junction>();
-			
-			if(!currentJunction)
-			{
-				#if UNITY_EDITOR
-				Debug.LogWarning ("Junction script isn't attached to this trigger");
-				UnityEditor.EditorApplication.isPaused = true;
-				#endif
-			}
-			else if(!currentJunction.free)
-			{
-				onJunction = true;
-				accelerating = false;
-			}
-		}
-	}
+            m_Accelerating = false;
+        }
+    }
 
-	//if car's deceleration is set low and it wasn't able to stop in junction trigger then keep moving
-	void OnTriggerExit(Collider col)
-	{
-		if(col.tag == "Junction")
-		{
-			onJunction = false;
-			accelerating = true;
-		}
-	}
+    // Continue to accelerate if we haven't hit the junction collider
+    //
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Junction"))
+            return;
+
+        m_Accelerating = true;
+    }
 }
