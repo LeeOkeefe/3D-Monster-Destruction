@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Waypoint : WaypointsHolder {
+namespace Traffic_System.Waypoints
+{
+    internal sealed class Waypoint : WaypointsHolder
+    {
+        [SerializeField]
+        private float gizmoDrawRadius = 1;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, gizmoDrawRadius);
+        }
+    }
 }

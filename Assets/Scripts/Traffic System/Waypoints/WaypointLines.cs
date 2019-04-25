@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Traffic_System;
+using Traffic_System.Waypoints;
 using UnityEditor;
 using UnityEngine;
 

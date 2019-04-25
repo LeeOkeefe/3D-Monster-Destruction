@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 114684284661702348}
   - component: {fileID: 114013506729668868}
   m_Layer: 8
-  m_Name: brown standard car
+  m_Name: standard car
   m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

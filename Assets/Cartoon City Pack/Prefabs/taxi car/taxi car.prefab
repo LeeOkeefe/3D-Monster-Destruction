@@ -81,9 +81,11 @@ GameObject:
   - component: {fileID: 5410538}
   - component: {fileID: 6579710}
   - component: {fileID: 11413312}
+  - component: {fileID: 114959298810742688}
+  - component: {fileID: 114984969046005582}
   m_Layer: 8
   m_Name: taxi car
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,8 +96,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171958}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.42, y: -16.49, z: 20.2}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -68.95, y: 136.70894, z: -227.54654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 488108}
@@ -104,7 +106,7 @@ Transform:
   - {fileID: 495802}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &439270
 Transform:
   m_ObjectHideFlags: 1
@@ -405,23 +407,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f08f55d98866e42bb61d9424d8594b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointsHolder: {fileID: 0}
-  startWaypointIndex: 0
-  freezeYAxis: 1
-  acceleration: 2
-  deceleration: 3
-  maxMoveSpeed: 5
-  rotationSpeed: 3
-  distanceBeforeDeceleration: 8
-  decelerationLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  acceleration: 3
+  deceleration: 4
+  maxMoveSpeed: 5.5
+  rotationSpeed: 2.3
   wheels:
   - {fileID: 488108}
   - {fileID: 439270}
   - {fileID: 466494}
   - {fileID: 495802}
-  loop: 1
+  waypointsParent: {fileID: 0}
+  startWaypointIndex: 2
+  distanceBeforeDeceleration: 8
+  decelerationLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -433,3 +433,30 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 171958}
   m_IsPrefabParent: 1
+--- !u!114 &114959298810742688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 5
+  throwingForce: 100
+--- !u!114 &114984969046005582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541ebfb160abba14184c4fec058ce213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 100004, guid: 6e8c7c425e5bc374daf95a774767b1e3, type: 2}
+  scoreAwarded: 10
+  m_Colour: {r: 0, g: 0, b: 0, a: 0}
