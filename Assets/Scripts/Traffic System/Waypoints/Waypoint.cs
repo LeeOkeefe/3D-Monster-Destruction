@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
+using System.Collections;
 
-namespace Traffic_System
-{
-    internal sealed class Waypoint : MonoBehaviour
-    {
-        private int m_DrawGizmoRadius = 1;
+public class Waypoint : WaypointsHolder {
 
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, m_DrawGizmoRadius);
-        }
-    }
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
 }

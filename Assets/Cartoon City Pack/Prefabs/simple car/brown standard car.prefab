@@ -81,9 +81,11 @@ GameObject:
   - component: {fileID: 5434452}
   - component: {fileID: 6571776}
   - component: {fileID: 11466504}
+  - component: {fileID: 114684284661702348}
+  - component: {fileID: 114013506729668868}
   m_Layer: 8
   m_Name: brown standard car
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,8 +122,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165874}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.126968, y: -16.552021, z: 13.843559}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -28.787514, y: 136.52577, z: -103.20653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 443548}
@@ -130,7 +132,7 @@ Transform:
   - {fileID: 467314}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &467314
 Transform:
   m_ObjectHideFlags: 1
@@ -172,7 +174,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: fa750de4c57ef5a47bb31b7c2d05dce9, type: 2}
+  - {fileID: 2100000, guid: 0a3d23250f2196f4eb720acf938de0c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -242,7 +244,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: fa750de4c57ef5a47bb31b7c2d05dce9, type: 2}
+  - {fileID: 2100000, guid: 0a3d23250f2196f4eb720acf938de0c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -277,7 +279,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: fa750de4c57ef5a47bb31b7c2d05dce9, type: 2}
+  - {fileID: 2100000, guid: 0a3d23250f2196f4eb720acf938de0c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -312,7 +314,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: fa750de4c57ef5a47bb31b7c2d05dce9, type: 2}
+  - {fileID: 2100000, guid: 0a3d23250f2196f4eb720acf938de0c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -405,23 +407,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f08f55d98866e42bb61d9424d8594b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointsHolder: {fileID: 0}
-  startWaypointIndex: 0
-  freezeYAxis: 1
   acceleration: 2
   deceleration: 3
   maxMoveSpeed: 5
   rotationSpeed: 3
-  distanceBeforeDeceleration: 8
-  decelerationLayer:
-    serializedVersion: 2
-    m_Bits: 0
   wheels:
   - {fileID: 443548}
   - {fileID: 410826}
   - {fileID: 467932}
   - {fileID: 467314}
-  loop: 1
+  waypointsParent: {fileID: 0}
+  startWaypointIndex: 15
+  distanceBeforeDeceleration: 8
+  decelerationLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -433,3 +433,30 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 165874}
   m_IsPrefabParent: 1
+--- !u!114 &114013506729668868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 5
+  throwingForce: 100
+--- !u!114 &114684284661702348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541ebfb160abba14184c4fec058ce213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 100004, guid: 6e8c7c425e5bc374daf95a774767b1e3, type: 2}
+  scoreAwarded: 10
+  m_Colour: {r: 0, g: 0, b: 0, a: 0}

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33042267738199378}
   - component: {fileID: 23249999536977518}
   - component: {fileID: 54767684916776744}
-  - component: {fileID: 65653722956139558}
+  - component: {fileID: 64081333222639244}
   m_Layer: 0
   m_Name: CrossRoadTile
   m_TagString: Road
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293268995214988}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.21, z: 10}
+  m_LocalPosition: {x: 20, y: 0.21, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,8 +100,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!65 &65653722956139558
-BoxCollider:
+--- !u!64 &64081333222639244
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -109,6 +109,8 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300038, guid: 76b4d8756e0b1d0419d7d3e80b94cb2e, type: 3}

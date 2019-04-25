@@ -24,6 +24,8 @@ TagManager:
   - Projectile
   - Helicopter
   - Fragment
+  - Waypoint
+  - Junction
   layers:
   - Default
   - TransparentFX
@@ -46,7 +48,7 @@ TagManager:
   - Minimap
   - Enemy
   - Tree
-  - 
+  - Traffic Light
   - 
   - 
   - 

@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-namespace Traffic_System
-{
-    internal sealed class WaypointsHolder : MonoBehaviour
-    {
-        public IList<Waypoint> m_Waypoints { get; private set; }
+public class WaypointsHolder : MonoBehaviour {
 
-        private void Start()
-        {
-            m_Waypoints = GetComponentsInChildren<Waypoint>();
-        }
-    }
+	public bool drawLines = true;
+
+	// Use this for initialization
+	void Start () {
+
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
 }

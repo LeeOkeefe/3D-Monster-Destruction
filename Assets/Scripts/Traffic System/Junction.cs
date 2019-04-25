@@ -1,49 +1,92 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-internal sealed class Junction : MonoBehaviour
+namespace Traffic_System
 {
-	public bool free;
-	public bool waiting;
-
-    [SerializeField]
-	private Renderer trafficLight;
-
-	private const int Red = 1;
-	private const int Yellow = 2;
-	private const int Green = 3;
-
-    private IList<Material> m_Materials; 
-	
-	private void Start()
+    internal sealed class Junction : MonoBehaviour
     {
-        m_Materials = new List<Material>(trafficLight.materials);
+        public bool Free { get; private set; }
+        public bool Waiting { get; private set; }
 
-        foreach (var material in m_Materials)
+        [SerializeField]
+        private Renderer trafficLight;
+
+        private Dictionary<string, Color> m_Colours;
+
+        private IList<Material> m_Materials; 
+	
+        private void Start()
         {
-            material.color = Color.grey;
+            m_Materials = new List<Material>(trafficLight.materials);
+
+            m_Colours = new Dictionary<string, Color>
+            {
+                { "Red", Color.red },
+                { "Yellow", Color.yellow },
+                { "Green", Color.green }
+            };
+
+            ResetLights();
         }
 
-        m_Materials[0].color = Color.black;
-	}
-
-	private void Update ()
-	{
-		if (free)
-		{
-            m_Materials[Green].color = Color.green;
-            m_Materials[Yellow].color = Color.grey;
-		}
-		else if (waiting)
-		{
-            m_Materials[Yellow].color = Color.yellow;
-            m_Materials[Red].color = Color.grey;
-            m_Materials[Green].color = Color.grey;
-		}
-		else
-		{
-            m_Materials[Red].color = Color.red;
-            m_Materials[Yellow].color = Color.grey;
+        private void Update ()
+        {
+            if (Free)
+            {
+                SwitchLight(TrafficColour.Green);
+            }
+            else if (Waiting)
+            {
+                SwitchLight(TrafficColour.Yellow);
+            }
+            else
+            {
+                SwitchLight(TrafficColour.Red);
+            }
         }
-	}
+
+        /// <summary>
+        /// Switches traffic light colour to specified one,
+        /// and resets the others
+        /// </summary>
+        private void SwitchLight(TrafficColour trafficColour)
+        {
+            var value = (int) trafficColour;
+            var colourString = trafficColour.ToString();
+
+            var color = m_Colours[colourString];
+
+            ResetLights();
+
+            foreach (var material in m_Materials)
+            {
+                if (material == m_Materials[value])
+                {
+                    m_Materials[value].color = color;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the traffic lights to grey (disabled)
+        /// </summary>
+        public void ResetLights()
+        {
+            foreach (var material in m_Materials)
+            {
+                material.color = Color.grey;
+            }
+
+            m_Materials[0].color = Color.black;
+        }
+
+        /// <summary>
+        /// Set the state of the traffic lights
+        /// </summary>
+        public void SetTrafficState(bool free, bool waiting)
+        {
+            Free = free;
+            Waiting = waiting;
+        }
+    }
 }
