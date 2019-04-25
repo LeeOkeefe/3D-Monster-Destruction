@@ -1,108 +1,153 @@
-﻿using AI;
+﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 
-namespace Traffic_System
+internal sealed class CarAI : MonoBehaviour
 {
-    internal sealed class CarAI : MonoBehaviour, IDeathHandler
+    [SerializeField]
+    private Transform waypointsParent;
+    [SerializeField]
+    private int startWaypointIndex;
+
+    [SerializeField]
+    private float acceleration = 1.5f;
+    [SerializeField]
+    private float deceleration = 2.5f;
+    [SerializeField]
+    private float maxMoveSpeed = 5.0f;
+    [SerializeField]
+    private float rotationSpeed = 5.0f;
+
+    [SerializeField]
+    private Transform[] wheels;
+
+    private Transform m_Transform;
+
+    private readonly IList<Transform> m_Waypoints = new List<Transform>();
+
+    private int m_WaypointIndex;
+    private int m_LastWaypointId;
+    private float m_CurrentSpeed;
+    private bool m_Accelerating = true;
+
+    private Junction m_CurrentJunction;
+
+    private const int MinMoveSpeed = 0;
+
+    private void Start()
     {
-        [SerializeField]
-        private float speed = 10;
-        [SerializeField]
-        private GameObject explosionPrefab;
-        [SerializeField]
-        private float scoreAwarded = 30;
-
-        private bool m_IsStopped;
-        private float m_TurnTimer = 1;
-
-        public Color m_Colour;
-
-        private Renderer m_Renderer;
-
-        private void Start()
+        if (waypointsParent == null)
         {
-            m_Colour = new Color(Random.Range(0F, 0.45F), Random.Range(0F, 0.45F), Random.Range(0F, 0.45F));
-            m_Renderer = GetComponentInChildren<MeshRenderer>();
-            m_Renderer.material.SetColor("_Color", m_Colour);
+            throw new NullReferenceException("waypointsParent was null.");
         }
 
-        private void Update()
-        {
-            if (!m_IsStopped)
-            {
-                Drive();
-            }
+        m_Transform = GetComponent<Transform>();
 
-            m_TurnTimer += Time.deltaTime;
+        foreach (Transform child in waypointsParent)
+        {
+            m_Waypoints.Add(child);
         }
 
-        public void Drive()
+        if (startWaypointIndex < m_Waypoints.Count)
         {
-            transform.Translate((Vector3.forward * Time.deltaTime) * speed);
+            m_WaypointIndex = startWaypointIndex;
+        }
+    }
+
+    private void Update()
+    {
+        Movement();
+    }
+
+    /// <summary>
+    /// Handles the movement speed and calls Rotation
+    /// </summary>
+    private void Movement()
+    {
+        if (m_Accelerating)
+        {
+            m_CurrentSpeed += acceleration * Time.deltaTime;
+        }
+        else
+        {
+            m_CurrentSpeed -= deceleration * Time.deltaTime;
         }
 
-        public void TurnLeft()
+        m_CurrentSpeed = Mathf.Clamp(m_CurrentSpeed, MinMoveSpeed, maxMoveSpeed);
+        m_Transform.Translate(0, 0, m_CurrentSpeed * Time.deltaTime);
+
+        Rotation();
+    }
+
+    /// <summary>
+    /// Set the rotation of the vehicle towards the next waypoint (excludes Y axis),
+    /// and rotate the wheels
+    /// </summary>
+    private void Rotation()
+    {
+        var direction = (m_Waypoints[m_WaypointIndex].position - m_Transform.position).normalized;
+
+        direction = new Vector3(direction.x, 0.0f, direction.z);
+
+        var newRotation = Quaternion.LookRotation(direction);
+
+        m_Transform.rotation = Quaternion.Slerp(m_Transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+
+        foreach (var wheel in wheels)
         {
-            if (!(m_TurnTimer > 0.3f))
+            wheel.Rotate(Vector3.right, m_CurrentSpeed * Time.deltaTime * 90, Space.Self);
+        }
+    }
+
+    // Check waypoint and distance, ensure we don't set it to the previous waypoint
+    // set the waypoint to the next one, and start accelerating
+    //
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Waypoint") && Vector3.Distance(m_Transform.position, m_Waypoints[m_WaypointIndex].position) < 1)
+        {
+            if (other.GetInstanceID() == m_LastWaypointId)
                 return;
 
-            var rotation = transform.rotation;
-            transform.Rotate(rotation.x, -90, rotation.z);
-            m_TurnTimer = 0;
+            m_WaypointIndex++;
+
+            if (m_WaypointIndex >= m_Waypoints.Count)
+            {
+                m_WaypointIndex = 0;
+            }
+
+            m_LastWaypointId = other.GetInstanceID();
         }
 
-        public void TurnRight()
+        if (!m_Accelerating && other.CompareTag("Junction") && m_CurrentJunction.free)
         {
-            if (!(m_TurnTimer > 0.3f))
+            m_Accelerating = true;
+        }
+    }
+
+    // Check we have hit the junction and stop accelerating
+    // unless the junction is "free"
+    //
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Junction"))
+        {
+            m_CurrentJunction = other.GetComponent<Junction>();
+
+            if (m_CurrentJunction.free)
                 return;
 
-            var rotation = transform.rotation;
-            transform.Rotate(rotation.x, 90, rotation.z);
-            m_TurnTimer = 0;
+            m_Accelerating = false;
         }
+    }
 
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.gameObject.CompareTag("Car"))
-            {
-                m_IsStopped = true;
-            }
-        }
+    // Continue to accelerate if we haven't hit the junction collider
+    //
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Junction"))
+            return;
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.CompareTag("Car"))
-            {
-                m_IsStopped = false;
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            var player = GameManager.instance.player;
-
-            if (other.gameObject.CompareTag("Right Foot") && player.PlayerIsMoving ||
-                other.gameObject.CompareTag("Left Foot") && player.PlayerIsMoving ||
-                other.gameObject.CompareTag("Tree"))
-
-            {
-                HandleDeath();
-            }
-        }
-
-        private void OnCollisionEnter(Collision other)
-        {
-            if (!other.gameObject.CompareTag("Building"))
-                return;
-
-            HandleDeath();
-        }
-
-        public void HandleDeath()
-        {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            ScoreManager.AddScore(scoreAwarded, 30);
-            Destroy(gameObject);
-        }
+        m_Accelerating = true;
     }
 }

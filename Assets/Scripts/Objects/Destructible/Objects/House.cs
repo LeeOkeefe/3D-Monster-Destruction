@@ -1,15 +1,17 @@
 ﻿using AI;
 using Objects.Destructible.Definition;
-using Traffic_System;
 using UnityEngine;
 
 namespace Objects.Destructible.Objects
 {
     internal sealed class House : DestructibleObject
     {
-        [SerializeField] private GameObject destroyedHouse;
-        [SerializeField] private GameObject particlePosition;
-        [SerializeField] private GameObject particleEffect;
+        [SerializeField]
+        private GameObject destroyedHouse;
+        [SerializeField]
+        private GameObject particlePosition;
+        [SerializeField]
+        private GameObject particleEffect;
 
         // Instantiate particle effect and enable/disable building + destruction
         // - Don't like this way, but the models transforms are all messed up
