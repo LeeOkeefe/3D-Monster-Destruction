@@ -7,8 +7,11 @@ namespace Objects.Destructible.Objects
     {
         private bool m_Knocked;
 
-        private void OnCollisionExit(Collision other)
+        private void OnCollisionEnter(Collision other)
         {
+            if (!other.gameObject.CompareTag("Player"))
+                return;
+
             if (m_Knocked)
             {
                 Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());

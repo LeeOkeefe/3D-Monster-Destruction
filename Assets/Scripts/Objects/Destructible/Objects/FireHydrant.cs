@@ -1,29 +1,30 @@
-﻿using UnityEngine;
+﻿using System.Security.Cryptography;
+using Traffic_System;
+using UnityEngine;
 
 namespace Objects.Destructible.Objects
 {
     internal sealed class FireHydrant : MonoBehaviour
     {
         [SerializeField]
-        private GameObject fireHydrant;
-        [SerializeField]
-        private GameObject brokenFireHydrant;
-        [SerializeField]
         private ParticleSystem particleEffect;
 
-        // Switch to broken fire hydrant
-        // Instantiate particle effect
-        // Destroy script so we don't try and access it again
-        //
-        private void OnTriggerEnter(Collider other)
-        {
-            if(other.gameObject.CompareTag("Player"))
-            {
-                fireHydrant.SetActive(false);
-                brokenFireHydrant.SetActive(true);
+        private bool m_Knocked;
 
-                Instantiate(particleEffect, transform.position, transform.rotation);
-                Destroy(GetComponent<FireHydrant>());
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!other.gameObject.CompareTag("Player"))
+                return;
+
+            if (m_Knocked)
+            {
+                Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+            }
+            else
+            {
+                m_Knocked = true;
+                Instantiate(particleEffect, transform.position, Quaternion.Euler(-90, 0, 0));
+                Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
             }
         }
     }
