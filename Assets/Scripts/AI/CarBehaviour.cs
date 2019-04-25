@@ -21,10 +21,10 @@ public class CarBehaviour : MonoBehaviour, IDeathHandler
         m_Renderer.material.SetColor("_Color", m_Colour);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        var destructible = other?.gameObject.GetComponent<IDestructible>();
-        var player = other?.gameObject.GetComponentInParent<PlayerController>();
+        var destructible = other.gameObject.GetComponent<IDestructible>();
+        var player = other.gameObject.GetComponentInParent<PlayerController>();
 
         if (destructible == null && player == null)
             return;

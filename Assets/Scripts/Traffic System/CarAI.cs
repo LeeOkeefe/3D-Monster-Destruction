@@ -5,7 +5,7 @@ namespace Traffic_System
     internal sealed class CarAI : CarFunctionality
     {
         [SerializeField]
-        public float distanceBeforeDeceleration = 5f;
+        public float stoppingDistance = 5f;
         [SerializeField]
         private LayerMask decelerationLayer;
 
@@ -32,9 +32,9 @@ namespace Traffic_System
                 return;
 
             RaycastHit hit;
-
-            Accelerating = !Physics.Raycast(Transform.position, Transform.forward * 5, 
-                                              out hit, distanceBeforeDeceleration, decelerationLayer);
+            
+            Accelerating = !Physics.SphereCast(Transform.position, 2F, Transform.forward, out hit, stoppingDistance, decelerationLayer);
+            Accelerating = !Physics.Raycast(Transform.position, Transform.forward, out hit, stoppingDistance, decelerationLayer);
         }
 
         // Check waypoint and distance, ensure we don't set it to the previous waypoint
