@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2396932}
   - component: {fileID: 65080879744140110}
   - component: {fileID: 114974922558899964}
-  - component: {fileID: 54049610566236610}
+  - component: {fileID: 54313464183294970}
   m_Layer: 0
   m_Name: street lamp
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100788}
   m_LocalRotation: {x: -0.00000006883939, y: 0.7071067, z: 0.00000006883938, w: 0.7071068}
-  m_LocalPosition: {x: -10.403702, y: 13.073453, z: 10.04}
+  m_LocalPosition: {x: -9.9, y: 13, z: -20.420013}
   m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999976}
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,7 +86,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100788}
   m_IsPrefabParent: 1
---- !u!54 &54049610566236610
+--- !u!54 &54313464183294970
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,8 +111,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.85, y: 8, z: 0.85}
-  m_Center: {x: -0.00000007450582, y: 3.027842, z: -0.00000043213356}
+  m_Size: {x: 0.85, y: 6.2428427, z: 0.85}
+  m_Center: {x: -0.00000008940699, y: 3.098999, z: -0.0000004172326}
 --- !u!114 &114974922558899964
 MonoBehaviour:
   m_ObjectHideFlags: 1

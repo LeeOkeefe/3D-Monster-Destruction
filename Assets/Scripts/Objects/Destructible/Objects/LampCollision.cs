@@ -12,7 +12,7 @@ namespace Objects.Destructible.Objects
             if (!other.gameObject.CompareTag("Player"))
                 return;
 
-            if (m_Knocked)
+            if (m_Knocked || other.gameObject.CompareTag("Tank"))
             {
                 Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
             }

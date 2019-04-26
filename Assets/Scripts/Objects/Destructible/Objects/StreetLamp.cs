@@ -18,7 +18,6 @@ namespace Objects.Destructible.Objects
             else
             {
                 m_Knocked = true;
-                Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
             }
         }
     }

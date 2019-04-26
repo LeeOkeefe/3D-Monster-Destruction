@@ -60,7 +60,8 @@ namespace Objects.Destructible.Objects
             if (!IsObjectDestroyed)
                 return;
 
-            HandleBuildingDestroyed();
+            Destruct();
+            //HandleBuildingDestroyed();
 
             if (!m_HasHappenedOnce)
             {

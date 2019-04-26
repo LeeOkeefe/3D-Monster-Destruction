@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 2
-  deceleration: 3
+  deceleration: 4
   maxMoveSpeed: 5
   rotationSpeed: 3
   wheels:
@@ -419,10 +419,10 @@ MonoBehaviour:
   - {fileID: 498266}
   waypointsParent: {fileID: 0}
   startWaypointIndex: 3
-  stoppingDistance: 5
+  stoppingDistance: 7
   decelerationLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 540928
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

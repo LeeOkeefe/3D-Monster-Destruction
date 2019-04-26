@@ -391,7 +391,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165874}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.7746557, y: 1.3935256, z: 2.7837386}
@@ -407,8 +407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f08f55d98866e42bb61d9424d8594b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 4.5
-  deceleration: 6
+  acceleration: 5
+  deceleration: 8
   maxMoveSpeed: 5
   rotationSpeed: 3
   wheels:
@@ -421,7 +421,7 @@ MonoBehaviour:
   stoppingDistance: 8
   decelerationLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 540928
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
