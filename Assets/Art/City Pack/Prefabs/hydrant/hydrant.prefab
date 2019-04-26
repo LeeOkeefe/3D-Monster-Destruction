@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 54149794644082806}
   - component: {fileID: 65383056865465954}
   - component: {fileID: 114891194789810546}
+  - component: {fileID: 65346994299598670}
   m_Layer: 21
   m_Name: hydrant
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197106}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.05000305, y: 28.04236, z: -42.42}
+  m_LocalPosition: {x: 11.47, y: 28.04236, z: -69.0909}
   m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,13 +96,13 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65383056865465954
+--- !u!65 &65346994299598670
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,8 +112,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.12606, z: 0.5}
-  m_Center: {x: -0.0000032782555, y: 0.58413386, z: 0.025107505}
+  m_Size: {x: 0.17918381, y: 1.0500419, z: 0.261688}
+  m_Center: {x: -0.031639256, y: 0.5204437, z: -0.04800477}
+--- !u!65 &65383056865465954
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197106}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4329668, y: 1.4244099, z: 1.3910205}
+  m_Center: {x: 0.07776615, y: 0.7333088, z: -0.046311}
 --- !u!114 &114891194789810546
 MonoBehaviour:
   m_ObjectHideFlags: 1
