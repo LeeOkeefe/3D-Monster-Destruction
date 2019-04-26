@@ -1,27 +1,27 @@
-﻿using UnityEngine;
+﻿using Traffic_System;
+using UnityEngine;
 
 namespace Objects.Destructible.Objects
 {
     internal sealed class LampCollision : MonoBehaviour
     {
-        private GameObject m_StreetLamp;
+        private bool m_Knocked;
 
-        private void Start()
+        private void OnCollisionEnter(Collision other)
         {
-            m_StreetLamp = GetComponentInChildren<LampCollision>().gameObject;
-        }
+            if (!other.gameObject.CompareTag("Player"))
+                return;
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.CompareTag("Player"))
+            if (m_Knocked || other.gameObject.CompareTag("Tank"))
             {
-                if (gameObject != null)
-                {
-                    m_StreetLamp.transform.Rotate(Vector3.forward, 90, Space.Self);
-                    m_StreetLamp.transform.Rotate(Vector3.right, 90, Space.Self);
-                }
-
-                Destroy(this);
+                Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+            }
+            else
+            {
+                m_Knocked = true;
+                var junction = GetComponentInChildren<Junction>();
+                junction.ResetLights();
+                Destroy(junction.gameObject);
             }
         }
     }

@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 114482015120861102}
   m_Layer: 19
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,8 +160,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863472590780012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.4, y: 136.1, z: -251.6}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalPosition: {x: -17.4, y: 136.27, z: -250.93}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children:
   - {fileID: 4849914472098990}
   - {fileID: 4044359818559654}
@@ -347,7 +347,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.038959876, y: 0.022879032, z: 0.062092055}
+  m_Size: {x: 0.025, y: 0.025, z: 0.025}
   m_Center: {x: 0.003515981, y: 0.007835383, z: -0.00016990979}
 --- !u!114 &114128741715665734
 MonoBehaviour:
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 7
-  throwingForce: 200
+  throwingForce: 20
 --- !u!114 &114969065971932726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -414,5 +414,5 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 0.03
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4

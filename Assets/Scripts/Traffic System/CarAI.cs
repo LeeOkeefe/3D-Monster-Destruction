@@ -1,108 +1,95 @@
-﻿using AI;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Traffic_System
 {
-    internal sealed class CarAI : MonoBehaviour, IDeathHandler
+    internal sealed class CarAI : CarFunctionality
     {
         [SerializeField]
-        private float speed = 10;
+        public float stoppingDistance = 5f;
         [SerializeField]
-        private GameObject explosionPrefab;
-        [SerializeField]
-        private float scoreAwarded = 30;
+        private LayerMask decelerationLayer;
 
-        private bool m_IsStopped;
-        private float m_TurnTimer = 1;
-
-        public Color m_Colour;
-
-        private Renderer m_Renderer;
+        private Junction m_CurrentJunction;
+        private int m_LastWaypointId;
+        private bool m_OnJunction;
 
         private void Start()
         {
-            m_Colour = new Color(Random.Range(0F, 0.45F), Random.Range(0F, 0.45F), Random.Range(0F, 0.45F));
-            m_Renderer = GetComponentInChildren<MeshRenderer>();
-            m_Renderer.material.SetColor("_Color", m_Colour);
+            Initialize();
         }
 
         private void Update()
         {
-            if (!m_IsStopped)
-            {
-                Drive();
-            }
-
-            m_TurnTimer += Time.deltaTime;
+            Movement();
         }
 
-        public void Drive()
+        // Send out raycast, check if we hit are hitting layermask
+        // When we stop hitting layer (car), start moving again
+        //
+        private void FixedUpdate()
         {
-            transform.Translate((Vector3.forward * Time.deltaTime) * speed);
-        }
-
-        public void TurnLeft()
-        {
-            if (!(m_TurnTimer > 0.3f))
+            if (m_OnJunction)
                 return;
 
-            var rotation = transform.rotation;
-            transform.Rotate(rotation.x, -90, rotation.z);
-            m_TurnTimer = 0;
+            RaycastHit hit;
+            
+            Accelerating = !Physics.SphereCast(Transform.position, 2F, Transform.forward, out hit, stoppingDistance, decelerationLayer);
+            Accelerating = !Physics.Raycast(Transform.position, Transform.forward, out hit, stoppingDistance, decelerationLayer);
         }
 
-        public void TurnRight()
-        {
-            if (!(m_TurnTimer > 0.3f))
-                return;
-
-            var rotation = transform.rotation;
-            transform.Rotate(rotation.x, 90, rotation.z);
-            m_TurnTimer = 0;
-        }
-
+        // Check waypoint and distance, ensure we don't set it to the previous waypoint
+        // set the waypoint to the next one, and start accelerating
+        //
         private void OnTriggerStay(Collider other)
         {
-            if (other.gameObject.CompareTag("Car"))
+            if (other.CompareTag("Waypoint") && Vector3.Distance(Transform.position, m_Waypoints[WaypointIndex].position) < 1)
             {
-                m_IsStopped = true;
+                if (other.GetInstanceID() == m_LastWaypointId)
+                    return;
+
+                WaypointIndex++;
+
+                if (WaypointIndex >= m_Waypoints.Count)
+                {
+                    WaypointIndex = 0;
+                }
+
+                m_LastWaypointId = other.GetInstanceID();
             }
-        }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.CompareTag("Car"))
-            {
-                m_IsStopped = false;
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            var player = GameManager.instance.player;
-
-            if (other.gameObject.CompareTag("Right Foot") && player.PlayerIsMoving ||
-                other.gameObject.CompareTag("Left Foot") && player.PlayerIsMoving ||
-                other.gameObject.CompareTag("Tree"))
-
-            {
-                HandleDeath();
-            }
-        }
-
-        private void OnCollisionEnter(Collision other)
-        {
-            if (!other.gameObject.CompareTag("Building"))
+            if (Accelerating || !other.CompareTag("Junction") || !m_CurrentJunction.Free)
                 return;
 
-            HandleDeath();
+            m_OnJunction = false;
+            Accelerating = true;
         }
 
-        public void HandleDeath()
+        // Check we have hit the junction and stop accelerating
+        // unless the junction is "free"
+        //
+        private void OnTriggerEnter(Collider other)
         {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            ScoreManager.AddScore(scoreAwarded, 30);
-            Destroy(gameObject);
+            if (!other.CompareTag("Junction"))
+                return;
+
+            m_CurrentJunction = other.GetComponent<Junction>();
+
+            if (m_CurrentJunction.Free)
+                return;
+
+            m_OnJunction = true;
+            Accelerating = false;
+        }
+
+        // Continue to accelerate if we haven't hit the junction collider
+        //
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.CompareTag("Junction"))
+                return;
+
+            m_OnJunction = false;
+            Accelerating = true;
         }
     }
 }

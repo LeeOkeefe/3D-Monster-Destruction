@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
+using AI;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SocialPlatforms;
 
 namespace Objects.Interactable
 {
@@ -12,6 +15,8 @@ namespace Objects.Interactable
 
         private Collider m_Collider;
         private Rigidbody m_Object;
+
+        private static readonly int IsThrowing = Animator.StringToHash("IsThrowing");
 
         public bool HoldingObject { get; private set; }
 
@@ -83,21 +88,20 @@ namespace Objects.Interactable
         /// </summary>
         private void ThrowObject()
         {
-            anim.SetBool("IsThrowing", true);
+            anim.SetBool(IsThrowing, true);
             StartCoroutine(nameof(Delay));
         }
 
         // Horrible method to cause a delay so we can use the attack
         // animation so it looks like we are throwing the object.
         // We need to delay the change in settings or the objects
-        // float in mid-air before we appear to "throw them"
         //
         private IEnumerator Delay()
         {
             yield return new WaitForSeconds(0.5f);
             m_Object.gameObject.layer = 16;
             m_Object.velocity = Player.transform.forward * throwingForce;
-            anim.SetBool("IsThrowing", false);
+            anim.SetBool(IsThrowing, false);
             DropObject();
         }
     }
