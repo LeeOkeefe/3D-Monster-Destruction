@@ -148,20 +148,23 @@ namespace Objects.Destructible.Objects
                 m_Building.Damage(this, playerStats.TotalDamage);
                 Destruct();
             }
+
+            var handler = other.gameObject.GetComponent<IDeathHandler>();
+            handler?.HandleDeath();
         }
 
         // Checks to see if there is a collision with a car and handles damage
         //
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("Tank"))
-            {
-                m_Building.Damage(this, 25);
-                Destruct();
-            }
+            if (!other.gameObject.CompareTag("Car") && !other.gameObject.CompareTag("Tank"))
+                return;
 
             var enemy = other.gameObject.GetComponent(typeof(Enemy)) as IDeathHandler;
             enemy?.HandleDeath();
+
+            m_Building.Damage(this, 25);
+            Destruct();
         }
     }
 }

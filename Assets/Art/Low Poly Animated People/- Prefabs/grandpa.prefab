@@ -34,7 +34,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4276011417338062}
-  - component: {fileID: 95084859950611060}
+  - component: {fileID: 65421411658847818}
+  - component: {fileID: 54254470722212510}
+  - component: {fileID: 114849402675889782}
   m_Layer: 0
   m_Name: grandpa
   m_TagString: Untagged
@@ -461,15 +463,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1088609120909212}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 120.38, y: 0.45316324, z: 158.05449}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4869569477569016}
   - {fileID: 4045415921732310}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4279320118469532
 Transform:
   m_ObjectHideFlags: 1
@@ -737,24 +739,52 @@ Transform:
   m_Father: {fileID: 4443002154905924}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95084859950611060
-Animator:
-  serializedVersion: 3
+--- !u!54 &54254470722212510
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1088609120909212}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65421411658847818
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1088609120909212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.7853374, z: 1}
+  m_Center: {x: 0, y: 0.8820648, z: 0}
+--- !u!114 &114849402675889782
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1088609120909212}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a1499160adf91714bb42716f0b72377b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 07f7e369ba6e5dc4ab3cb1ac0387e904, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2dc04f59a041ca40ad6003d6475f49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 0.6
+  deceleration: 0.5
+  maxMoveSpeed: 0.75
+  rotationSpeed: 1
+  waypointsParent: {fileID: 0}
+  startWaypointIndex: 2
+  bloodSplatter: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 2}
+  scoreAwarded: 5
 --- !u!137 &137745726717603180
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

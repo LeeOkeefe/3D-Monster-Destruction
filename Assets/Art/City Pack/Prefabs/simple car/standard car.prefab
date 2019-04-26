@@ -391,7 +391,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165874}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.7746557, y: 1.3935256, z: 2.7837386}
@@ -411,13 +411,13 @@ MonoBehaviour:
   deceleration: 8
   maxMoveSpeed: 5
   rotationSpeed: 3
+  waypointsParent: {fileID: 0}
+  startWaypointIndex: 15
   wheels:
   - {fileID: 443548}
   - {fileID: 410826}
   - {fileID: 467932}
   - {fileID: 467314}
-  waypointsParent: {fileID: 0}
-  startWaypointIndex: 15
   stoppingDistance: 8
   decelerationLayer:
     serializedVersion: 2
@@ -460,3 +460,4 @@ MonoBehaviour:
   explosionPrefab: {fileID: 100004, guid: 6e8c7c425e5bc374daf95a774767b1e3, type: 2}
   scoreAwarded: 10
   m_Colour: {r: 0, g: 0, b: 0, a: 0}
+  autoColourVehicle: 1
