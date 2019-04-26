@@ -150,20 +150,12 @@ namespace Objects.Destructible.Objects
             }
 
             var handler = other.gameObject.GetComponent<IDeathHandler>();
-            handler?.HandleDeath();
-        }
 
-        // Checks to see if there is a collision with a car and handles damage
-        //
-        private void OnCollisionEnter(Collision other)
-        {
-            if (!other.gameObject.CompareTag("Car") && !other.gameObject.CompareTag("Tank"))
+            if (handler == null)
                 return;
 
-            var enemy = other.gameObject.GetComponent(typeof(Enemy)) as IDeathHandler;
-            enemy?.HandleDeath();
-
-            m_Building.Damage(this, 25);
+            handler.HandleDeath();
+            m_Building.Damage(this, 40);
             Destruct();
         }
     }

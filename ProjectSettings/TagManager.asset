@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Damage
   - Left Hand
   - Right Hand
-  - TurnRight
   - Car
   - Building
   - Flamethrower
@@ -16,7 +14,6 @@ TagManager:
   - Road
   - Plane
   - Tank
-  - FxTemporaire
   - PickupHand
   - Tree
   - Grass
@@ -26,6 +23,7 @@ TagManager:
   - Fragment
   - Waypoint
   - Junction
+  - TrafficLight
   layers:
   - Default
   - TransparentFX

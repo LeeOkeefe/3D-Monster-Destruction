@@ -1,28 +1,49 @@
-﻿using AI.Traffic_System;
+﻿using System.Security.Cryptography;
+using AI.Traffic_System;
 using UnityEngine;
 
 namespace Objects.Destructible.Objects
 {
     internal sealed class LampCollision : MonoBehaviour
     {
-        private bool m_Knocked;
+        [SerializeField]
+        [Range(150, 300)]
+        private float force = 150;
 
-        private void OnCollisionEnter(Collision other)
+        private Rigidbody m_Rb;
+
+        private void Start()
         {
-            if (!other.gameObject.CompareTag("Player"))
+            m_Rb = GetComponent<Rigidbody>();
+        }
+
+        // Use AddForce to push rigidBody over
+        // Check if it's a traffic light, and deactivate the light system if it is
+        //
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.transform.root.CompareTag("Player"))
                 return;
 
-            if (m_Knocked || other.gameObject.CompareTag("Tank"))
-            {
-                Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
-            }
-            else
-            {
-                m_Knocked = true;
-                var junction = GetComponentInChildren<Junction>();
-                junction.ResetLights();
-                Destroy(junction.gameObject);
-            }
+            var direction = (transform.position - other.gameObject.transform.position).normalized;
+
+            m_Rb.AddForce(direction * force);
+
+            if (!gameObject.CompareTag("TrafficLight"))
+                return;
+
+            DeactivateTrafficLight();
+        }
+
+        /// <summary>
+        /// Resets Lights to be grey, then deletes the scripts
+        /// </summary>
+        private void DeactivateTrafficLight()
+        {
+            var junction = GetComponentInChildren<Junction>();
+            junction.ResetLights();
+            Destroy(junction);
+            Destroy(this);
         }
     }
 }
