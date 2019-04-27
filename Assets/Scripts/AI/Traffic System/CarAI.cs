@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using AI.Waypoints;
+using Extensions;
 using UnityEngine;
 
 namespace AI.Traffic_System
@@ -78,7 +80,13 @@ namespace AI.Traffic_System
                 m_LastWaypointId = other.GetInstanceID();
             }
 
-            if (Accelerating || !other.CompareTag("Junction") || !m_CurrentJunction.Free || other.GetComponent<Junction>() == null)
+            if (Accelerating || !other.CompareTag("Junction"))
+                return;
+
+            if (!other.gameObject.HasComponent<Junction>())
+                return;
+
+            if (!m_CurrentJunction.Free)
                 return;
 
             m_OnJunction = false;
@@ -93,9 +101,12 @@ namespace AI.Traffic_System
             if (!other.CompareTag("Junction"))
                 return;
 
+            if (!other.gameObject.HasComponent<Junction>())
+                return;
+
             m_CurrentJunction = other.GetComponent<Junction>();
 
-            if (m_CurrentJunction.Free || other.GetComponent<Junction>() == null)
+            if (m_CurrentJunction.Free)
                 return;
 
             m_OnJunction = true;

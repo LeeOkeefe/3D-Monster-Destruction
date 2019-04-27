@@ -29,15 +29,19 @@ namespace AI
             m_Renderer.material.SetColor("_Color", m_Colour);
         }
 
-        // Check that the other collider implements IDestructible or is the Player
+        // Check that the other collider implements IDestructible or is the Player's feet
         // HandleDeath if true, return if false
         //
         private void OnTriggerEnter(Collider other)
         {
-            var destructible = other.gameObject.GetComponent<IDestructible>();
-            var player = other.gameObject.GetComponentInParent<PlayerController>();
+            if (other.gameObject.CompareTag("Left Foot") || other.gameObject.CompareTag("Right Foot"))
+            {
+                HandleDeath();
+            }
 
-            if (destructible == null && player == null)
+            var destructible = other.gameObject.GetComponent<IDestructible>();
+
+            if (destructible == null)
                 return;
 
             HandleDeath();
