@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114855488723794502}
   - component: {fileID: 65415893084712610}
   - component: {fileID: 54401301047332794}
-  - component: {fileID: 114130233954305246}
+  - component: {fileID: 114852129685896162}
   m_Layer: 21
   m_Name: traffic light 4
   m_TagString: Untagged
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 114000559591840460}
   - component: {fileID: 65106185817328358}
   - component: {fileID: 54129615787749140}
-  - component: {fileID: 114068277852529202}
+  - component: {fileID: 114045436950065894}
   m_Layer: 0
   m_Name: traffic light 2
   m_TagString: TrafficLight
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 114625404411291984}
   - component: {fileID: 65718069369067610}
   - component: {fileID: 54638678355497912}
-  - component: {fileID: 114814267670986068}
+  - component: {fileID: 114038582128996908}
   m_Layer: 21
   m_Name: traffic light 3
   m_TagString: Untagged
@@ -773,7 +773,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficLight: {fileID: 23112365681178638}
---- !u!114 &114068277852529202
+--- !u!114 &114038582128996908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431182192066456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08795afeaeefe6c4ebb2a148d0a91509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 150
+--- !u!114 &114045436950065894
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -781,19 +793,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1177607259356476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 150
---- !u!114 &114130233954305246
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1154209515740524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
+  m_Script: {fileID: 11500000, guid: 08795afeaeefe6c4ebb2a148d0a91509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150
@@ -837,15 +837,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 1
   throwingForce: 100
---- !u!114 &114814267670986068
+--- !u!114 &114852129685896162
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1431182192066456}
+  m_GameObject: {fileID: 1154209515740524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
+  m_Script: {fileID: 11500000, guid: 08795afeaeefe6c4ebb2a148d0a91509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114671213416855192}
   - component: {fileID: 65706599877666640}
   - component: {fileID: 54463357923011314}
-  - component: {fileID: 114178711883815428}
+  - component: {fileID: 114992506468700194}
   m_Layer: 0
   m_Name: traffic light 2
   m_TagString: TrafficLight
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 54011038877874848}
   - component: {fileID: 65911558804583564}
   - component: {fileID: 114466307962509506}
-  - component: {fileID: 114619795991224254}
+  - component: {fileID: 114257603787678610}
   m_Layer: 0
   m_Name: traffic light 1
   m_TagString: TrafficLight
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 114358339629163968}
   - component: {fileID: 65064038235140910}
   - component: {fileID: 54423447631672930}
-  - component: {fileID: 114441153514956790}
+  - component: {fileID: 114905837723673114}
   m_Layer: 0
   m_Name: traffic light 4
   m_TagString: TrafficLight
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 114684551880623742}
   - component: {fileID: 65565046213472476}
   - component: {fileID: 54733344074424928}
-  - component: {fileID: 114885941299430588}
+  - component: {fileID: 114965464964006712}
   m_Layer: 0
   m_Name: traffic light 3
   m_TagString: TrafficLight
@@ -366,7 +366,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149649689835724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9599895, y: 0.4300003, z: 10.179993}
+  m_LocalPosition: {x: 16, y: 0.4300003, z: -40.020004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4771561747423370}
@@ -996,15 +996,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficLight: {fileID: 23602424339848448}
---- !u!114 &114178711883815428
+--- !u!114 &114257603787678610
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1065797490219818}
+  m_GameObject: {fileID: 1071027262046340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
+  m_Script: {fileID: 11500000, guid: 08795afeaeefe6c4ebb2a148d0a91509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150
@@ -1021,18 +1021,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 1
   throwingForce: 100
---- !u!114 &114441153514956790
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1249323513217114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 150
 --- !u!114 &114466307962509506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1046,18 +1034,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 5
   throwingForce: 100
---- !u!114 &114619795991224254
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1071027262046340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 150
 --- !u!114 &114635807944901550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1124,15 +1100,15 @@ MonoBehaviour:
   - {fileID: 114018811240476936}
   - {fileID: 114910603723022458}
   - {fileID: 114635807944901550}
---- !u!114 &114885941299430588
+--- !u!114 &114905837723673114
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1833305104994322}
+  m_GameObject: {fileID: 1249323513217114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f013b3a7c44504d9d286d676a60a52, type: 3}
+  m_Script: {fileID: 11500000, guid: 08795afeaeefe6c4ebb2a148d0a91509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150
@@ -1148,3 +1124,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficLight: {fileID: 23429120366181822}
+--- !u!114 &114965464964006712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1833305104994322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08795afeaeefe6c4ebb2a148d0a91509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 150
+--- !u!114 &114992506468700194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065797490219818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08795afeaeefe6c4ebb2a148d0a91509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 150

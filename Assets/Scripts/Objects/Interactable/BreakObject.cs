@@ -1,31 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BreakObject : MonoBehaviour
+namespace Objects.Interactable
 {
-    [SerializeField]
-    private GameObject brokenObject;
-    [SerializeField]
-    private GameObject[] objectsToDestroy;
-    [SerializeField]
-    private float destructionPoints;
-
-    private void OnTriggerEnter(Collider other)
+    public class BreakObject : MonoBehaviour
     {
-        if (other.gameObject.CompareTag("Player"))
+        [SerializeField]
+        private GameObject brokenObject;
+        [SerializeField]
+        private GameObject[] objectsToDestroy;
+        [SerializeField]
+        private float destructionPoints;
+
+        // Set second gameObject active, detach children and destroy the parent
+        //
+        private void OnTriggerEnter(Collider other)
         {
-            brokenObject.SetActive(true);
-            gameObject.transform.DetachChildren();
-
-            foreach (var go in objectsToDestroy)
+            if (other.gameObject.CompareTag("Player"))
             {
-                Destroy(go);
-            }
+                brokenObject.SetActive(true);
+                gameObject.transform.DetachChildren();
 
-            Destroy(gameObject);
-            ScoreManager.AddScore(destructionPoints);
+                foreach (var go in objectsToDestroy)
+                {
+                    Destroy(go);
+                }
+
+                Destroy(gameObject);
+                ScoreManager.AddScore(destructionPoints);
+            }
         }
     }
 }
