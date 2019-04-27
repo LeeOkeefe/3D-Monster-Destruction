@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 54180495479107694}
   - component: {fileID: 65220630015171920}
   - component: {fileID: 114929826170383218}
+  - component: {fileID: 114624056726238666}
   m_Layer: 0
   m_Name: woman
   m_TagString: Untagged
@@ -766,6 +767,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.907639, z: 1}
   m_Center: {x: 0, y: 0.9424708, z: 0}
+--- !u!114 &114624056726238666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1521604910014378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 5
+  throwingForce: 100
 --- !u!114 &114929826170383218
 MonoBehaviour:
   m_ObjectHideFlags: 1

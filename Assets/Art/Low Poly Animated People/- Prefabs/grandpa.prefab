@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 65421411658847818}
   - component: {fileID: 54254470722212510}
   - component: {fileID: 114849402675889782}
+  - component: {fileID: 114857260164232884}
   m_Layer: 0
   m_Name: grandpa
   m_TagString: Untagged
@@ -785,6 +786,19 @@ MonoBehaviour:
   startWaypointIndex: 2
   bloodSplatter: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 2}
   scoreAwarded: 5
+--- !u!114 &114857260164232884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1088609120909212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 5
+  throwingForce: 100
 --- !u!137 &137745726717603180
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

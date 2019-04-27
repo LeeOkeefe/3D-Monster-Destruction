@@ -149,14 +149,14 @@ namespace Objects.Destructible.Objects
                 Destruct();
             }
 
+            if (other.gameObject.CompareTag("Car"))
+            {
+                m_Building.Damage(this, 40);
+                Destruct();
+            }
+
             var handler = other.gameObject.GetComponent<IDeathHandler>();
-
-            if (handler == null)
-                return;
-
-            handler.HandleDeath();
-            m_Building.Damage(this, 40);
-            Destruct();
+            handler?.HandleDeath();
         }
     }
 }
