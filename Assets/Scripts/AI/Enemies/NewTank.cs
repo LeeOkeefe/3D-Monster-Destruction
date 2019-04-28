@@ -1,7 +1,7 @@
 ﻿using Objects.Destructible.Definition;
 using UnityEngine;
 
-namespace AI
+namespace AI.Enemies
 {
     internal sealed class NewTank : Tank
     {

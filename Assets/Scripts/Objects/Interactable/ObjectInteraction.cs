@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
+using AI.Enemies;
+using Extensions;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Objects.Interactable
 {
@@ -58,6 +61,11 @@ namespace Objects.Interactable
             if (!IsPlayerInRange())
                 return;
 
+            if (gameObject.HasComponent<NavMeshAgent>())
+            {
+                gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            }
+
             HoldingObject = true;
             m_Object.useGravity = false;
             m_Collider.enabled = false;
@@ -78,6 +86,9 @@ namespace Objects.Interactable
             m_Object.useGravity = true;
             m_Object.transform.parent = null;
             m_Collider.enabled = true;
+
+            if (gameObject.HasComponent<NavMeshAgent>())
+                EnableNavMeshAgent();
         }
 
         /// <summary>
@@ -97,9 +108,19 @@ namespace Objects.Interactable
         {
             yield return new WaitForSeconds(0.5f);
             m_Object.gameObject.layer = 16;
+
             m_Object.velocity = Player.transform.forward * throwingForce;
             anim.SetBool(IsThrowing, false);
             DropObject();
+        }
+
+        private IEnumerator EnableNavMeshAgent()
+        {
+            yield return new WaitUntil(() => gameObject.transform.position.y <= 1);
+
+            gameObject.GetComponent<NavMeshAgent>().enabled = true;
+
+            gameObject.GetComponent<MoveToTarget>().SetTarget();
         }
     }
 }

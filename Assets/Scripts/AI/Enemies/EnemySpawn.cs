@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = System.Random;
 
-namespace AI
+namespace AI.Enemies
 {
     internal sealed class EnemySpawn : MonoBehaviour
     {
