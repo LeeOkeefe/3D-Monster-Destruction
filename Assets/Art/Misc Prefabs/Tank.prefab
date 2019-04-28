@@ -387,7 +387,7 @@ MonoBehaviour:
   maxHealth: 100
   distanceToAttackTarget: 25
   environmentalDamage: 45
-  timeBetweenAttacks: 2.5
+  timeBetweenAttacks: 1.5
   scoreAwarded: 150
   firingPoint: {fileID: 1951706250983830}
   firingEffect: {fileID: 100004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 2}

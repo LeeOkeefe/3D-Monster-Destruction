@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using AI;
+using Player;
 using UnityEngine;
 
 namespace Environment
@@ -15,6 +16,9 @@ namespace Environment
             {
                 InvokeRepeating(nameof(DamagePlayer), 0.1f, 0.25f);
             }
+
+            var handler = other.gameObject.GetComponent<ISubmerged>();
+            handler?.Underwater();
         }
 
         // Stop calling DamagePlayer if we stop colliding

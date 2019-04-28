@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace AI.Enemies
 {
-    internal abstract class Enemy : MonoBehaviour, IAttack, IDeathHandler
+    internal abstract class Enemy : MonoBehaviour, IAttack, IDeathHandler, ISubmerged
     {
         [ReadOnly]
-        protected float currentHealth;
+        protected float CurrentHealth;
         [SerializeField]
         protected float maxHealth;
         [SerializeField]
@@ -20,19 +20,34 @@ namespace AI.Enemies
         protected float scoreAwarded;
 
         protected Transform PlayerTransform => GameManager.instance.player.transform;
-        protected PlayerStats PlayerStats => GameManager.instance.playerStats;
-        protected bool EnemyIsDead => currentHealth <= 0;
+        protected bool EnemyIsDead => CurrentHealth <= 0;
 
         public abstract void Attack();
 
         public abstract void HandleDeath();
 
         /// <summary>
+        /// Handle death if thrown into water
+        /// </summary>
+        public void Underwater()
+        {
+            Damage(CurrentHealth);
+
+            if (!EnemyIsDead)
+            {
+                Debug.Log("Enemy is not dead");
+            }
+
+            Destroy(gameObject);
+            ScoreManager.AddScore(scoreAwarded);
+        }
+
+        /// <summary>
         /// Set the current health to be the max, so we can avoid exposing the currentHealth
         /// </summary>
         protected void InitializeHealth()
         {
-            currentHealth = maxHealth;
+            CurrentHealth = maxHealth;
         }
 
         /// <summary>
@@ -48,7 +63,7 @@ namespace AI.Enemies
         /// </summary>
         protected void Damage(float damage)
         {
-            currentHealth -= damage;
+            CurrentHealth -= damage;
         }
     }
 }

@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4988383944983742}
   - component: {fileID: 33467273201397346}
   - component: {fileID: 23602424339848448}
-  - component: {fileID: 114671213416855192}
   - component: {fileID: 65706599877666640}
   - component: {fileID: 54463357923011314}
   - component: {fileID: 114992506468700194}
@@ -44,7 +43,6 @@ GameObject:
   - component: {fileID: 23429120366181822}
   - component: {fileID: 54011038877874848}
   - component: {fileID: 65911558804583564}
-  - component: {fileID: 114466307962509506}
   - component: {fileID: 114257603787678610}
   m_Layer: 0
   m_Name: traffic light 1
@@ -111,7 +109,6 @@ GameObject:
   - component: {fileID: 4588671710685980}
   - component: {fileID: 33369884463421206}
   - component: {fileID: 23545365479034394}
-  - component: {fileID: 114358339629163968}
   - component: {fileID: 65064038235140910}
   - component: {fileID: 54423447631672930}
   - component: {fileID: 114905837723673114}
@@ -202,7 +199,6 @@ GameObject:
   - component: {fileID: 4364546601455760}
   - component: {fileID: 33991204844693928}
   - component: {fileID: 23677547006360790}
-  - component: {fileID: 114684551880623742}
   - component: {fileID: 65565046213472476}
   - component: {fileID: 54733344074424928}
   - component: {fileID: 114965464964006712}
@@ -366,7 +362,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149649689835724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16, y: 0.4300003, z: -40.020004}
+  m_LocalPosition: {x: -3.9599895, y: 0.4300003, z: 10.179993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4771561747423370}
@@ -1008,32 +1004,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150
---- !u!114 &114358339629163968
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1249323513217114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  throwingForce: 100
---- !u!114 &114466307962509506
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1071027262046340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 5
-  throwingForce: 100
 --- !u!114 &114635807944901550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1046,32 +1016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficLight: {fileID: 23677547006360790}
---- !u!114 &114671213416855192
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1065797490219818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  throwingForce: 100
---- !u!114 &114684551880623742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1833305104994322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  throwingForce: 100
 --- !u!114 &114741253156902142
 MonoBehaviour:
   m_ObjectHideFlags: 1

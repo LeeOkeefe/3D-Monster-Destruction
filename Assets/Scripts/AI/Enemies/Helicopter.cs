@@ -129,7 +129,7 @@ namespace AI.Enemies
 
             Instantiate(fireEffect, position, Quaternion.identity);
 
-            currentHealth -= currentHealth;
+            CurrentHealth -= CurrentHealth;
 
             ScoreManager.AddScore(scoreAwarded);
             Destroy(gameObject);
