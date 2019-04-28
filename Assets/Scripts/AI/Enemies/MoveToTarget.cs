@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace AI
+namespace AI.Enemies
 {
     internal sealed class MoveToTarget : MonoBehaviour
     {
@@ -11,13 +11,13 @@ namespace AI
         private void Start()
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
-            InvokeRepeating(nameof(SetTarget), 2F, RandomNumberGenerator(2, 10));
+            InvokeRepeating(nameof(SetTarget), 1F, RandomNumberGenerator(2, 10));
         }
 
         /// <summary>
         /// Sets the destination of the Nav Actor
         /// </summary>
-        private void SetTarget()
+        public void SetTarget()
         {
             if (m_NavMeshAgent == null)
             {
@@ -30,6 +30,12 @@ namespace AI
             }
 
             if (!m_NavMeshAgent.isOnNavMesh)
+            {
+                Debug.Log($"{gameObject.name} is not on Nav Mesh");
+                return;
+            }
+
+            if (m_NavMeshAgent.pathPending)
                 return;
 
             m_NavMeshAgent.SetDestination(PlayerTransform.position);

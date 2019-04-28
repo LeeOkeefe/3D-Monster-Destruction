@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Objects.Interactable;
+using UnityEngine;
 
-namespace AI
+namespace AI.Enemies
 {
     internal abstract class Tank : Enemy
     {
@@ -18,6 +19,8 @@ namespace AI
         private GameObject projectile;
 
         protected static GameObject FireToPoint => GameManager.instance.playerShootingPosition;
+        protected bool IsHoldingObject => GetComponent<ObjectInteraction>().HoldingObject;
+        public Quaternion OriginalRotation { get; protected set; }
 
         protected RaycastHit hit;
         protected bool CanShootPlayer => timeTillShoot <= 0;

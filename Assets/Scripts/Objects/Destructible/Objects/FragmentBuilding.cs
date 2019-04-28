@@ -61,7 +61,6 @@ namespace Objects.Destructible.Objects
                 return;
 
             Destruct();
-            //HandleBuildingDestroyed();
 
             if (!m_HasHappenedOnce)
             {

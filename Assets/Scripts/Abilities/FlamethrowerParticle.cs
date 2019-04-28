@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using AI;
+using AI.Enemies;
 using Objects.Destructible.Objects;
 using Tree = Objects.Destructible.Objects.Tree;
 

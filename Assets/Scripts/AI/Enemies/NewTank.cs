@@ -1,7 +1,7 @@
 ﻿using Objects.Destructible.Definition;
 using UnityEngine;
 
-namespace AI
+namespace AI.Enemies
 {
     internal sealed class NewTank : Tank
     {
@@ -12,16 +12,19 @@ namespace AI
 
         void Update()
         {
-            turret.transform.LookAt(PlayerTransform);
-
-            if (!CanShootPlayer)
+            if (!IsHoldingObject)
             {
-                timeTillShoot -= Time.deltaTime;
-            }
+                turret.transform.LookAt(PlayerTransform);
 
-            if (IsPlayerInRange(distanceToAttackTarget) && CanShootPlayer)
-            {
-                Attack();
+                if (!CanShootPlayer)
+                {
+                    timeTillShoot -= Time.deltaTime;
+                }
+
+                if (IsPlayerInRange(distanceToAttackTarget) && CanShootPlayer)
+                {
+                    Attack();
+                }
             }
         }
 

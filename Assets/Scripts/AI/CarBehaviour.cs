@@ -1,5 +1,4 @@
 ﻿using Objects.Destructible.Objects;
-using Player;
 using UnityEngine;
 
 namespace AI
@@ -29,8 +28,21 @@ namespace AI
             m_Renderer.material.SetColor("_Color", m_Colour);
         }
 
-        // Check that the other collider implements IDestructible or is the Player's feet
+        // Check that the other collider implements IDestructible
         // HandleDeath if true, return if false
+        //
+        private void OnCollisionEnter(Collision other)
+        {
+            var destructible = other.gameObject.GetComponent<IDestructible>();
+
+            if (destructible == null)
+                return;
+
+            HandleDeath();
+        }
+
+        // Check if player's feet has collided with gameObject,
+        // handleDeath if true
         //
         private void OnTriggerEnter(Collider other)
         {
@@ -38,13 +50,6 @@ namespace AI
             {
                 HandleDeath();
             }
-
-            var destructible = other.gameObject.GetComponent<IDestructible>();
-
-            if (destructible == null)
-                return;
-
-            HandleDeath();
         }
 
         // Handles death of vehicle

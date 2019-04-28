@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
+using AI.Enemies;
+using Extensions;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Objects.Interactable
 {
@@ -19,6 +22,9 @@ namespace Objects.Interactable
 
         private Animator anim => GameManager.instance.playerAnim;
 
+        private bool m_ResetRotation;
+        private Tank m_Tank;
+
         private void Start()
         {
             m_Object = GetComponent<Rigidbody>();
@@ -31,6 +37,17 @@ namespace Objects.Interactable
         //
         private void Update()
         {
+            // Ensure the enemy can always roll back to it's original rotation after being thrown
+            // to prevent it getting stuck
+            //
+            if (m_ResetRotation)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, m_Tank.OriginalRotation, Time.deltaTime * 1);
+
+                if (transform.rotation == m_Tank.OriginalRotation)
+                    m_ResetRotation = false;
+            }
+
             if (HoldingObject)
             {
                 m_Object.gameObject.transform.position = m_TempParent.transform.position;
@@ -58,6 +75,16 @@ namespace Objects.Interactable
             if (!IsPlayerInRange())
                 return;
 
+            if (gameObject.HasComponent<NavMeshAgent>())
+            {
+                gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            }
+
+            if (gameObject.HasComponent<MoveToTarget>())
+            {
+                gameObject.GetComponent<MoveToTarget>().CancelInvoke(nameof(MoveToTarget.SetTarget));
+            }
+
             HoldingObject = true;
             m_Object.useGravity = false;
             m_Collider.enabled = false;
@@ -78,6 +105,11 @@ namespace Objects.Interactable
             m_Object.useGravity = true;
             m_Object.transform.parent = null;
             m_Collider.enabled = true;
+
+            if (gameObject.HasComponent<NavMeshAgent>())
+            {
+                StartCoroutine(nameof(EnableNavMeshAgent));
+            }
         }
 
         /// <summary>
@@ -97,9 +129,32 @@ namespace Objects.Interactable
         {
             yield return new WaitForSeconds(0.5f);
             m_Object.gameObject.layer = 16;
+
             m_Object.velocity = Player.transform.forward * throwingForce;
             anim.SetBool(IsThrowing, false);
             DropObject();
+        }
+
+        /// <summary>
+        /// Enables NavMeshAgent and sets target again
+        /// </summary>
+        private IEnumerator EnableNavMeshAgent()
+        {
+            if (gameObject.HasComponent<Tank>())
+            {
+                m_Tank = GetComponent<Tank>();
+                m_ResetRotation = true;
+            }
+
+            yield return new WaitForSeconds(3);
+
+            gameObject.GetComponent<NavMeshAgent>().enabled = true;
+
+            if (gameObject.HasComponent<MoveToTarget>())
+            {
+                gameObject.GetComponent<NavMeshAgent>().Warp(transform.position);
+                gameObject.GetComponent<MoveToTarget>().SetTarget();
+            }
         }
     }
 }

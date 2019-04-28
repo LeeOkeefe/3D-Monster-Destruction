@@ -90,13 +90,13 @@ GameObject:
   - component: {fileID: 4161539834537008}
   - component: {fileID: 33876831482690480}
   - component: {fileID: 23460034015224088}
-  - component: {fileID: 208938470181506232}
+  - component: {fileID: 208459839267388604}
   m_Layer: 0
   m_Name: BuildingModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1412709468046194
 GameObject:
@@ -339,15 +339,15 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1691161557252280}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: 10, y: 0.15999985, z: -0.91}
-  m_LocalScale: {x: 500, y: 500, z: 500}
+  m_LocalPosition: {x: 10.000002, y: 0.15999985, z: -29.38}
+  m_LocalScale: {x: 500.00073, y: 500, z: 500.00073}
   m_Children:
   - {fileID: 4161539834537008}
   - {fileID: 4906782973746666}
   - {fileID: 4211067903545052}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
 --- !u!4 &4327646771674090
 Transform:
   m_ObjectHideFlags: 1
@@ -1142,7 +1142,7 @@ MonoBehaviour:
   rubble: {fileID: 1447191628214894, guid: 2b1897816d31ee8499305dba502ac44e, type: 2}
   burntRubble: {fileID: 1116758171201644, guid: b8faff09ddaf4344080eded1fe385921,
     type: 2}
---- !u!208 &208938470181506232
+--- !u!208 &208459839267388604
 NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1151,9 +1151,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.0125, y: 0.0125, z: 0.0125}
+  m_Extents: {x: 0.01, y: 0.015, z: 0.01}
   m_MoveThreshold: 0.1
   m_Carve: 1
-  m_CarveOnlyStationary: 0
+  m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5

@@ -1,4 +1,4 @@
-﻿namespace AI
+﻿namespace AI.Enemies
 {
     public interface IAttack
     {

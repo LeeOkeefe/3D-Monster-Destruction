@@ -510,10 +510,10 @@ GameObject:
   - component: {fileID: 400066}
   - component: {fileID: 54176924169706320}
   - component: {fileID: 65429165065219926}
-  - component: {fileID: 114797682493366338}
   - component: {fileID: 195041249023734948}
   - component: {fileID: 114900423812787394}
   - component: {fileID: 114389735861185416}
+  - component: {fileID: 114843685478730800}
   m_Layer: 19
   m_Name: MC-1
   m_TagString: Tank
@@ -989,7 +989,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 41.642487, y: 136.32578, z: -250.44653}
+  m_LocalPosition: {x: 45.07, y: 136.32578, z: -250.44653}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 400064}
@@ -1306,9 +1306,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100066}
   serializedVersion: 2
-  m_Mass: 3000
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -1321,7 +1321,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100066}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.7393894, y: 1.8320961, z: 3.9467697}
@@ -1348,7 +1348,7 @@ MonoBehaviour:
   tankDamagePrefab: {fileID: 100006, guid: 28ccd38a41e256a4e8fea96f5a8d039d, type: 2}
   turret: {fileID: 1889230549277188}
   projectile: {fileID: 1215711560662934, guid: 80ce4a26ccd86424aadfecb867405be6, type: 2}
---- !u!114 &114797682493366338
+--- !u!114 &114843685478730800
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1370,8 +1370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 7
-  throwingForce: 250
+  distance: 5
+  throwingForce: 75
 --- !u!195 &195041249023734948
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -1380,7 +1380,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 100066}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 2.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

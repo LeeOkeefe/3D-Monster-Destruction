@@ -2,7 +2,7 @@
 using Unity.Collections;
 using UnityEngine;
 
-namespace AI
+namespace AI.Enemies
 {
     internal abstract class Enemy : MonoBehaviour, IAttack, IDeathHandler
     {

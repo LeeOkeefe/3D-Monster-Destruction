@@ -2,9 +2,8 @@
 using Objects.Destructible.Objects;
 using Objects.Interactable;
 using UnityEngine;
-using UnityEngine.Experimental.Audio.Google;
 
-namespace AI
+namespace AI.Enemies
 {
     internal sealed class Helicopter : Enemy
     {
@@ -33,21 +32,21 @@ namespace AI
 
         private void Update()
         {
-            if (IsHoldingObject)
-                return;
-
-            transform.LookAt(Target.transform);
-
-            HandleRotors();
-
-            if (!CanShoot)
+            if (!IsHoldingObject)
             {
-                m_TimeTillShoot -= Time.deltaTime;
-            }
+                transform.LookAt(Target.transform);
 
-            if (IsPlayerInRange(distanceToAttackTarget) && CanShoot)
-            {
-                Attack();
+                HandleRotors();
+
+                if (!CanShoot)
+                {
+                    m_TimeTillShoot -= Time.deltaTime;
+                }
+
+                if (IsPlayerInRange(distanceToAttackTarget) && CanShoot)
+                {
+                    Attack();
+                }
             }
         }
 

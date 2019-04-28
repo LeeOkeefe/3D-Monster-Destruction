@@ -1,4 +1,4 @@
-﻿using AI;
+﻿using AI.Enemies;
 using Objects.Destructible.Definition;
 using Objects.Destructible.Objects;
 using Player;
