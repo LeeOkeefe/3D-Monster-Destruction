@@ -18,7 +18,7 @@ namespace AI.Enemies
 
                 if (!CanShootPlayer)
                 {
-                    timeTillShoot -= Time.deltaTime;
+                    TimeTillShoot -= Time.deltaTime;
                 }
 
                 if (IsPlayerInRange(distanceToAttackTarget) && CanShootPlayer)

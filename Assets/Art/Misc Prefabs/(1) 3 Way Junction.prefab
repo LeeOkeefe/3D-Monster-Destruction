@@ -40,7 +40,6 @@ GameObject:
   - component: {fileID: 4404231461812750}
   - component: {fileID: 33473689341535802}
   - component: {fileID: 23112365681178638}
-  - component: {fileID: 114855488723794502}
   - component: {fileID: 65415893084712610}
   - component: {fileID: 54401301047332794}
   - component: {fileID: 114852129685896162}
@@ -61,7 +60,6 @@ GameObject:
   - component: {fileID: 4241753866563720}
   - component: {fileID: 33366999175140326}
   - component: {fileID: 23083944768010402}
-  - component: {fileID: 114000559591840460}
   - component: {fileID: 65106185817328358}
   - component: {fileID: 54129615787749140}
   - component: {fileID: 114045436950065894}
@@ -101,7 +99,6 @@ GameObject:
   - component: {fileID: 4017267138349952}
   - component: {fileID: 33862801575779952}
   - component: {fileID: 23868558189052952}
-  - component: {fileID: 114625404411291984}
   - component: {fileID: 65718069369067610}
   - component: {fileID: 54638678355497912}
   - component: {fileID: 114038582128996908}
@@ -748,19 +745,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114000559591840460
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1177607259356476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  throwingForce: 100
 --- !u!114 &114020951606543618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -824,19 +808,6 @@ MonoBehaviour:
   - {fileID: 114020951606543618}
   - {fileID: 114937311586766754}
   - {fileID: 114155844716465836}
---- !u!114 &114625404411291984
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1431182192066456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  throwingForce: 100
 --- !u!114 &114852129685896162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -849,19 +820,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150
---- !u!114 &114855488723794502
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1154209515740524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  throwingForce: 100
 --- !u!114 &114937311586766754
 MonoBehaviour:
   m_ObjectHideFlags: 1

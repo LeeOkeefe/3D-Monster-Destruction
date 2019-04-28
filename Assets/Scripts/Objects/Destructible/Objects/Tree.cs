@@ -1,4 +1,5 @@
-﻿using Objects.Destructible.Definition;
+﻿using AI.Enemies;
+using Objects.Destructible.Definition;
 using UnityEngine;
 
 namespace Objects.Destructible.Objects
@@ -21,7 +22,7 @@ namespace Objects.Destructible.Objects
         {
             if (other.gameObject.CompareTag("Player") || 
                 other.gameObject.CompareTag("Car") || 
-                other.gameObject.CompareTag("Tank"))
+                other.gameObject.CompareTag("Tank") && other.transform.rotation != other.GetComponent<Tank>().OriginalRotation)
             {
                 currentHealth -= currentHealth;
                 AddScore();

@@ -23,8 +23,8 @@ namespace AI.Enemies
         public Quaternion OriginalRotation { get; protected set; }
 
         protected RaycastHit hit;
-        protected bool CanShootPlayer => timeTillShoot <= 0;
-        protected float timeTillShoot;
+        protected bool CanShootPlayer => TimeTillShoot <= 0;
+        protected float TimeTillShoot;
 
         /// <summary>
         /// Looks toward the player, if raycast hits the player and we can shoot,
@@ -37,13 +37,13 @@ namespace AI.Enemies
             if (!Physics.Raycast(firingPoint.transform.position, Vector3.forward, out hit))
                 return;
 
-            if (!hit.transform.CompareTag("Player") && !(timeTillShoot <= 0))
+            if (!hit.transform.CompareTag("Player") && !(TimeTillShoot <= 0))
                 return;
 
             var position = firingPoint.transform.position;
             Instantiate(firingEffect, position, Quaternion.identity);
             Instantiate(projectile, position, firingPoint.transform.rotation);
-            timeTillShoot = timeBetweenAttacks;
+            TimeTillShoot = timeBetweenAttacks;
         }
 
         // Handles the tank being damaged/killed
