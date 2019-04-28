@@ -7,6 +7,8 @@ namespace AI.Enemies
     {
         private void Start()
         {
+            OriginalRotation = transform.rotation;
+
             InitializeHealth();
         }
 

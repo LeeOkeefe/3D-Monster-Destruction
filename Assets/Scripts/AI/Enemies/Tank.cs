@@ -20,6 +20,7 @@ namespace AI.Enemies
 
         protected static GameObject FireToPoint => GameManager.instance.playerShootingPosition;
         protected bool IsHoldingObject => GetComponent<ObjectInteraction>().HoldingObject;
+        public Quaternion OriginalRotation { get; protected set; }
 
         protected RaycastHit hit;
         protected bool CanShootPlayer => timeTillShoot <= 0;

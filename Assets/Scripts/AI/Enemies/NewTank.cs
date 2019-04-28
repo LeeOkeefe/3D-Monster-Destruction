@@ -12,16 +12,19 @@ namespace AI.Enemies
 
         void Update()
         {
-            turret.transform.LookAt(PlayerTransform);
-
-            if (!CanShootPlayer)
+            if (!IsHoldingObject)
             {
-                timeTillShoot -= Time.deltaTime;
-            }
+                turret.transform.LookAt(PlayerTransform);
 
-            if (IsPlayerInRange(distanceToAttackTarget) && CanShootPlayer)
-            {
-                Attack();
+                if (!CanShootPlayer)
+                {
+                    timeTillShoot -= Time.deltaTime;
+                }
+
+                if (IsPlayerInRange(distanceToAttackTarget) && CanShootPlayer)
+                {
+                    Attack();
+                }
             }
         }
 

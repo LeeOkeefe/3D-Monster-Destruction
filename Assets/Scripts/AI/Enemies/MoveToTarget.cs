@@ -11,7 +11,7 @@ namespace AI.Enemies
         private void Start()
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
-            InvokeRepeating(nameof(SetTarget), 1F, RandomNumberGenerator(2, 5));
+            InvokeRepeating(nameof(SetTarget), 1F, RandomNumberGenerator(2, 10));
         }
 
         /// <summary>

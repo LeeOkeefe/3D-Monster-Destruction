@@ -22,6 +22,9 @@ namespace Objects.Interactable
 
         private Animator anim => GameManager.instance.playerAnim;
 
+        private bool m_ResetRotation;
+        private Tank m_Tank;
+
         private void Start()
         {
             m_Object = GetComponent<Rigidbody>();
@@ -34,6 +37,17 @@ namespace Objects.Interactable
         //
         private void Update()
         {
+            // Ensure the enemy can always roll back to it's original rotation after being thrown
+            // to prevent it getting stuck
+            //
+            if (m_ResetRotation)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, m_Tank.OriginalRotation, Time.deltaTime * 1);
+
+                if (transform.rotation == m_Tank.OriginalRotation)
+                    m_ResetRotation = false;
+            }
+
             if (HoldingObject)
             {
                 m_Object.gameObject.transform.position = m_TempParent.transform.position;
@@ -66,6 +80,11 @@ namespace Objects.Interactable
                 gameObject.GetComponent<NavMeshAgent>().enabled = false;
             }
 
+            if (gameObject.HasComponent<MoveToTarget>())
+            {
+                gameObject.GetComponent<MoveToTarget>().CancelInvoke(nameof(MoveToTarget.SetTarget));
+            }
+
             HoldingObject = true;
             m_Object.useGravity = false;
             m_Collider.enabled = false;
@@ -88,7 +107,9 @@ namespace Objects.Interactable
             m_Collider.enabled = true;
 
             if (gameObject.HasComponent<NavMeshAgent>())
-                EnableNavMeshAgent();
+            {
+                StartCoroutine(nameof(EnableNavMeshAgent));
+            }
         }
 
         /// <summary>
@@ -114,13 +135,26 @@ namespace Objects.Interactable
             DropObject();
         }
 
+        /// <summary>
+        /// Enables NavMeshAgent and sets target again
+        /// </summary>
         private IEnumerator EnableNavMeshAgent()
         {
-            yield return new WaitUntil(() => gameObject.transform.position.y <= 1);
+            if (gameObject.HasComponent<Tank>())
+            {
+                m_Tank = GetComponent<Tank>();
+                m_ResetRotation = true;
+            }
+
+            yield return new WaitForSeconds(3);
 
             gameObject.GetComponent<NavMeshAgent>().enabled = true;
 
-            gameObject.GetComponent<MoveToTarget>().SetTarget();
+            if (gameObject.HasComponent<MoveToTarget>())
+            {
+                gameObject.GetComponent<NavMeshAgent>().Warp(transform.position);
+                gameObject.GetComponent<MoveToTarget>().SetTarget();
+            }
         }
     }
 }
