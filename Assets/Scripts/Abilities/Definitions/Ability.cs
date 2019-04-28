@@ -19,8 +19,6 @@ namespace Abilities.Definitions
 
         protected bool m_CooldownActive;
 
-        protected float PlayerScore => GameManager.instance.PlayerScore;
-
         protected ActiveAbilities ActiveAbilities => GameManager.instance.activeAbilities;
 
         protected bool IsAbilityActive => GameManager.instance.activeAbilities.IsAbilityActive(this);
@@ -31,10 +29,8 @@ namespace Abilities.Definitions
         /// </summary>
         protected void HandleCost()
         {
-            if (PlayerScore < abilityCostInPoints)
-            {
-                throw new Exception($"Insufficient points: {abilityCostInPoints} are required to purchase this ability.");
-            }
+            if (!ScoreManager.HasScore(abilityCostInPoints))
+                return;
 
             ScoreManager.SubtractScore(abilityCostInPoints);
         }
