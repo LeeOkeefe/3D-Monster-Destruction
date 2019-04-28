@@ -53,7 +53,7 @@ namespace Player
 
             if (CurrentHealth <= 0)
             {
-                GameManager.instance.GameOver();
+                GameManager.instance.playerAnim.SetBool("IsDead", true);
             }
         }
 

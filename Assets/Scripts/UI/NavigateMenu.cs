@@ -24,6 +24,9 @@ namespace UI
         /// </summary>
         public void RestartGame()
         {
+            GameManager.instance.playerAnim.SetBool("IsDead", false);
+            GameManager.instance.playerAnim.Play("Idle");
+
             var scene = SceneManager.GetActiveScene();
 
             if (scene.name != "Level 1" || !scene.IsValid())
