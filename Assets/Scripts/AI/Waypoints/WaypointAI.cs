@@ -69,7 +69,6 @@ namespace AI.Waypoints
 
             CurrentSpeed = Mathf.Clamp(CurrentSpeed, MinMoveSpeed, maxMoveSpeed);
             Transform.Translate(0, 0, CurrentSpeed * Time.deltaTime);
-
             Rotation();
         }
 
