@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1215711560662934}
   m_LocalRotation: {x: 0.043619405, y: -0, z: -0, w: 0.9990483}
-  m_LocalPosition: {x: 174.911, y: 0.1000005, z: 104.9995}
+  m_LocalPosition: {x: 214.40897, y: 0.02, z: 145.18}
   m_LocalScale: {x: 0.18253438, y: 0.18253446, z: 0.18253446}
   m_Children:
   - {fileID: 4432333589042710}
@@ -218,7 +218,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0.0086193085
-        value: 0.28915787
+        value: 0.4778366
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -226,7 +226,7 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.77723694
+        time: 0.8541565
         value: 0.009170532
         inSlope: 0
         outSlope: 0
@@ -239,7 +239,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.735849, g: 0.26820746, b: 0.13536847, a: 1}
+      key0: {r: 0.6627451, g: 0, b: 0.20655604, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -297,6 +297,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1215711560662934}
-  projectileDamage: 7.5
+  projectileDamage: 10
   projectileSpeed: 35
   explosion: {fileID: 100008, guid: 8f611da60097c85438a2947021f045cf, type: 2}

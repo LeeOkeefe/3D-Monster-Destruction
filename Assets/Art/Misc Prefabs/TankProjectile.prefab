@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599017527472068}
   m_LocalRotation: {x: 0.043619405, y: -0, z: -0, w: 0.9990483}
-  m_LocalPosition: {x: 143.94, y: 4.68, z: 77.69}
+  m_LocalPosition: {x: 212.65024, y: 0.4704629, z: 144.59778}
   m_LocalScale: {x: 0.18253438, y: 0.18253446, z: 0.18253446}
   m_Children:
   - {fileID: 4612926621306378}
@@ -239,7 +239,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0.4694984, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

@@ -14,7 +14,7 @@ namespace Objects.Destructible.Definition
         protected bool IsObjectDestroyed => currentHealth <= 0;
         protected void AddScore() => ScoreManager.AddScore(scoreAwarded);
 
-        public void Damage(float damage)
+        public virtual void Damage(float damage)
         {
             currentHealth -= damage;
         }
