@@ -85,6 +85,11 @@ namespace Objects.Interactable
                 gameObject.GetComponent<MoveToTarget>().CancelInvoke(nameof(MoveToTarget.SetTarget));
             }
 
+            if (gameObject.CompareTag("Human"))
+            {
+                gameObject.GetComponent<Animator>().enabled = false;
+            }
+
             HoldingObject = true;
             m_Object.useGravity = false;
             m_Collider.enabled = false;

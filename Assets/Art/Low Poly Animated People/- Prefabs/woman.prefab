@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 65220630015171920}
   - component: {fileID: 114929826170383218}
   - component: {fileID: 114624056726238666}
+  - component: {fileID: 95388633431874926}
   m_Layer: 0
   m_Name: woman
   m_TagString: Untagged
@@ -767,6 +768,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.907639, z: 1}
   m_Center: {x: 0, y: 0.9424708, z: 0}
+--- !u!95 &95388633431874926
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1521604910014378}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: c9771299a3fbc0a41ae9df42f32fa6c3, type: 3}
+  m_Controller: {fileID: 9100000, guid: cced423a0778f63429c898dd0f87bb38, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114624056726238666
 MonoBehaviour:
   m_ObjectHideFlags: 1
