@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-using AI;
 using AI.Enemies;
+using Extensions;
 using Objects.Destructible.Objects;
+using Objects.Destructible.Objects.ForceObjects;
 using Tree = Objects.Destructible.Objects.Tree;
 
 namespace Abilities
@@ -14,11 +15,11 @@ namespace Abilities
         {
             if (other.gameObject.CompareTag("Building"))
             {
-                var building = other.GetComponent<FragmentBuilding>();
-                building.HandleFlamethrower();
+                if (!other.gameObject.HasComponent<Skyscraper>())
+                    return;
 
-                if (building.currentHealth <= 0)
-                    Instantiate(building.burntRubble, other.gameObject.transform.position, Quaternion.identity);
+                var building = other.GetComponent<Skyscraper>();
+                building.FlamethrowerDamage();
             }
 
             if (other.gameObject.CompareTag("Tree"))
