@@ -10,14 +10,26 @@ namespace AI.Human
         [SerializeField]
         private float scoreAwarded = 5;
 
+        private Animator m_Animator;
+        private static readonly int Terrified = Animator.StringToHash("Terrified");
+
         private void Start()
         {
             Initialize();
+            m_Animator = GetComponent<Animator>();
         }
 
         private void Update()
         {
-            Movement();
+            if (GameManager.instance.IsPlayerInRange(transform, 10))
+            {
+                m_Animator.SetBool(Terrified, true);
+            }
+            else
+            {
+                m_Animator.SetBool(Terrified, false);
+                Movement();
+            }
         }
 
         // Handle death if we collide with the player
