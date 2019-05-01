@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 19860484}
   - component: {fileID: 19904564}
   m_Layer: 0
-  m_Name: FX_Fireworks_Yellow_Small
+  m_Name: OrangeFirework
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

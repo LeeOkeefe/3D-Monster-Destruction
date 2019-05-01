@@ -6,7 +6,7 @@ namespace AI
     internal sealed class CarBehaviour : MonoBehaviour, IDeathHandler
     {
         [SerializeField]
-        private GameObject explosionPrefab;
+        private GameObject[] explosionPrefab;
         [SerializeField]
         private float scoreAwarded = 10;
         [SerializeField]
@@ -56,7 +56,11 @@ namespace AI
         // 
         public void HandleDeath()
         {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            foreach (var explosion in explosionPrefab)
+            {
+                Instantiate(explosion, transform.position, Quaternion.identity);
+            }
+
             ScoreManager.AddScore(scoreAwarded, 10);
             Destroy(gameObject);
         }

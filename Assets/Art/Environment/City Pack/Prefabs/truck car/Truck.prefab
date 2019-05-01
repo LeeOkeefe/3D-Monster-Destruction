@@ -443,7 +443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541ebfb160abba14184c4fec058ce213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 100010, guid: d609d5ebc845aca409f72e9c6a56dc60, type: 2}
+  explosionPrefab:
+  - {fileID: 110790, guid: 0f75f6db4a318f54382e0c98b2226db8, type: 2}
+  - {fileID: 100010, guid: d609d5ebc845aca409f72e9c6a56dc60, type: 2}
   scoreAwarded: 30
   m_Colour: {r: 0, g: 0, b: 0, a: 0}
   autoColourVehicle: 1
