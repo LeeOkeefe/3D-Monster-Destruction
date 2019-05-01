@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using UnityEngine;
+using Debug = System.Diagnostics.Debug;
 
 namespace Abilities.Definitions
 {
@@ -13,8 +14,8 @@ namespace Abilities.Definitions
         private float damageMultiplier = 2f;
         [SerializeField]
         private Transform particlePosition;
-
-        private ParticleSystem[] m_ParticleSystems;
+        [SerializeField]
+        private ParticleSystem m_ParticleSystem;
 
         private Stopwatch m_FlamethrowerAbilityTimer;
 
@@ -24,7 +25,6 @@ namespace Abilities.Definitions
         {
             m_PlayerAbility = new PlayerAbility();
             m_FlamethrowerAbilityTimer = new Stopwatch();
-            m_ParticleSystems = GameObject.FindGameObjectWithTag("Flamethrower").GetComponentsInChildren<ParticleSystem>();
         }
 
         private void Update()
@@ -33,10 +33,7 @@ namespace Abilities.Definitions
             {
                 FlamethrowerAttack(damageMultiplier);
 
-                foreach (var particle in m_ParticleSystems)
-                {
-                    particle.transform.position = particlePosition.position;
-                }
+                m_ParticleSystem.transform.position = particlePosition.position;
             }
         }
 
@@ -54,11 +51,7 @@ namespace Abilities.Definitions
             HandleCost();
             OnStart();
 
-            foreach (var particle in m_ParticleSystems)
-            {
-                particle.Play();
-            }
-
+            m_ParticleSystem.Play();
             m_HasHappenedOnce = false;
             abilityButton.enabled = false;
             ActiveAbilities.ActivateAbility(this);
@@ -92,10 +85,7 @@ namespace Abilities.Definitions
 
             if (m_FlamethrowerAbilityTimer.Elapsed.Seconds >= abilityDuration)
             {
-                foreach (var particle in m_ParticleSystems)
-                {
-                    particle.Stop();
-                }
+                m_ParticleSystem.Stop();
 
                 ActiveAbilities.DeactivateAbility(this);
                 m_FlamethrowerAbilityTimer.Reset();
