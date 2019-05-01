@@ -7,8 +7,10 @@ namespace Player
     {
         public float CurrentHealth { get; private set; }
         public float CurrentStamina { get; private set; }
-
+        public float BoostedDamage { get; private set; }
+        public float BoostedDefence { get; private set; }
         public bool CanRun { get; private set; }
+        public float TotalDamage => baseDamage + BoostedDamage;
 
         [SerializeField]
         public float maxHealth;
@@ -17,15 +19,12 @@ namespace Player
         [SerializeField]
         public float baseDamage = 10f;
 
-        public float BoostedDamage { get; private set; }
-        public float BoostedDefence { get; private set; }
-
-        public float TotalDamage => baseDamage + BoostedDamage;
-
         [SerializeField]
         private Renderer m_Renderer;
 
         private Color m_OriginalColor;
+
+        private static readonly int Dead = Animator.StringToHash("Dead");
 
         private void Start()
         {
@@ -57,7 +56,7 @@ namespace Player
 
             if (CurrentHealth <= 0)
             {
-                GameManager.instance.playerAnim.SetBool("IsDead", true);
+                GameManager.instance.playerAnim.SetTrigger(Dead);
             }
         }
 

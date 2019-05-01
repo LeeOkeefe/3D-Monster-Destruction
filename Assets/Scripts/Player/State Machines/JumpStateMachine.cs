@@ -1,9 +1,10 @@
 ﻿using AI;
+using Objects.Destructible.Definition;
 using UnityEngine;
 
 namespace Player.State_Machines
 {
-    public class JumpStateMachine : StateMachineBehaviour
+    internal sealed class JumpStateMachine : StateMachineBehaviour
     {
         [SerializeField]
         private GameObject stompEffect;
@@ -46,6 +47,7 @@ namespace Player.State_Machines
             foreach (var hitCollider in hitColliders)
             {
                 hitCollider.GetComponent<IDeathHandler>()?.HandleDeath();
+                hitCollider.GetComponent<IShatter>()?.Explode(50, Vector3.one, 50);
             }
         }
     }

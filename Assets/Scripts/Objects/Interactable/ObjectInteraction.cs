@@ -23,7 +23,7 @@ namespace Objects.Interactable
         private bool m_ResetRotation;
         private Tank m_Tank;
 
-        private static readonly int Attack = Animator.StringToHash("Attack");
+        private static readonly int Throw = Animator.StringToHash("Throw");
 
         private void Start()
         {
@@ -122,7 +122,7 @@ namespace Objects.Interactable
         /// </summary>
         private void ThrowObject()
         {
-            anim.SetTrigger(Attack);
+            anim.SetTrigger(Throw);
             StartCoroutine(nameof(Delay));
         }
 
