@@ -8,6 +8,8 @@ namespace Player
         public float CurrentHealth { get; private set; }
         public float CurrentStamina { get; private set; }
 
+        public bool CanRun { get; private set; }
+
         [SerializeField]
         public float maxHealth;
         [SerializeField]
@@ -31,6 +33,8 @@ namespace Player
 
             CurrentHealth = maxHealth;
             CurrentStamina = maxStamina;
+
+            CanRun = true;
         }
 
         /// <summary>
@@ -146,12 +150,22 @@ namespace Player
             {
                 AddStamina(-0.3f);
             }
+
+            if (CurrentStamina <= 0)
+            {
+                CanRun = false;
+            }
         }
 
         private IEnumerator RegenerateOverTime()
         {
             yield return new WaitForSeconds(1f);
             AddStamina(0.15f);
+
+            if (CurrentStamina >= 10)
+            {
+                CanRun = true;
+            }
         }
 
         /// <summary>

@@ -4,7 +4,6 @@ namespace Player.State_Machines
 {
     internal sealed class AttackStateMachine : StateMachineBehaviour
     {
-        private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
         private static Collider PlayerRightHand => GameManager.instance.playerRightHand;
         private static Collider PlayerLeftHand => GameManager.instance.playerLeftHand;
 
@@ -14,7 +13,6 @@ namespace Player.State_Machines
         //}
         public override void OnStateEnter(Animator anim, AnimatorStateInfo stateInfo, int index)
         {
-            anim.SetBool(IsAttacking, true);
             PlayerRightHand.isTrigger = true;
             PlayerLeftHand.isTrigger = true;
         }
@@ -25,7 +23,6 @@ namespace Player.State_Machines
         //}
         public override void OnStateExit(Animator anim, AnimatorStateInfo stateInfo, int index)
         {
-            anim.SetBool(IsAttacking, false);
             PlayerRightHand.isTrigger = false;
             PlayerLeftHand.isTrigger = false;
         }

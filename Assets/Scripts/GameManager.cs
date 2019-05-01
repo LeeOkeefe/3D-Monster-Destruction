@@ -27,9 +27,9 @@ internal sealed class GameManager : MonoBehaviour
     public MouseSensitivity mouseSensitivity;
     public Collider playerRightHand;
     public Collider playerLeftHand;
+    public GameObject playerPrefab;
 
     public bool IsGamePaused => Math.Abs(Time.timeScale) < 0;
-    public float PlayerScore => ScoreManager.PlayerTotalScore;
     public float MouseSensitivity => mouseSensitivity.Sensitivity;
     public bool IsGameRunning => SceneManager.GetActiveScene().name == "Level 1";
 
@@ -91,7 +91,6 @@ internal sealed class GameManager : MonoBehaviour
     {
         gameOverUi.ToggleGroup(true);
         pauseButton.enabled = false;
-        Time.timeScale = 0;
         gameOverScoreText.text = scoreText.text;
     }
 
@@ -100,6 +99,11 @@ internal sealed class GameManager : MonoBehaviour
     /// </summary>
     public bool IsPlayerInRange(Transform myTransform, float distance)
     {
+        if (player == null)
+        {
+            throw new NullReferenceException("Player was null");
+        }
+
         return Vector3.Distance(myTransform.position, player.transform.position) < distance;
     }
 }
