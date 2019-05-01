@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33901885698958660}
   - component: {fileID: 23462304054247288}
   - component: {fileID: 64510486144665048}
-  m_Layer: 16
+  m_Layer: 21
   m_Name: Plane004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,8 +40,8 @@ GameObject:
   - component: {fileID: 33453393348067672}
   - component: {fileID: 23636128112175560}
   - component: {fileID: 65598839722064246}
-  - component: {fileID: 114114066520623664}
   - component: {fileID: 208712892092266864}
+  - component: {fileID: 114427387158638560}
   m_Layer: 0
   m_Name: Chainlink Fence Segment Type 3
   m_TagString: Untagged
@@ -77,9 +77,8 @@ GameObject:
   - component: {fileID: 33333936706531666}
   - component: {fileID: 23262770081258634}
   - component: {fileID: 54017891039725572}
-  - component: {fileID: 114327160080423340}
   - component: {fileID: 208280575756233906}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Chainlink Fence Segment Crushed Type 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,15 +118,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1652231506229260}
-  m_LocalRotation: {x: -0.5000001, y: -0.49999988, z: 0.49999988, w: 0.5000001}
-  m_LocalPosition: {x: 4.2525635, y: -7.5, z: 13.665031}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.70710677}
+  m_LocalPosition: {x: -51.07, y: -7.94, z: 24.78}
   m_LocalScale: {x: 2, y: 3, z: 3}
   m_Children:
   - {fileID: 4901295258639924}
   - {fileID: 4628918657763036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.00001}
 --- !u!4 &4901295258639924
 Transform:
   m_ObjectHideFlags: 1
@@ -318,7 +317,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -348,9 +347,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0599997, y: 0.06000115, z: 1.2509859}
-  m_Center: {x: 1.0299999, y: 0.0000005038455, z: 0.000000029802322}
---- !u!114 &114114066520623664
+  m_Size: {x: 2.0599997, y: 0.14317831, z: 1.2509859}
+  m_Center: {x: 1.0299999, y: -0.0044454806, z: 0.00000003973643}
+--- !u!114 &114427387158638560
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -358,26 +357,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1652231506229260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fccbcd0f099319c4aa13524d77cb037a, type: 3}
+  m_Script: {fileID: 11500000, guid: cec0bfec047609f4cb336abc9f5ca72f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenObject: {fileID: 1850460280715002}
-  objectsToDestroy:
-  - {fileID: 1718200009512650}
-  destructionPoints: 0
---- !u!114 &114327160080423340
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1850460280715002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe696d0a9c85544ea6e6d81d5850c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 5
-  throwingForce: 100
+  force: 300
+  brokenFence: {fileID: 1850460280715002}
+  brokenFenceRb: {fileID: 54017891039725572}
 --- !u!208 &208280575756233906
 NavMeshObstacle:
   m_ObjectHideFlags: 1

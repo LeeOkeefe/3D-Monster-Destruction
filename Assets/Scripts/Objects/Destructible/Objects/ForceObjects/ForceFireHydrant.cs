@@ -17,7 +17,7 @@ namespace Objects.Destructible.Objects.ForceObjects
             if (!other.transform.root.CompareTag("Player"))
                 return;
 
-            AddForce(other);
+            AddForce(other, Rb);
             Instantiate(particleEffect, transform.position, Quaternion.Euler(-90, 0, 0));
             Destroy(this);
         }

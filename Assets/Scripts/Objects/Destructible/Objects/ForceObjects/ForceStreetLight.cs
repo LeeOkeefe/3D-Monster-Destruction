@@ -12,7 +12,7 @@ namespace Objects.Destructible.Objects.ForceObjects
             if (!other.transform.root.CompareTag("Player"))
                 return;
 
-            AddForce(other);
+            AddForce(other, Rb);
         }
     }
 }
