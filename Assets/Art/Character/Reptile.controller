@@ -32,6 +32,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: Shockwave
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -122,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed3af2a4f4799a42b515b872430dcf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stompEffect: {fileID: 1974292011350366, guid: 343a05f5e9ec2724996574d85d99c4eb,
+  stompEffect: {fileID: 1342307439113110, guid: 8a79eb3f22dda9b4ca8fd362b2c0c8cb,
     type: 2}
 --- !u!206 &206116057401136098
 BlendTree:

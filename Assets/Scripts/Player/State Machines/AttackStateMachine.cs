@@ -13,6 +13,8 @@ namespace Player.State_Machines
         //}
         public override void OnStateEnter(Animator anim, AnimatorStateInfo stateInfo, int index)
         {
+            PlayerRightHand.GetComponent<TrailRenderer>().enabled = true;
+            PlayerLeftHand.GetComponent<TrailRenderer>().enabled = true;
             PlayerRightHand.isTrigger = true;
             PlayerLeftHand.isTrigger = true;
         }
@@ -23,6 +25,8 @@ namespace Player.State_Machines
         //}
         public override void OnStateExit(Animator anim, AnimatorStateInfo stateInfo, int index)
         {
+            PlayerRightHand.GetComponent<TrailRenderer>().enabled = false;
+            PlayerLeftHand.GetComponent<TrailRenderer>().enabled = false;
             PlayerRightHand.isTrigger = false;
             PlayerLeftHand.isTrigger = false;
         }

@@ -57,23 +57,11 @@ namespace Player
                     return;
 
                 m_Animator.SetTrigger(Jump);
-                
             }
 
             if (Input.GetMouseButton(2) || Input.GetKey(KeyCode.LeftAlt))
             {
                 CameraControl();
-            }
-        }
-
-        public void ExplosionDamage(Vector3 center, float radius)
-        {
-            Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-            int i = 0;
-            while (i < hitColliders.Length)
-            {
-                hitColliders[i].GetComponent<IDeathHandler>()?.HandleDeath();
-                i++;
             }
         }
 
