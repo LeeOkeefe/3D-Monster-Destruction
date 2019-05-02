@@ -1,24 +1,21 @@
 ﻿using System.Linq;
 using AI;
+using Extensions;
 using Objects.Destructible.Definition;
 using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Objects.Destructible.Objects.ForceObjects
+namespace Objects.Destructible.Objects
 {
     internal sealed class Skyscraper : DestructibleObject
     {
         [SerializeField]
         private GameObject[] fragments;
         [SerializeField]
-        private GameObject explosion;
+        private GameObject explosion, flames;
         [SerializeField]
-        private GameObject regularRubble;
-        [SerializeField]
-        public GameObject burntRubble;
-        [SerializeField]
-        private GameObject flames;
+        private GameObject regularRubble, burntRubble;
 
         private Vector3 m_Pos;
 
@@ -126,6 +123,7 @@ namespace Objects.Destructible.Objects.ForceObjects
             if (!IsObjectDestroyed)
                 return;
 
+            StartCoroutine(Camera.main.Shake(2, 1));
             transform.Rotate(Random.insideUnitSphere * 0.5f);
             transform.Translate(Vector3.down * 3 * Time.deltaTime);
 
