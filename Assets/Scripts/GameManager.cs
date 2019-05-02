@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Extensions;
 using Player;
 using UI.Ability_Bar;
@@ -27,6 +28,7 @@ internal sealed class GameManager : MonoBehaviour
     public Collider playerLeftHand;
     public GameObject playerPrefab;
     public Image gameOverBackground;
+    public GameObject minimap;
 
     public void CameraShake() => StartCoroutine(Camera.main.Shake(0.5F, 2));
     public bool IsGamePaused => Math.Abs(Time.timeScale) < 0;
@@ -94,11 +96,11 @@ internal sealed class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        Time.timeScale = 0;
         gameOverUi.ToggleGroup(true);
         pauseButton.enabled = false;
         gameOverScoreText.text = scoreText.text;
-        GameObject.FindGameObjectWithTag("Minimap").SetActive(false);
+        minimap.SetActive(false);
+        Time.timeScale = 0;
     }
 
     /// <summary>

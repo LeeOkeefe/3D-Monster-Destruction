@@ -70,7 +70,7 @@ namespace Objects.Interactable
         /// <summary>
         /// Picks up the object and alters physics whilst picked up
         /// </summary>
-        private void PickupObject()
+        public void PickupObject()
         {
             if (!IsPlayerInRange())
                 return;
