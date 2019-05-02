@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 19900006}
   - component: {fileID: 114618837062748092}
   m_Layer: 0
-  m_Name: WFXMR_ExplosiveSmokeGround Small
+  m_Name: CarExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

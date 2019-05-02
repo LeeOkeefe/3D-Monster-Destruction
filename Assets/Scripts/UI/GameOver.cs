@@ -27,14 +27,14 @@ namespace UI
         /// </summary>
         public void PlayAgain()
         {
-            m_Navigate.RestartGame();
-            m_CanvasGroup.ToggleGroup(false);
-            pauseButton.enabled = true;
-
-            if (Math.Abs(Time.timeScale - 1) > 0)
+            if (GameManager.instance.IsGamePaused)
             {
                 Time.timeScale = 1;
             }
+
+            m_Navigate.RestartGame();
+            m_CanvasGroup.ToggleGroup(false);
+            pauseButton.enabled = true;
         }
     }
 }

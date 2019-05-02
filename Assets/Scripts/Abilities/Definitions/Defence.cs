@@ -38,6 +38,9 @@ namespace Abilities.Definitions
             if (m_CooldownActive)
                 return;
 
+            if (!ScoreManager.HasScore(abilityCostInPoints))
+                return;
+
             HandleCost();
             OnStart();
 

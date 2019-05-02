@@ -10,7 +10,6 @@ GameObject:
   - component: {fileID: 408150}
   - component: {fileID: 19826942}
   - component: {fileID: 19975658}
-  - component: {fileID: 114444370238303032}
   m_Layer: 0
   m_Name: FX_Fireworks_Green_Large
   m_TagString: Untagged
@@ -110,7 +109,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.5
+      scalar: 2
       minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
@@ -145,7 +144,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 100
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -261,7 +260,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -894,7 +893,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 150
+        scalar: 250
         minScalar: 250
         maxCurve:
           serializedVersion: 2
@@ -1012,7 +1011,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 1
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1065,7 +1064,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 1
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -4614,15 +4613,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 175238}
   m_IsPrefabParent: 1
---- !u!114 &114444370238303032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f2914e7ccf39d4798744e8f727bba8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToLive: 1

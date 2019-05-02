@@ -16,14 +16,14 @@ namespace Objects.Interactable
         private Collider m_Collider;
         private Rigidbody m_Object;
 
-        private static readonly int IsThrowing = Animator.StringToHash("IsThrowing");
-
         public bool HoldingObject { get; private set; }
 
         private Animator anim => GameManager.instance.playerAnim;
 
         private bool m_ResetRotation;
         private Tank m_Tank;
+
+        private static readonly int Throw = Animator.StringToHash("Throw");
 
         private void Start()
         {
@@ -122,7 +122,7 @@ namespace Objects.Interactable
         /// </summary>
         private void ThrowObject()
         {
-            anim.SetBool(IsThrowing, true);
+            anim.SetTrigger(Throw);
             StartCoroutine(nameof(Delay));
         }
 
@@ -136,7 +136,7 @@ namespace Objects.Interactable
             m_Object.gameObject.layer = 16;
 
             m_Object.velocity = Player.transform.forward * throwingForce;
-            anim.SetBool(IsThrowing, false);
+            anim.ResetTrigger("Attack");
             DropObject();
         }
 

@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿using AI;
+using UnityEngine;
 
 namespace Player
 {
     internal sealed class PlayerController : MonoBehaviour
     {
-        private const float Idle = 0f;
-        private const float Walk = 0.5f;
-        private const float Run = 1f;
+        private const float Idle = 0F, Walk = 0.5F, Run = 1F;
 
         private Animator m_Animator;
         private PlayerStats m_PlayerStats;
@@ -14,12 +13,11 @@ namespace Player
         [SerializeField]
         private GameObject cameraPivot;
         [SerializeField]
-        private float walkSpeed = 15f;
-        [SerializeField]
-        private float runSpeed = 30f;
+        private float walkSpeed = 12.5F, runSpeed = 20F;
 
         private static readonly int AnimationSpeed = Animator.StringToHash("Speed");
-        private static readonly int AnimatorCanRun = Animator.StringToHash("CanRun");
+        private static readonly int Attack = Animator.StringToHash("Attack");
+        private static readonly int Jump = Animator.StringToHash("Jump");
 
         private static float MouseSensitivity => GameManager.instance.MouseSensitivity;
         private float Speed => m_Animator.GetFloat(AnimationSpeed);
@@ -35,8 +33,8 @@ namespace Player
         //
         private void Update()
         {
-            if (Input.GetKey(KeyCode.LeftShift) && m_PlayerStats.CurrentStamina > 0 && PlayerIsMoving ||
-                Input.GetKey(KeyCode.RightShift) && m_PlayerStats.CurrentStamina > 0 && PlayerIsMoving)
+            if (Input.GetKey(KeyCode.LeftShift) && m_PlayerStats.CanRun && PlayerIsMoving ||
+                Input.GetKey(KeyCode.RightShift) && m_PlayerStats.CanRun && PlayerIsMoving)
             {
                 Movement(runSpeed);
                 m_PlayerStats.DepleteStamina();
@@ -47,11 +45,18 @@ namespace Player
                 m_PlayerStats.RegenerateStamina();
             }
 
-            m_Animator.SetBool(AnimatorCanRun, m_PlayerStats.CurrentStamina > 0);
-
             if (Input.GetKey(KeyCode.Space))
             {
-                m_Animator.Play("Attack");
+                if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+                    m_Animator.SetTrigger(Attack);
+            }
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+                    return;
+
+                m_Animator.SetTrigger(Jump);
             }
 
             if (Input.GetMouseButton(2) || Input.GetKey(KeyCode.LeftAlt))
@@ -68,6 +73,8 @@ namespace Player
         {
             var direction = Vector3.zero;
 
+            // Handles the direction based on the input keys
+            //
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 direction = Vector3.right;
@@ -85,6 +92,8 @@ namespace Player
                 direction = Vector3.back;
             }
 
+            // Handles diagonal movement with combined input keys
+            //
             if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
             {
                 direction = (Vector3.left + Vector3.forward);
@@ -104,13 +113,23 @@ namespace Player
 
             transform.Translate(direction.normalized * Time.deltaTime * movementSpeed);
 
-            // If direction is not equal to zero, use walk animation
-            if (direction != Vector3.zero)
+            // Handles the Idle/Walk/Run animations based on conditions
+            //
+            if (direction != Vector3.zero && m_PlayerStats.CanRun && Input.GetKey(KeyCode.LeftShift) ||
+                direction != Vector3.zero && m_PlayerStats.CanRun && Input.GetKey(KeyCode.RightShift))
             {
-                m_Animator.SetFloat(AnimationSpeed, Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ? Run : Walk);
+                m_Animator.SetFloat(AnimationSpeed, Run);
+            }
+            else if (direction != Vector3.zero && !m_PlayerStats.CanRun ||
+                     direction != Vector3.zero && m_PlayerStats.CanRun)
+            {
+                m_Animator.SetFloat(AnimationSpeed, Walk);
             }
             else
             {
+                if (m_Animator.IsInTransition(0))
+                    return;
+
                 m_Animator.SetFloat(AnimationSpeed, Idle);
             }
         }
