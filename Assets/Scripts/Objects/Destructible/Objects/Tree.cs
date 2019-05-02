@@ -29,6 +29,11 @@ namespace Objects.Destructible.Objects
                 DestroyObject();
             }
 
+            //if (other.gameObject.CompareTag("Flamethrower"))
+            //{
+               // BurnTree();
+            //}
+
             if (IsObjectDestroyed)
             {
                 Destruct();

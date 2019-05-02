@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Settings.Audio
@@ -11,8 +12,14 @@ namespace UI.Settings.Audio
 
         private void Start()
         {
-            m_SoundEffects = FindObjectsOfType<AudioSource>();
             m_Slider = GetComponent<Slider>();
+            m_SoundEffects = FindObjectsOfType<AudioSource>();
+
+            foreach (var soundEffect in m_SoundEffects)
+            {
+                soundEffect.volume = m_Slider.value;
+            }
+
             m_Slider.onValueChanged.AddListener(delegate {ValueChangeCheck();});
         }
 
