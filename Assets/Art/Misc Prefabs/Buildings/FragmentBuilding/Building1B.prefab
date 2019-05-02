@@ -1201,11 +1201,12 @@ MonoBehaviour:
   - {fileID: 1453416749753550}
   - {fileID: 1570942999043404}
   explosion: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 2}
+  flames: {fileID: 1365450130110230}
   regularRubble: {fileID: 1447191628214894, guid: 2b1897816d31ee8499305dba502ac44e,
     type: 2}
   burntRubble: {fileID: 1116758171201644, guid: b8faff09ddaf4344080eded1fe385921,
     type: 2}
-  flames: {fileID: 1365450130110230}
+  cameraPivot: {fileID: 0}
 --- !u!198 &198688641056209394
 ParticleSystem:
   m_ObjectHideFlags: 1

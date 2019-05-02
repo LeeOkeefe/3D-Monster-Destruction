@@ -23,8 +23,9 @@ namespace Player.State_Machines
             {
                 animator.SetBool(Shockwave, true);
                 m_Shockwave = Instantiate(stompEffect, animator.rootPosition, animator.rootRotation);
+                GameManager.instance.CameraShake();
                 m_Shockwave.transform.parent = GameManager.instance.player.transform;
-                ExplosionDamage(animator.transform.position, 5F);
+                ExplosionDamage(animator.transform.position, 6F);
             }
         }
 
