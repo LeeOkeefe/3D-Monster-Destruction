@@ -25,8 +25,7 @@ namespace Objects.Destructible.Objects
 
         private const float BelowGroundLevel = -8;
 
-        private bool m_Collapsed;
-        private bool m_Regular;
+        private bool m_Collapsed, m_Regular;
 
         private void Start()
         {

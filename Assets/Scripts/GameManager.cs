@@ -2,7 +2,6 @@
 using Extensions;
 using Player;
 using UI.Ability_Bar;
-using UI.Menu;
 using UI.Settings;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,7 +18,6 @@ internal sealed class GameManager : MonoBehaviour
     public Text gameTimeText;
     public Button pauseButton;
     public ActiveAbilities activeAbilities;
-    public SettingsManager settingsManager;
     public CanvasGroup gameOverUi;
     public GameObject playerPickupHand;
     public GameObject playerShootingPosition;
@@ -28,6 +26,7 @@ internal sealed class GameManager : MonoBehaviour
     public Collider playerRightHand;
     public Collider playerLeftHand;
     public GameObject playerPrefab;
+    public Image gameOverBackground;
 
     public void CameraShake() => StartCoroutine(Camera.main.Shake(0.5F, 2));
     public bool IsGamePaused => Math.Abs(Time.timeScale) < 0;
@@ -67,6 +66,11 @@ internal sealed class GameManager : MonoBehaviour
             gameTimeText.text = FormatGameTime();
         }
 
+        if (TimeRemaining <= 0 || playerStats.CurrentHealth <= 0)
+        {
+            gameOverBackground.fillAmount += Time.unscaledDeltaTime / 2.5F;
+        }
+
         if (!(TimeRemaining < 1))
             return;
 
@@ -90,9 +94,11 @@ internal sealed class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        Time.timeScale = 0;
         gameOverUi.ToggleGroup(true);
         pauseButton.enabled = false;
         gameOverScoreText.text = scoreText.text;
+        GameObject.FindGameObjectWithTag("Minimap").SetActive(false);
     }
 
     /// <summary>

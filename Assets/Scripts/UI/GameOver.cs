@@ -1,5 +1,4 @@
-﻿using System;
-using Extensions;
+﻿using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +19,7 @@ namespace UI
         {
             m_Navigate = new NavigateMenu();
             m_CanvasGroup = GetComponent<CanvasGroup>();
+            Time.timeScale = 1;
         }
 
         /// <summary>
@@ -27,11 +27,6 @@ namespace UI
         /// </summary>
         public void PlayAgain()
         {
-            if (GameManager.instance.IsGamePaused)
-            {
-                Time.timeScale = 1;
-            }
-
             m_Navigate.RestartGame();
             m_CanvasGroup.ToggleGroup(false);
             pauseButton.enabled = true;

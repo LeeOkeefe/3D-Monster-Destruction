@@ -25,6 +25,7 @@ TagManager:
   - Junction
   - TrafficLight
   - Human
+  - Minimap
   layers:
   - Default
   - TransparentFX
