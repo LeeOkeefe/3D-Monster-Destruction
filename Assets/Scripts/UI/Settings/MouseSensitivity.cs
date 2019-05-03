@@ -11,8 +11,10 @@ namespace UI.Settings
 
         private void Start()
         {
+            Sensitivity = PlayerPrefs.GetFloat("Sensitivity", Sensitivity);
             m_Slider = GetComponent<Slider>();
-            m_Slider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+            m_Slider.value = Sensitivity;
+            m_Slider.onValueChanged.AddListener(delegate{ValueChangeCheck();});
         }
 
         /// <summary>
@@ -21,6 +23,7 @@ namespace UI.Settings
         public void ValueChangeCheck()
         {
             Sensitivity = m_Slider.value;
+            PlayerPrefs.SetFloat("Sensitivity", Sensitivity);
         }
     }
 }
