@@ -2,7 +2,7 @@
 
 namespace AI.Waypoints
 {
-    internal sealed class Waypoint : WaypointsHolder
+    public sealed class Waypoint : WaypointsHolder
     {
         [SerializeField]
         private float gizmoDrawRadius = 1;

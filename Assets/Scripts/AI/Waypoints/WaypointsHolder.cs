@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AI.Waypoints
 {
-    internal class WaypointsHolder : MonoBehaviour
+    public class WaypointsHolder : MonoBehaviour
     {
         public IEnumerable<Waypoint> Waypoints { get; private set; }
 

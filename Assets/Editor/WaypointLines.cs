@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using AI.Waypoints;
 using UnityEditor;
 using UnityEngine;
 
-namespace AI.Waypoints
+namespace Editor
 {
     [CustomEditor(typeof(WaypointsHolder))]
-    internal sealed class WaypointLines : Editor
+    internal sealed class WaypointLines : UnityEditor.Editor
     {
         private IList<Transform> m_Waypoints;
 
