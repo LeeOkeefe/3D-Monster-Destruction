@@ -41,9 +41,18 @@ namespace Player
         /// </summary>
         private IEnumerator DamageFeedback()
         {
-            m_Renderer.material.SetColor("_Color", Color.red);
-            yield return new WaitForSeconds(0.1F);
-            m_Renderer.material.SetColor("_Color", m_OriginalColor);
+            if (BoostedDefence > 0)
+            {
+                m_Renderer.material.SetColor("_Color", Color.blue);
+                yield return new WaitForSeconds(0.1F);
+                m_Renderer.material.SetColor("_Color", m_OriginalColor);
+            }
+            else
+            {
+                m_Renderer.material.SetColor("_Color", Color.red);
+                yield return new WaitForSeconds(0.1F);
+                m_Renderer.material.SetColor("_Color", m_OriginalColor);
+            }
         }
 
         /// <summary>
