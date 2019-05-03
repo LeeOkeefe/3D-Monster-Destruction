@@ -335,80 +335,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 107065435}
---- !u!1 &138417318
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 138417319}
-  - component: {fileID: 138417321}
-  - component: {fileID: 138417320}
-  m_Layer: 5
-  m_Name: Title(Art)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &138417319
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 138417318}
-  m_LocalRotation: {x: -0.0084213745, y: -0.019163627, z: 0.0052420236, w: 0.9997672}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.99998575, y: 0.99998635, z: 0.9999863}
-  m_Children: []
-  m_Father: {fileID: 1234002552}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -0.95300007, y: -2.2010002, z: 0.619}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -103, y: 4}
-  m_SizeDelta: {x: 338.92, y: 152.62}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &138417320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 138417318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.5566038, g: 0.002625496, b: 0.17340064, a: 0.80784315}
-  m_RaycastTarget: 0
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: de974e5427cb20944ab0f96ca9ac5ea7, type: 3}
-    m_FontSize: 60
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 140
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: art
---- !u!222 &138417321
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 138417318}
 --- !u!1 &148410373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,7 +2078,7 @@ GameObject:
   - component: {fileID: 670933349}
   - component: {fileID: 670933348}
   m_Layer: 5
-  m_Name: Title(E)
+  m_Name: Title(Reckless)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2173,7 +2099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.95300007, y: -2.2010002, z: 0.619}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140.04196, y: 17.810173}
+  m_AnchoredPosition: {x: -169.46, y: -0.000018865}
   m_SizeDelta: {x: 338.92, y: 152.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670933348
@@ -2208,9 +2134,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'E
-
-'
+  m_Text: Reckless
 --- !u!222 &670933349
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3088,7 +3012,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 670933347}
-  - {fileID: 138417319}
   - {fileID: 1458158349}
   m_Father: {fileID: 931758393}
   m_RootOrder: 2
@@ -3426,7 +3349,7 @@ GameObject:
   - component: {fileID: 1458158351}
   - component: {fileID: 1458158350}
   m_Layer: 5
-  m_Name: Title(H)
+  m_Name: Title(Rampage)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3438,16 +3361,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1458158348}
-  m_LocalRotation: {x: 0.03926257, y: -0.021322535, z: -0.1658707, w: 0.9851349}
+  m_LocalRotation: {x: -0.034862008, y: 0.027943699, z: -0.011356095, w: -0.9989369}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.99998796, y: 0.99998844, z: 0.9999861}
   m_Children: []
   m_Father: {fileID: 1234002552}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 4.03, y: -3.163, z: -19.226002}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 4.03, y: -3.163, z: -3958.809}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.214851, y: -45.994144}
+  m_AnchoredPosition: {x: -83.5, y: -56.6}
   m_SizeDelta: {x: 338.92, y: 152.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1458158350
@@ -3482,7 +3405,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: h
+  m_Text: ' Rampage'
 --- !u!222 &1458158351
 CanvasRenderer:
   m_ObjectHideFlags: 0

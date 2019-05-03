@@ -14,6 +14,13 @@ namespace Player
         [SerializeField]
         private float walkSpeed = 12.5F, runSpeed = 20F;
 
+        [SerializeField]
+        private AudioClip woosh;
+        [SerializeField]
+        private AudioClip hit;
+
+        private AudioSource m_AudioSource;
+
         private static readonly int AnimationSpeed = Animator.StringToHash("Speed");
         private static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly int Jump = Animator.StringToHash("Jump");
@@ -26,6 +33,7 @@ namespace Player
         {
             m_Animator = GetComponent<Animator>();
             m_PlayerStats = GetComponent<PlayerStats>();
+            m_AudioSource = GetComponent<AudioSource>();
         }
 
         // Check input keys every frame to call control methods i.e. sprint, attack and camera control
@@ -47,7 +55,11 @@ namespace Player
             if (Input.GetKey(KeyCode.Space))
             {
                 if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+                {
                     m_Animator.SetTrigger(Attack);
+                    m_AudioSource.PlayOneShot(woosh);
+                }
+
             }
 
             if (Input.GetKey(KeyCode.LeftControl))
