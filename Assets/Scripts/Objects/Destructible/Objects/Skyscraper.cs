@@ -25,7 +25,10 @@ namespace Objects.Destructible.Objects
 
         private const float BelowGroundLevel = -8;
 
-        private bool m_Collapsed, m_Regular;
+        private bool Collapsed => currentHealth <= 0;
+        private bool m_Regular;
+        private bool m_HasHappenedOnce;
+        private bool m_SpawnedRubble;
 
         private void Start()
         {
@@ -35,11 +38,11 @@ namespace Objects.Destructible.Objects
 
         private void Update()
         {
-            if (m_Collapsed && m_Regular)
+            if (Collapsed && m_Regular)
             {
                 Collapse(regularRubble);
             }
-            else
+            else if (Collapsed && !m_Regular)
             {
                 Collapse(burntRubble);
             }
@@ -126,9 +129,10 @@ namespace Objects.Destructible.Objects
             transform.Rotate(Random.insideUnitSphere * 0.5f);
             transform.Translate(Vector3.down * 3 * Time.deltaTime);
 
-            if (transform.position.y < BelowGroundLevel)
+            if (transform.position.y < BelowGroundLevel && !m_SpawnedRubble)
             {
                 Instantiate(rubble, m_Pos, Quaternion.identity);
+                m_SpawnedRubble = true;
             }
 
             if (transform.position.y < -13)
@@ -158,11 +162,7 @@ namespace Objects.Destructible.Objects
             Damage(GameManager.instance.playerStats.TotalDamage);
             flames.SetActive(true);
 
-            if (currentHealth <= 0)
-            {
-                m_Regular = false;
-                m_Collapsed = true;
-            }
+            m_Regular = false;
         }
 
         // Check that our player's hands have collided with us (the building)
@@ -172,6 +172,7 @@ namespace Objects.Destructible.Objects
             if (other.isTrigger && other.gameObject.CompareTag("Left Hand") ||
                 other.isTrigger && other.gameObject.CompareTag("Right Hand"))
             {
+                StartCoroutine(Camera.main.Shake(0.25F, 0.6F));
                 var playerStats = other.GetComponentInParent<PlayerStats>();
                 Damage(playerStats.TotalDamage);
 
@@ -187,11 +188,11 @@ namespace Objects.Destructible.Objects
             handler?.HandleDeath();
 
             CheckBuildingHealth();
-            m_Collapsed = true;
-            m_Regular = true;
 
-            if (IsObjectDestroyed)
+            if (IsObjectDestroyed && !m_HasHappenedOnce)
             {
+                m_Regular = true;
+                m_HasHappenedOnce = true;
                 Destruct();
             }
         }
