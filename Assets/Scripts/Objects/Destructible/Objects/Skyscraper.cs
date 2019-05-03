@@ -17,6 +17,14 @@ namespace Objects.Destructible.Objects
         [SerializeField]
         private GameObject regularRubble, burntRubble;
 
+
+        [SerializeField]
+        private AudioClip hit;
+        [SerializeField]
+        private AudioClip collapse;
+
+        private AudioSource m_AudioSource;
+
         private Vector3 m_Pos;
 
         private MeshRenderer[] m_Renderer;
@@ -31,6 +39,7 @@ namespace Objects.Destructible.Objects
         {
             m_Pos = transform.position;
             GenerateRandomColour();
+            m_AudioSource = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -107,6 +116,8 @@ namespace Objects.Destructible.Objects
                 return;
 
             Instantiate(explosion, m_Pos, Quaternion.identity);
+            m_AudioSource.PlayOneShot(collapse);
+
 
             foreach (var fragment in fragments)
             {
@@ -145,6 +156,8 @@ namespace Objects.Destructible.Objects
             currentHealth -= damage;
 
             ScoreManager.AddScore(damage * scorePerHit, 10);
+
+            m_AudioSource.PlayOneShot(hit);
         }
 
         /// <summary>

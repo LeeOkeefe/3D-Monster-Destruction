@@ -21,6 +21,11 @@ namespace AI.Enemies
         [SerializeField]
         private GameObject gun;
 
+        [SerializeField]
+        private AudioClip gunshot;
+
+        private AudioSource m_AudioSource;
+
         private bool CanShoot => m_TimeTillShoot <= 0;
 
         private float m_TimeTillShoot;
@@ -29,6 +34,11 @@ namespace AI.Enemies
 
         private bool IsHoldingObject => GetComponent<ObjectInteraction>().HoldingObject;
         private GameObject Target => GameManager.instance.playerShootingPosition;
+
+        private void Start()
+        {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
 
         private void Update()
         {
@@ -65,6 +75,7 @@ namespace AI.Enemies
                 return;
 
             Instantiate(projectile, gun.transform.position, transform.rotation);
+            m_AudioSource.PlayOneShot(gunshot);
             m_TimeTillShoot = timeBetweenAttacks;
         }
 

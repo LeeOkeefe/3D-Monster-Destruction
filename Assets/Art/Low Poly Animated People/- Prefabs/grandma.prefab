@@ -664,8 +664,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1274296657605726}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 136.12929, y: 0.16, z: 126.62715}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -27.601799, y: 136.66893, z: -225.74443}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4473357331882484}
@@ -824,7 +824,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -893,12 +893,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2dc04f59a041ca40ad6003d6475f49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 1
-  deceleration: 1
-  maxMoveSpeed: 1
-  rotationSpeed: 1.25
+  acceleration: 0.8
+  deceleration: 0.5
+  maxMoveSpeed: 0.8
+  rotationSpeed: 1
   waypointsParent: {fileID: 0}
-  startWaypointIndex: 0
+  startWaypointIndex: 6
   bloodSplatter: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 2}
   scoreAwarded: 5
   scream: {fileID: 8300000, guid: 715b6b61d574bc6469aba6d91097e106, type: 3}
