@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114857260164232884}
   - component: {fileID: 95789872445009562}
   - component: {fileID: 82724512055540358}
+  - component: {fileID: 114542626925270188}
   m_Layer: 0
   m_Name: grandpa
   m_TagString: Untagged
@@ -882,6 +883,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114542626925270188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1088609120909212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de88fca8291a1c445950ce95f891d040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114849402675889782
 MonoBehaviour:
   m_ObjectHideFlags: 1

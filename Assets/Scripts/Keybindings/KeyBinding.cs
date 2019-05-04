@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 internal sealed class KeyBinding : MonoBehaviour
 {
-    public static KeyBinding instance;
+    public static KeyBinding Instance { get; private set; }
 
     public Dictionary<string, KeyCode> m_KeyCodes;
 
@@ -20,10 +20,10 @@ internal sealed class KeyBinding : MonoBehaviour
 
     private void Start()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
 
-        else if (instance != this)
+        else if (Instance != this)
             Destroy(gameObject);
 
         DontDestroyOnLoad(this);

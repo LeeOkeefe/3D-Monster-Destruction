@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 114091269674605190}
   - component: {fileID: 95116752179008032}
   - component: {fileID: 82954747389387540}
+  - component: {fileID: 114696925003624084}
   m_Layer: 0
   m_Name: kid
   m_TagString: Untagged
@@ -916,6 +917,17 @@ MonoBehaviour:
   scoreAwarded: 5
   scream: {fileID: 8300000, guid: 22d06f92f1961de4c9b8ebf0771db36f, type: 3}
   splat: {fileID: 8300000, guid: a4676e0119a23ce458ff7530a8a4f7cf, type: 3}
+--- !u!114 &114696925003624084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829549139703218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de88fca8291a1c445950ce95f891d040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137777960223945060
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
