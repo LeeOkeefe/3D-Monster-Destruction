@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using AI.Enemies;
 using Extensions;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace Objects.Interactable
         public bool HoldingObject { get; private set; }
 
         private Animator anim => GameManager.instance.playerAnim;
+
+        private static Dictionary<string, KeyCode> KeyCodes => GameManager.instance.KeyCodes;
 
         private bool m_ResetRotation;
         private Tank m_Tank;
@@ -53,15 +56,15 @@ namespace Objects.Interactable
                 m_Object.gameObject.transform.position = m_TempParent.transform.position;
             }
 
-            if (Input.GetMouseButtonDown(0) && !HoldingObject)
+            if (Input.GetKeyDown(KeyCodes["Pickup"]) && !HoldingObject)
             {
                 PickupObject();
             }
-            else if (Input.GetMouseButtonDown(0) && HoldingObject)
+            else if (Input.GetKeyDown(KeyCodes["Pickup"]) && HoldingObject)
             {
                 DropObject();
             }
-            else if (Input.GetMouseButtonDown(1) && HoldingObject)
+            else if (Input.GetKeyDown(KeyCodes["Throw"]) && HoldingObject)
             {
                 ThrowObject();
             }

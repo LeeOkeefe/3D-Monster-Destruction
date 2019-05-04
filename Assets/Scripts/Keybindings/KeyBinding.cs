@@ -12,7 +12,7 @@ internal sealed class KeyBinding : MonoBehaviour
     public Dictionary<string, KeyCode> m_KeyCodes;
 
     [SerializeField] private Text m_Forward, m_Back, m_Left, m_Right;
-    [SerializeField] private Text m_Punch, m_Jump, m_Sprint;
+    [SerializeField] private Text m_Punch, m_Jump, m_Sprint, m_Pickup, m_Throw;
 
     [SerializeField] private CanvasGroup m_ErrorMessage;
 
@@ -37,6 +37,8 @@ internal sealed class KeyBinding : MonoBehaviour
             { "Punch", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Punch", "Space"))},
             { "Jump", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Jump", "LeftControl"))},
             { "Sprint", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Sprint", "LeftShift"))},
+            { "Pickup", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Pickup", "Mouse0"))},
+            { "Throw", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Throw", "Mouse1"))},
         };
 
         UpdateLabels();
@@ -54,6 +56,8 @@ internal sealed class KeyBinding : MonoBehaviour
         m_Punch.text = m_KeyCodes["Punch"].ToString();
         m_Jump.text = m_KeyCodes["Jump"].ToString();
         m_Sprint.text = m_KeyCodes["Sprint"].ToString();
+        m_Pickup.text = m_KeyCodes["Pickup"].ToString();
+        m_Throw.text = m_KeyCodes["Throw"].ToString();
     }
 
     private void OnGUI()
@@ -61,18 +65,30 @@ internal sealed class KeyBinding : MonoBehaviour
         if (m_CurrentKey == null)
             return;
 
-        if (!Event.current.isKey)
+        var keyPressed = KeyCode.None;
+        var currentEvent = Event.current;
+
+        if (currentEvent.isKey)
+            keyPressed = currentEvent.keyCode;
+
+        if (currentEvent.isMouse)
+            keyPressed = GetButtonKeyCode(currentEvent.button);
+
+        if (keyPressed == KeyCode.None)
             return;
 
-        if (m_KeyCodes.ContainsValue(Event.current.keyCode))
+        if (m_KeyCodes.ContainsValue(keyPressed))
         {
             StartCoroutine(nameof(ErrorMessage));
             m_CurrentKey = null;
             return;
         }
 
-        m_KeyCodes[m_CurrentKey.name] = Event.current.keyCode;
-        m_CurrentKey.GetComponentInChildren<Text>().text = Event.current.keyCode.ToString();
+        m_KeyCodes[m_CurrentKey.name] = keyPressed;
+        m_CurrentKey.GetComponentInChildren<Text>().text = currentEvent.isKey
+            ? currentEvent.keyCode.ToString()
+            : GetTextForMouseButton(keyPressed);
+
         m_CurrentKey = null;
     }
 
@@ -104,11 +120,6 @@ internal sealed class KeyBinding : MonoBehaviour
     /// </summary>
     public void DefaultSettings()
     {
-        /*foreach (var keyCode in m_KeyCodes)
-        {
-            PlayerPrefs.DeleteKey(keyCode.Key);
-        }*/
-
         m_KeyCodes["Forward"] = KeyCode.W;
         m_KeyCodes["Back"] = KeyCode.S;
         m_KeyCodes["Left"] = KeyCode.A;
@@ -116,6 +127,8 @@ internal sealed class KeyBinding : MonoBehaviour
         m_KeyCodes["Punch"] = KeyCode.Space;
         m_KeyCodes["Jump"] = KeyCode.LeftControl;
         m_KeyCodes["Sprint"] = KeyCode.LeftShift;
+        m_KeyCodes["Pickup"] = KeyCode.Mouse0;
+        m_KeyCodes["Throw"] = KeyCode.Mouse1;
 
         PlayerPrefs.Save();
 
@@ -132,5 +145,35 @@ internal sealed class KeyBinding : MonoBehaviour
         yield return new WaitForSeconds(1F);
 
         m_ErrorMessage.ToggleGroup(false);
+    }
+
+    private KeyCode GetButtonKeyCode(int button)
+    {
+        switch (button)
+        {
+            case 0:
+                return KeyCode.Mouse0;
+            case 1:
+                return KeyCode.Mouse1;
+            case 2:
+                return KeyCode.Mouse2;
+            default:
+                return KeyCode.None;
+        }
+    }
+
+    private string GetTextForMouseButton(KeyCode keycode)
+    {
+        switch (keycode)
+        {
+            case KeyCode.Mouse0:
+                return "LMB";
+            case KeyCode.Mouse1:
+                return "RMB";
+            case KeyCode.Mouse2:
+                return "MWheel";
+            default:
+                return "UNKNOWN";
+        }
     }
 }
