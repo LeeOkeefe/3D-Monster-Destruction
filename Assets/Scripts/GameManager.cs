@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using Extensions;
 using Player;
 using UI.Ability_Bar;
@@ -29,6 +29,9 @@ internal sealed class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Image gameOverBackground;
     public GameObject minimap;
+
+    public Dictionary<string, KeyCode> KeyCodes =>
+        GameObject.FindGameObjectWithTag("KeyBind").GetComponent<KeyBinding>().m_KeyCodes;
 
     public void CameraShake() => StartCoroutine(Camera.main.Shake(0.5F, 2));
     public bool IsGamePaused => Math.Abs(Time.timeScale) < 0;

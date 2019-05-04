@@ -24,6 +24,7 @@ namespace UI.Settings.Audio
         {
             audioSource.volume = m_Slider.value;
             PlayerPrefs.SetFloat("Volume", gameObject.GetComponent<AudioSource>().volume);
+            PlayerPrefs.Save();
         }
     }
 }

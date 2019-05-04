@@ -24,6 +24,7 @@ namespace UI.Settings
         {
             Sensitivity = m_Slider.value;
             PlayerPrefs.SetFloat("Sensitivity", Sensitivity);
+            PlayerPrefs.Save();
         }
     }
 }

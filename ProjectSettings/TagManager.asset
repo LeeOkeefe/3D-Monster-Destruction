@@ -26,6 +26,8 @@ TagManager:
   - TrafficLight
   - Human
   - Minimap
+  - FxTemporaire
+  - KeyBind
   layers:
   - Default
   - TransparentFX
