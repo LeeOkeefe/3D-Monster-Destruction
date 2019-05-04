@@ -1,5 +1,6 @@
 ﻿using AI.Waypoints;
 using System.Collections;
+using Objectives;
 using UnityEngine;
 
 namespace AI.Human
@@ -88,6 +89,8 @@ namespace AI.Human
             Instantiate(bloodSplatter, transform.position, Quaternion.Euler(0, 0, 90));
             ScoreManager.AddScore(scoreAwarded);
             Destroy(gameObject, 0.1F);
+
+            ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Human);
         }
     }
 }
