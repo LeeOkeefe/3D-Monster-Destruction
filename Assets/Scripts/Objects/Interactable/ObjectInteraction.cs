@@ -19,9 +19,9 @@ namespace Objects.Interactable
 
         public bool HoldingObject { get; private set; }
 
-        private Animator anim => GameManager.instance.playerAnim;
+        private Animator anim => GameManager.Instance.playerAnim;
 
-        private static Dictionary<string, KeyCode> KeyCodes => GameManager.instance.KeyCodes;
+        private static Dictionary<string, KeyCode> KeyCodes => GameManager.Instance.KeyCodes;
 
         private bool m_ResetRotation;
         private Tank m_Tank;
@@ -32,7 +32,7 @@ namespace Objects.Interactable
         {
             m_Object = GetComponent<Rigidbody>();
             m_Collider = GetComponentInChildren<Collider>();
-            m_TempParent = GameManager.instance.playerPickupHand;
+            m_TempParent = GameManager.Instance.playerPickupHand;
         }
 
         // Check mouse button clicked to determine which method to call

@@ -19,7 +19,7 @@ namespace AI.Enemies
         [SerializeField]
         protected float scoreAwarded;
 
-        protected Transform PlayerTransform => GameManager.instance.player.transform;
+        protected Transform PlayerTransform => GameManager.Instance.player.transform;
         protected bool EnemyIsDead => CurrentHealth <= 0;
 
         public abstract void Attack();

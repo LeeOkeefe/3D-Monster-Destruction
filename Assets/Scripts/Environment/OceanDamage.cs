@@ -6,7 +6,7 @@ namespace Environment
 {
     internal sealed class OceanDamage : MonoBehaviour
     {
-        private PlayerStats PlayerStats => GameManager.instance.playerStats;
+        private PlayerStats PlayerStats => GameManager.Instance.playerStats;
 
         // If the player collides, call DamagePlayer every 0.25 seconds
         //

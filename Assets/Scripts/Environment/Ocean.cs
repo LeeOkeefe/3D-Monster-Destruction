@@ -19,7 +19,7 @@ namespace Environment
 
         private MaterialPropertyBlock m_MaterialPropertyBlock;
 
-        private PlayerStats PlayerStats => GameManager.instance.playerStats;
+        private PlayerStats PlayerStats => GameManager.Instance.playerStats;
 
         private void Start()
         {

@@ -18,7 +18,7 @@ namespace AI.Enemies
         [SerializeField]
         private GameObject projectile;
 
-        protected static GameObject FireToPoint => GameManager.instance.playerShootingPosition;
+        protected static GameObject FireToPoint => GameManager.Instance.playerShootingPosition;
         protected bool IsHoldingObject => GetComponent<ObjectInteraction>().HoldingObject;
         public Quaternion OriginalRotation { get; protected set; }
 

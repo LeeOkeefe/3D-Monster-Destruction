@@ -9,6 +9,6 @@ public class DeathStateMachine : StateMachineBehaviour
             animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
             return;
 
-        GameManager.instance.GameOver();
+        GameManager.Instance.GameOver();
     }
 }

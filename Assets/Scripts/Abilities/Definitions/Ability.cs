@@ -18,9 +18,9 @@ namespace Abilities.Definitions
 
         protected bool m_CooldownActive;
 
-        protected ActiveAbilities ActiveAbilities => GameManager.instance.activeAbilities;
+        protected ActiveAbilities ActiveAbilities => GameManager.Instance.activeAbilities;
 
-        protected bool IsAbilityActive => GameManager.instance.activeAbilities.IsAbilityActive(this);
+        protected bool IsAbilityActive => GameManager.Instance.activeAbilities.IsAbilityActive(this);
 
         /// <summary>
         /// Ensures that the player score is equal to or greater than the required

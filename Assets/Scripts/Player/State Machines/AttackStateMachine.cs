@@ -5,8 +5,8 @@ namespace Player.State_Machines
     internal sealed class AttackStateMachine : StateMachineBehaviour
     {
         private static readonly int AttackTrail = Animator.StringToHash("AttackTrail");
-        private static Collider PlayerRightHand => GameManager.instance.playerRightHand;
-        private static Collider PlayerLeftHand => GameManager.instance.playerLeftHand;
+        private static Collider PlayerRightHand => GameManager.Instance.playerRightHand;
+        private static Collider PlayerLeftHand => GameManager.Instance.playerLeftHand;
         private TrailRenderer RightTrail => PlayerRightHand.GetComponent<TrailRenderer>();
         private TrailRenderer LeftTrail => PlayerLeftHand.GetComponent<TrailRenderer>();
 
@@ -47,7 +47,7 @@ namespace Player.State_Machines
         /// </summary>
         private void ModifyTrailColours()
         {
-            if (GameManager.instance.playerStats.BoostedDamage > 0)
+            if (GameManager.Instance.playerStats.BoostedDamage > 0)
             {
                 RightTrail.material.color = Color.red;
                 LeftTrail.material.color = Color.red;

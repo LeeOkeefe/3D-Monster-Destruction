@@ -33,7 +33,7 @@ namespace AI.Enemies
         private RaycastHit m_Hit;
 
         private bool IsHoldingObject => GetComponent<ObjectInteraction>().HoldingObject;
-        private GameObject Target => GameManager.instance.playerShootingPosition;
+        private GameObject Target => GameManager.Instance.playerShootingPosition;
 
         private void Start()
         {

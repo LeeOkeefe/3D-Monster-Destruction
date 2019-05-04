@@ -4,7 +4,7 @@ using UnityEngine.UI;
 internal static class ScoreManager
 {
     public static float PlayerTotalScore { get; private set; }
-    private static Text ScoreText => GameManager.instance.scoreText;
+    private static Text ScoreText => GameManager.Instance.scoreText;
 
     /// <summary>
     /// Set score and text value to be 0 to start

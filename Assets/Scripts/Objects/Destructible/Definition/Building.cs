@@ -5,7 +5,7 @@ namespace Objects.Destructible.Definition
 {
     internal sealed class Building
     {
-        private PlayerStats PlayerStats => GameManager.instance.playerStats;
+        private PlayerStats PlayerStats => GameManager.Instance.playerStats;
         
         /// <summary>
         /// Damage the destructibleObject and add the score per hit

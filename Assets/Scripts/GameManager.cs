@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 internal sealed class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance { get; private set; }
 
     public PlayerController player;
     public PlayerStats playerStats;
@@ -53,10 +53,10 @@ internal sealed class GameManager : MonoBehaviour
     //
     public void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
 
-        else if (instance != this)
+        else if (Instance != this)
             Destroy(gameObject);
     }
 
