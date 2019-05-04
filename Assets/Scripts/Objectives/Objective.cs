@@ -4,16 +4,16 @@ namespace Objectives
 {
     internal sealed class Objective
     {
-        private int m_CurrentAmount;
-        private int m_RequiredAmount;
+        public int CurrentAmount { get; private set; }
+        public int RequiredAmount { get; }
         public ObjectiveType ObjectiveType { get; }
-        public bool ObjectiveComplete => m_CurrentAmount >= m_RequiredAmount;
+        public bool ObjectiveComplete => CurrentAmount >= RequiredAmount;
 
         public Objective(ObjectiveType objectiveType, int requiredAmount)
         {
-            m_CurrentAmount = 0;
+            CurrentAmount = 0;
             ObjectiveType = objectiveType;
-            m_RequiredAmount = requiredAmount;
+            RequiredAmount = requiredAmount;
         }
 
         /// <summary>
@@ -21,8 +21,8 @@ namespace Objectives
         /// </summary>
         public void IncreaseProgress()
         {
-            m_CurrentAmount++;
-            Debug.Log(m_CurrentAmount);
+            CurrentAmount++;
+            Debug.Log(CurrentAmount);
 
             if (ObjectiveComplete)
             {

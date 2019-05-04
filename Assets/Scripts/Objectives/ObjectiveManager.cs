@@ -1,4 +1,5 @@
 ﻿using System;
+using UI;
 using UnityEngine;
 using Random = System.Random;
 
@@ -8,7 +9,9 @@ namespace Objectives
     {
         public static ObjectiveManager Instance { get; private set; }
 
-        private Objective m_ActiveObjective;
+        public Objective ActiveObjective { get; private set; }
+
+        public DisplayObjective displayObjective;
 
         private void Awake()
         {
@@ -29,8 +32,8 @@ namespace Objectives
         {
             var random = new Random();
             var randomValue = random.Next(5, 21);
-            m_ActiveObjective = new Objective(GetRandomObjectiveType(), randomValue);
-            Debug.Log($"Objective Type: {m_ActiveObjective.ObjectiveType}, Objective Amount: {randomValue}");
+            ActiveObjective = new Objective(GetRandomObjectiveType(), randomValue);
+            Debug.Log($"Objective Type: {ActiveObjective.ObjectiveType}, Objective Amount: {randomValue}");
         }
 
         /// <summary>
@@ -50,16 +53,19 @@ namespace Objectives
         /// </summary>
         public void ObjectiveProgressEvent(ObjectiveType objectiveType)
         {
-            if (m_ActiveObjective.ObjectiveType != objectiveType)
+            if (ActiveObjective.ObjectiveType != objectiveType)
                 return;
 
-            m_ActiveObjective.IncreaseProgress();
+            ActiveObjective.IncreaseProgress();
 
-            if (m_ActiveObjective.ObjectiveComplete)
+            if (ActiveObjective.ObjectiveComplete)
             {
+                displayObjective.StartCoroutine(nameof(DisplayObjective.TaskComplete));
                 ScoreManager.AddScore(1000);
                 SetObjective();
             }
+
+            displayObjective.UpdateLabel();
         }
     }
 }
