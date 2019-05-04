@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 65275750195402942}
   - component: {fileID: 114955443679780758}
   - component: {fileID: 82835363147011548}
+  - component: {fileID: 114973618940539590}
   m_Layer: 15
   m_Name: Building1B
   m_TagString: Building
@@ -1304,6 +1305,17 @@ MonoBehaviour:
     type: 2}
   hit: {fileID: 8300000, guid: 68ac7fb6003454449baac567640a3da0, type: 3}
   collapse: {fileID: 8300000, guid: f877fa57105158a4587659b7eb72a762, type: 3}
+--- !u!114 &114973618940539590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1588326107279924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de88fca8291a1c445950ce95f891d040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198688641056209394
 ParticleSystem:
   m_ObjectHideFlags: 1

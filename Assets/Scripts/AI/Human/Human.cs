@@ -39,12 +39,12 @@ namespace AI.Human
         /// </summary>
         private IEnumerator HandleEffects()
         {
-            yield return new WaitUntil(() => GameManager.instance.IsPlayerInRange(transform, 10));
+            yield return new WaitUntil(() => GameManager.Instance.IsPlayerInRange(transform, 10));
 
             m_Animator.SetBool(Terrified, true);
             m_AudioSource.PlayOneShot(scream);
 
-            yield return new WaitUntil(() => !GameManager.instance.IsPlayerInRange(transform, 10));
+            yield return new WaitUntil(() => !GameManager.Instance.IsPlayerInRange(transform, 10));
 
             m_Animator.SetBool(Terrified, false);
             StartCoroutine(nameof(HandleEffects));

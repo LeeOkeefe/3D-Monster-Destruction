@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using Extensions;
 using Player;
 using UI.Ability_Bar;
@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 internal sealed class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance { get; private set; }
 
     public PlayerController player;
     public PlayerStats playerStats;
@@ -29,6 +29,9 @@ internal sealed class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Image gameOverBackground;
     public GameObject minimap;
+
+    public Dictionary<string, KeyCode> KeyCodes =>
+        GameObject.FindGameObjectWithTag("KeyBind").GetComponent<KeyBinding>().m_KeyCodes;
 
     public void CameraShake() => StartCoroutine(Camera.main.Shake(0.5F, 2));
     public bool IsGamePaused => Math.Abs(Time.timeScale) < 0;
@@ -50,10 +53,10 @@ internal sealed class GameManager : MonoBehaviour
     //
     public void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
 
-        else if (instance != this)
+        else if (Instance != this)
             Destroy(gameObject);
     }
 

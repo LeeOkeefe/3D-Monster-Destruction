@@ -4,7 +4,7 @@ namespace Abilities.Definitions
 {
     internal sealed class PlayerAbility
     {
-        private PlayerStats PlayerStats => GameManager.instance.playerStats;
+        private PlayerStats PlayerStats => GameManager.Instance.playerStats;
 
         /// <summary>
         /// Heals the player health by the specified amount

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Player
 {
@@ -25,9 +26,11 @@ namespace Player
         private static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly int Jump = Animator.StringToHash("Jump");
 
-        private static float MouseSensitivity => GameManager.instance.MouseSensitivity;
+        private static float MouseSensitivity => GameManager.Instance.MouseSensitivity;
         private float Speed => m_Animator.GetFloat(AnimationSpeed);
         public bool PlayerIsMoving => Speed > 0f;
+
+        private static Dictionary<string, KeyCode> KeyCodes => GameManager.Instance.KeyCodes;
 
         private void Start()
         {
@@ -40,8 +43,7 @@ namespace Player
         //
         private void Update()
         {
-            if (Input.GetKey(KeyCode.LeftShift) && m_PlayerStats.CanRun && PlayerIsMoving ||
-                Input.GetKey(KeyCode.RightShift) && m_PlayerStats.CanRun && PlayerIsMoving)
+            if (Input.GetKey(KeyCodes["Sprint"]) && m_PlayerStats.CanRun && PlayerIsMoving)
             {
                 Movement(runSpeed);
                 m_PlayerStats.DepleteStamina();
@@ -52,17 +54,16 @@ namespace Player
                 m_PlayerStats.RegenerateStamina();
             }
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCodes["Punch"]))
             {
                 if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
                 {
                     m_Animator.SetTrigger(Attack);
                     m_AudioSource.PlayOneShot(woosh);
                 }
-
             }
 
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCodes["Jump"]))
             {
                 if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
                     return;
@@ -70,10 +71,7 @@ namespace Player
                 m_Animator.SetTrigger(Jump);
             }
 
-            if (Input.GetMouseButton(2) || Input.GetKey(KeyCode.LeftAlt))
-            {
-                CameraControl();
-            }
+            CameraControl();
         }
 
         /// <summary>
@@ -86,38 +84,38 @@ namespace Player
 
             // Handles the direction based on the input keys
             //
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCodes["Right"]))
             {
                 direction = Vector3.right;
             }
-            else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            else if (Input.GetKey(KeyCodes["Left"]))
             {
                 direction = Vector3.left;
             }
-            else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            else if (Input.GetKey(KeyCodes["Forward"]))
             {
                 direction = Vector3.forward;
             }
-            else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            else if (Input.GetKey(KeyCodes["Back"]))
             {
                 direction = Vector3.back;
             }
 
             // Handles diagonal movement with combined input keys
             //
-            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCodes["Left"]) && Input.GetKey(KeyCodes["Forward"]))
             {
                 direction = (Vector3.left + Vector3.forward);
             }
-            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+            else if (Input.GetKey(KeyCodes["Right"]) && Input.GetKey(KeyCodes["Forward"]))
             {
                 direction = (Vector3.right + Vector3.forward);
             }
-            else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
+            else if (Input.GetKey(KeyCodes["Left"]) && Input.GetKey(KeyCodes["Back"]))
             {
                 direction = (Vector3.left + Vector3.back);
             }
-            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
+            else if (Input.GetKey(KeyCodes["Right"]) && Input.GetKey(KeyCodes["Back"]))
             {
                 direction = (Vector3.right + Vector3.back);
             }
@@ -126,8 +124,7 @@ namespace Player
 
             // Handles the Idle/Walk/Run animations based on conditions
             //
-            if (direction != Vector3.zero && m_PlayerStats.CanRun && Input.GetKey(KeyCode.LeftShift) ||
-                direction != Vector3.zero && m_PlayerStats.CanRun && Input.GetKey(KeyCode.RightShift))
+            if (direction != Vector3.zero && m_PlayerStats.CanRun && Input.GetKey(KeyCodes["Sprint"]))
             {
                 m_Animator.SetFloat(AnimationSpeed, Run);
             }

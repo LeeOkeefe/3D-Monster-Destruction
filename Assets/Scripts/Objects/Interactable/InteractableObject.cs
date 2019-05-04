@@ -8,7 +8,7 @@ namespace Objects.Interactable
         [SerializeField]
         protected float distance = 1f;
 
-        protected Transform Player => GameManager.instance.player.transform;
+        protected Transform Player => GameManager.Instance.player.transform;
 
         /// <summary>
         /// Calculate the distance between the object and player position

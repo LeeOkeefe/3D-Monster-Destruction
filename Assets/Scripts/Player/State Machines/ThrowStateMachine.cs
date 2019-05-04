@@ -3,7 +3,7 @@
 internal sealed class ThrowStateMachine : StateMachineBehaviour
 {
     private static readonly int AttackTrail = Animator.StringToHash("AttackTrail");
-    private static Collider PlayerLeftHand => GameManager.instance.playerLeftHand;
+    private static Collider PlayerLeftHand => GameManager.Instance.playerLeftHand;
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //

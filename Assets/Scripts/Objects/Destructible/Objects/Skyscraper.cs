@@ -169,10 +169,10 @@ namespace Objects.Destructible.Objects
         /// </summary>
         public void FlamethrowerDamage()
         {
-            if (GameManager.instance.playerStats.TotalDamage <= 10)
+            if (GameManager.Instance.playerStats.TotalDamage <= 10)
                 return;
 
-            Damage(GameManager.instance.playerStats.TotalDamage);
+            Damage(GameManager.Instance.playerStats.TotalDamage);
             flames.SetActive(true);
 
             m_Regular = false;

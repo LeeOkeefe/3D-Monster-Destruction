@@ -6,7 +6,7 @@ namespace AI.Enemies
     internal sealed class MoveToTarget : MonoBehaviour
     {
         private NavMeshAgent m_NavMeshAgent;
-        private static Transform PlayerTransform => GameManager.instance.player.transform;
+        private static Transform PlayerTransform => GameManager.Instance.player.transform;
 
         private void Start()
         {

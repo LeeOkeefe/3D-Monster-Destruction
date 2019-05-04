@@ -8,8 +8,6 @@ namespace UI.Menu.Main_Menu
         [SerializeField]
         private CanvasGroup quitMenu;
         [SerializeField]
-        private CanvasGroup monsterSelection;
-        [SerializeField]
         private CanvasGroup startButton;
         [SerializeField]
         private CanvasGroup options;
@@ -33,7 +31,6 @@ namespace UI.Menu.Main_Menu
         public void ExitMenu()
         {
             quitMenu.ToggleGroup(true);
-            monsterSelection.ToggleGroup(false);
             startButton.interactable = false;
             options.interactable = false;
             exitButton.interactable = false;
@@ -48,20 +45,6 @@ namespace UI.Menu.Main_Menu
             startButton.interactable = true;
             options.interactable = true;
             exitButton.interactable = true;
-            monsterSelection.ToggleGroup(false);
-            quitMenu.ToggleGroup(false);
-        }
-
-        /// <summary>
-        /// Enables the character selection page,
-        /// and disables other menu canvas groups.
-        /// </summary>
-        public void OpenCharacterSelection()
-        {
-            startButton.ToggleGroup(false);
-            options.ToggleGroup(false);
-            exitButton.ToggleGroup(false);
-            monsterSelection.ToggleGroup(true);
             quitMenu.ToggleGroup(false);
         }
     }

@@ -65,7 +65,7 @@ namespace Player
 
             if (CurrentHealth <= 0)
             {
-                GameManager.instance.playerAnim.SetTrigger(Dead);
+                GameManager.Instance.playerAnim.SetTrigger(Dead);
             }
         }
 
@@ -137,7 +137,7 @@ namespace Player
         /// </summary>
         public void RegenerateStamina()
         {
-            if (GameManager.instance.IsGamePaused)
+            if (GameManager.Instance.IsGamePaused)
                 return;
 
             if (CurrentStamina < maxStamina)
@@ -151,7 +151,7 @@ namespace Player
         /// </summary>
         public void DepleteStamina()
         {
-            if (!GameManager.instance.player.PlayerIsMoving)
+            if (!GameManager.Instance.player.PlayerIsMoving)
                 return;
 
             if (CurrentStamina > 0)
