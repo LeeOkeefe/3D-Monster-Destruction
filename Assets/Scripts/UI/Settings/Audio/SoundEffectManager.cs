@@ -46,7 +46,7 @@ namespace UI.Settings.Audio
         public void ValueChangeCheck()
         {
             m_Volume = m_Slider.value;
-            PlayerPrefs.SetFloat("SFXVolume", 0.5F);
+            PlayerPrefs.SetFloat("SFXVolume", m_Volume);
             PlayerPrefs.Save();
 
             foreach (var soundEffect in m_SoundEffects)

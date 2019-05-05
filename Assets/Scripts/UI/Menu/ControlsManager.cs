@@ -5,9 +5,6 @@ namespace UI.Menu
 {
     internal sealed class ControlsManager : MonoBehaviour
     {
-        [SerializeField]
-        private CanvasGroup resetConfirmation;
-
         private CanvasGroup m_ControlsCanvasGroup;
 
         private void Start ()
@@ -29,22 +26,6 @@ namespace UI.Menu
         public void CloseControls()
         {
             m_ControlsCanvasGroup.ToggleGroup(false);
-        }
-
-        /// <summary>
-        /// Open reset confirmation UI
-        /// </summary>
-        public void OpenConfirmation()
-        {
-            resetConfirmation.ToggleGroup(true);
-        }
-
-        /// <summary>
-        /// Close confirmation UI
-        /// </summary>
-        public void CloseConfirmation()
-        {
-            resetConfirmation.ToggleGroup(false);
         }
     }
 }

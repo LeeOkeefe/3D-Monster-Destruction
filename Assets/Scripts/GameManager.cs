@@ -32,7 +32,7 @@ internal sealed class GameManager : MonoBehaviour
     public MouseCursor mouseCursor;
 
     public Dictionary<string, KeyCode> KeyCodes =>
-        GameObject.FindGameObjectWithTag("KeyBind").GetComponent<KeyBinding>().m_KeyCodes;
+        GameObject.FindGameObjectWithTag("KeyBind").GetComponent<KeyBinding>().KeyCodes;
 
     public void CameraShake() => StartCoroutine(Camera.main.Shake(0.5F, 2));
     public bool IsGamePaused => Math.Abs(Time.timeScale) < 0;
@@ -42,6 +42,8 @@ internal sealed class GameManager : MonoBehaviour
     private float gameTimer = 300f;
 
     public float TimeRemaining { get; private set; }
+
+    private HighScore m_HighScore;
 
     private void Start()
     {
@@ -99,6 +101,7 @@ internal sealed class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        m_HighScore = new HighScore(ScoreManager.PlayerTotalScore);
         mouseCursor.ToggleMouse(true);
         gameOverUi.ToggleGroup(true);
         pauseButton.enabled = false;

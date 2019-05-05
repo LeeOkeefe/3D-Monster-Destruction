@@ -13,6 +13,8 @@ namespace UI.Menu.Main_Menu
         private CanvasGroup options;
         [SerializeField]
         private CanvasGroup exitButton;
+        [SerializeField]
+        private CanvasGroup highScores;
 
         private NavigateMenu m_Navigation;
 
@@ -28,24 +30,31 @@ namespace UI.Menu.Main_Menu
         /// Opens option to confirm whether the player wants to quit,
         /// disables other buttons whilst active.
         /// </summary>
-        public void ExitMenu()
+        public void ExitGame()
         {
-            quitMenu.ToggleGroup(true);
-            startButton.interactable = false;
-            options.interactable = false;
-            exitButton.interactable = false;
+            Application.Quit();
         }
 
         /// <summary>
-        /// Disables the confirmation text and enables the
-        /// other main menu options/interactions again
+        /// Opens the high scores page
         /// </summary>
-        public void CancelExitGame()
+        public void OpenHighScores()
+        {
+            startButton.interactable = false;
+            options.interactable = false;
+            exitButton.interactable = false;
+            highScores.ToggleGroup(true);
+        }
+
+        /// <summary>
+        /// Closes the high scores page
+        /// </summary>
+        public void CloseHighScores()
         {
             startButton.interactable = true;
             options.interactable = true;
             exitButton.interactable = true;
-            quitMenu.ToggleGroup(false);
+            highScores.ToggleGroup(false);
         }
     }
 }
