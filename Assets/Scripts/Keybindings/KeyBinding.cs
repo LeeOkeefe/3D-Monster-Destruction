@@ -71,6 +71,8 @@ namespace Keybindings
             m_Ability4.text = m_KeyCodes["Ability4"].ToString();
         }
 
+        // OnGUI so we can use Events to track which keys have been pressed
+        //
         private void OnGUI()
         {
             if (m_CurrentKey == null)
