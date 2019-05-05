@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Objects.Destructible.Definition
 {
-    public abstract class DestructibleObject : MonoBehaviour, IDestructible
+    internal abstract class DestructibleObject : MonoBehaviour, IDestructible
     {
         // Shared properties across all destructible objects
         //

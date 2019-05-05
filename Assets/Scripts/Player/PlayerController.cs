@@ -43,6 +43,9 @@ namespace Player
         //
         private void Update()
         {
+            if (m_PlayerStats.IsDead)
+                return;
+
             if (Input.GetKey(KeyCodes["Sprint"]) && m_PlayerStats.CanRun && PlayerIsMoving)
             {
                 Movement(runSpeed);
