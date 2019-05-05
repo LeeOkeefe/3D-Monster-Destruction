@@ -1,4 +1,5 @@
 ﻿using AI;
+using Objectives;
 using Objects.Destructible.Definition;
 using UnityEngine;
 
@@ -19,9 +20,11 @@ namespace Objects.Destructible.Objects
         //
         public override void Destruct()
         {
+            ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Building);
             Instantiate(particleEffect, particlePosition.transform.position, Quaternion.identity);
             gameObject.SetActive(false);
             destroyedHouse.gameObject.SetActive(true);
+            Destroy(this);
         }
 
         // Check the player is colliding, then call destruct

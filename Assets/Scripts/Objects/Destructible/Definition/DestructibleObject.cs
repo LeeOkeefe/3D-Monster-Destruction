@@ -1,4 +1,5 @@
-﻿using Objects.Destructible.Objects;
+﻿using Objectives;
+using Objects.Destructible.Objects;
 using UnityEngine;
 
 namespace Objects.Destructible.Definition

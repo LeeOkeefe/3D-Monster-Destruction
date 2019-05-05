@@ -31,9 +31,8 @@ namespace Objectives
         private void SetObjective()
         {
             var random = new Random();
-            var randomValue = random.Next(5, 21);
+            var randomValue = random.Next(5, 16);
             ActiveObjective = new Objective(GetRandomObjectiveType(), randomValue);
-            Debug.Log($"Objective Type: {ActiveObjective.ObjectiveType}, Objective Amount: {randomValue}");
         }
 
         /// <summary>
@@ -60,7 +59,7 @@ namespace Objectives
 
             if (ActiveObjective.ObjectiveComplete)
             {
-                displayObjective.StartCoroutine(nameof(DisplayObjective.TaskComplete));
+                displayObjective.StartCoroutine(nameof(UI.DisplayObjective.TaskComplete));
                 ScoreManager.AddScore(1000);
                 SetObjective();
             }

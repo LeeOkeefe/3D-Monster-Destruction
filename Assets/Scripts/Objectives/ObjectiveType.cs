@@ -3,6 +3,10 @@
     public enum ObjectiveType
     {
         Human,
-        Car
+        Car,
+        Building,
+        FireHydrant,
+        Tree,
+        StreetLamp
     }
 }

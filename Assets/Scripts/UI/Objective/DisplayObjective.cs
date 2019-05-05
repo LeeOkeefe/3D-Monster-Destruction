@@ -8,7 +8,7 @@ namespace UI
 {
     internal sealed class DisplayObjective : MonoBehaviour
     {
-        private Objective m_Objective => ObjectiveManager.Instance.ActiveObjective;
+        private static Objective ActiveObject => ObjectiveManager.Instance.ActiveObjective;
 
         [SerializeField]
         private Text objectiveText;
@@ -22,8 +22,8 @@ namespace UI
 
         public void UpdateLabel()
         {
-            objectiveText.text = $"Destroy {m_Objective.ObjectiveType}s \n" +
-                                 $" {m_Objective.CurrentAmount} / {m_Objective.RequiredAmount}";
+            objectiveText.text = $"Destroy {ActiveObject.ObjectiveType}s \n" +
+                                 $" {ActiveObject.CurrentAmount} / {ActiveObject.RequiredAmount}";
         }
 
         public IEnumerator TaskComplete()

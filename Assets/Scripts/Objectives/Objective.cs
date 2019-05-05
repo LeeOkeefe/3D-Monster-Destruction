@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Objectives
+﻿namespace Objectives
 {
     internal sealed class Objective
     {
@@ -22,12 +20,6 @@ namespace Objectives
         public void IncreaseProgress()
         {
             CurrentAmount++;
-            Debug.Log(CurrentAmount);
-
-            if (ObjectiveComplete)
-            {
-                Debug.Log("WE DONE");
-            }
         }
     }
 }
