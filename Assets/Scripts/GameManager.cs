@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Extensions;
+using Highscores;
 using Keybindings;
 using Player;
 using UI.Ability_Bar;

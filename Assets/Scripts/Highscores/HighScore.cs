@@ -1,22 +1,28 @@
 ﻿using UnityEngine;
 
-internal sealed class HighScore
+namespace Highscores
 {
-    public HighScore(float score)
+    internal sealed class HighScore
     {
-        if (score > PlayerPrefs.GetFloat("HighScore1"))
+        // Check if the given score is higher than any of the top three stored,
+        // overwrite the position if it is 
+        //
+        public HighScore(float score)
         {
-            PlayerPrefs.SetFloat("HighScore1", ScoreManager.PlayerTotalScore);
-        }
-        else if (score > PlayerPrefs.GetFloat("HighScore2"))
-        {
-            PlayerPrefs.SetFloat("HighScore2", ScoreManager.PlayerTotalScore);
-        }
-        else if (score > PlayerPrefs.GetFloat("HighScore3"))
-        {
-            PlayerPrefs.SetFloat("HighScore3", ScoreManager.PlayerTotalScore);
-        }
+            if (score > PlayerPrefs.GetFloat("HighScore1"))
+            {
+                PlayerPrefs.SetFloat("HighScore1", ScoreManager.PlayerTotalScore);
+            }
+            else if (score > PlayerPrefs.GetFloat("HighScore2"))
+            {
+                PlayerPrefs.SetFloat("HighScore2", ScoreManager.PlayerTotalScore);
+            }
+            else if (score > PlayerPrefs.GetFloat("HighScore3"))
+            {
+                PlayerPrefs.SetFloat("HighScore3", ScoreManager.PlayerTotalScore);
+            }
 
-        PlayerPrefs.Save();
+            PlayerPrefs.Save();
+        }
     }
 }
