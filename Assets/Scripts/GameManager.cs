@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Extensions;
+using Keybindings;
 using Player;
 using UI.Ability_Bar;
 using UI.Settings;
@@ -28,7 +29,6 @@ internal sealed class GameManager : MonoBehaviour
     public Collider playerLeftHand;
     public GameObject playerPrefab;
     public Image gameOverBackground;
-    public GameObject minimap;
     public MouseCursor mouseCursor;
 
     public Dictionary<string, KeyCode> KeyCodes =>
@@ -36,7 +36,6 @@ internal sealed class GameManager : MonoBehaviour
 
     public void CameraShake() => StartCoroutine(Camera.main.Shake(0.5F, 2));
     public bool IsGamePaused => Math.Abs(Time.timeScale) < 0;
-    public float MouseSensitivity => mouseSensitivity.Sensitivity;
     public bool IsGameRunning => SceneManager.GetActiveScene().name == "Level 1";
 
     [SerializeField]
@@ -100,10 +99,10 @@ internal sealed class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        mouseCursor.ToggleMouse(true);
         gameOverUi.ToggleGroup(true);
         pauseButton.enabled = false;
         gameOverScoreText.text = scoreText.text;
-        minimap.SetActive(false);
         Time.timeScale = 0;
     }
 

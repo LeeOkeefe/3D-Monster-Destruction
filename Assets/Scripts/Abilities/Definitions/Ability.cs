@@ -1,4 +1,6 @@
-﻿using UI.Ability_Bar;
+﻿using System.Collections.Generic;
+using UI;
+using UI.Ability_Bar;
 using UI.Player_UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,10 +17,15 @@ namespace Abilities.Definitions
         protected float cooldownDuration = 5f;
         [SerializeField]
         protected TimerWheel timerWheel;
+        [SerializeField]
+        protected AbilityDescription abilityDescription;
+
+        protected void ErrorMessage() => abilityDescription.StartCoroutine(nameof(abilityDescription.InsufficientPoints));
 
         protected bool m_CooldownActive;
 
         protected ActiveAbilities ActiveAbilities => GameManager.Instance.activeAbilities;
+        protected static Dictionary<string, KeyCode> KeyCodes => GameManager.Instance.KeyCodes;
 
         protected bool IsAbilityActive => GameManager.Instance.activeAbilities.IsAbilityActive(this);
 

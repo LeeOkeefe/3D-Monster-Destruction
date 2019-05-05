@@ -14,6 +14,14 @@ namespace Abilities.Definitions
             m_PlayerAbility = new PlayerAbility();
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCodes["Ability1"]))
+            {
+                ActivateAbility();
+            }
+        }
+
         // Ensure we can't use the button whilst the ability is active,
         // heals the player
         //
@@ -23,7 +31,10 @@ namespace Abilities.Definitions
                 return;
 
             if (!ScoreManager.HasScore(abilityCostInPoints))
+            {
+                ErrorMessage();
                 return;
+            }
 
             HandleCost();
             OnStart();

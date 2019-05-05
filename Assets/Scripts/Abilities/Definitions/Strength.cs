@@ -24,6 +24,11 @@ namespace Abilities.Definitions
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCodes["Ability2"]))
+            {
+                ActivateAbility();
+            }
+
             if (IsAbilityActive)
             {
                 StrengthBoost(damageMultiplier);
@@ -39,7 +44,10 @@ namespace Abilities.Definitions
                 return;
 
             if (!ScoreManager.HasScore(abilityCostInPoints))
+            {
+                ErrorMessage();
                 return;
+            }
 
             HandleCost();
             OnStart();

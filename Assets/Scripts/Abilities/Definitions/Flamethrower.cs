@@ -29,6 +29,11 @@ namespace Abilities.Definitions
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCodes["Ability3"]))
+            {
+                ActivateAbility();
+            }
+
             if (IsAbilityActive)
             {
                 FlamethrowerAttack(damageMultiplier);
@@ -46,7 +51,10 @@ namespace Abilities.Definitions
                 return;
 
             if (!ScoreManager.HasScore(abilityCostInPoints))
+            {
+                ErrorMessage();
                 return;
+            }
 
             HandleCost();
             OnStart();
