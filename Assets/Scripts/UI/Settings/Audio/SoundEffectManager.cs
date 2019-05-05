@@ -24,6 +24,7 @@ namespace UI.Settings.Audio
             m_Slider = GetComponent<Slider>();
             m_Slider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
             m_SoundEffects = new List<AudioSource>();
+            m_Slider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5F);
             m_Volume = m_Slider.value;
         }
 
@@ -45,6 +46,9 @@ namespace UI.Settings.Audio
         public void ValueChangeCheck()
         {
             m_Volume = m_Slider.value;
+            PlayerPrefs.SetFloat("SFXVolume", m_Volume);
+            PlayerPrefs.Save();
+
             foreach (var soundEffect in m_SoundEffects)
             {
                 if (soundEffect == null)

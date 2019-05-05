@@ -26,7 +26,7 @@ namespace Player
         private static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly int Jump = Animator.StringToHash("Jump");
 
-        private static float MouseSensitivity => GameManager.Instance.MouseSensitivity;
+        private static float MouseSensitivity => PlayerPrefs.GetFloat("Sensitivity", 0.5F);
         private float Speed => m_Animator.GetFloat(AnimationSpeed);
         public bool PlayerIsMoving => Speed > 0f;
 

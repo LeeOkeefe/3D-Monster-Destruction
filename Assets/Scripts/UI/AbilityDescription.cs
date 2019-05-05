@@ -1,12 +1,12 @@
-﻿using Abilities.Definitions;
+﻿using System.Collections;
+using Abilities.Definitions;
 using Extensions;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI
 {
-    internal sealed class AbilityDescription : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    internal sealed class AbilityDescription : MonoBehaviour
     {
         [SerializeField] private string abilityName;
 
@@ -15,32 +15,53 @@ namespace UI
         private float m_AbilityCost;
         private string m_AbilityCostText;
 
-        [SerializeField] private CanvasGroup descriptionBackground;
         [SerializeField] private Text descriptionText;
+        [SerializeField] private CanvasGroup defaultText;
+        [SerializeField] private CanvasGroup descriptionTextCanvasGroup;
 
+        [SerializeField] private Font font;
         private const string Red = "<color=red>";
         private const string Green = "<color=green>";
+        private const string Clear = "</color>";
+
+        [SerializeField] private KeyCode keyCode;
 
         private void Start()
         {
             m_AbilityCost = GetComponent<Ability>().abilityCostInPoints;
             m_AbilityCostText = m_AbilityCost.ToString();
+            descriptionTextCanvasGroup = descriptionText.GetComponent<CanvasGroup>();
         }
 
-        // When cursor is over element, turn canvasGroup settings on & format text component
-        //
-        public void OnPointerEnter(PointerEventData eventData)
+        private void Update()
         {
-            descriptionBackground.ToggleGroup(true);
-
-            FormatText(ScoreManager.HasScore(m_AbilityCost) ? Green : Red);
+            if (Input.GetKeyDown(keyCode))
+            {
+                defaultText.ToggleGroup(false);
+                descriptionTextCanvasGroup.ToggleGroup(true);
+                FormatText(ScoreManager.HasScore(m_AbilityCost) ? Green : Red);
+            }
+            else if (Input.GetKeyUp(keyCode))
+            {
+                descriptionTextCanvasGroup.ToggleGroup(false);
+                defaultText.ToggleGroup(true);
+            }
         }
 
-        // When cursor exits element, turn canvasGroup settings off
-        //
-        public void OnPointerExit(PointerEventData eventData)
+        /// <summary>
+        /// Display error message for one second
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator InsufficientPoints()
         {
-            descriptionBackground.ToggleGroup(false);
+            var text = defaultText.GetComponent<Text>();
+            text.font = font;
+            text.text = $"{Red}{m_AbilityCost} points required for ability!{Clear}";
+
+            yield return new WaitForSeconds(1);
+
+            text.text = "F1 - F4 \n" + 
+                         "Display Ability Information";
         }
 
         // Format text layout with text colours & properties
