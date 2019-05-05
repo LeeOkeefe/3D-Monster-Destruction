@@ -29,6 +29,7 @@ internal sealed class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Image gameOverBackground;
     public GameObject minimap;
+    public MouseCursor mouseCursor;
 
     public Dictionary<string, KeyCode> KeyCodes =>
         GameObject.FindGameObjectWithTag("KeyBind").GetComponent<KeyBinding>().m_KeyCodes;
