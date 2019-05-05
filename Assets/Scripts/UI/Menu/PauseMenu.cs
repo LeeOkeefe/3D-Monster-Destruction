@@ -14,6 +14,14 @@ namespace UI.Menu
             m_PauseMenu = GetComponent<CanvasGroup>();
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ToggleMenu();
+            }
+        }
+        
         /// <summary>
         /// Toggle between pause states
         /// </summary>
