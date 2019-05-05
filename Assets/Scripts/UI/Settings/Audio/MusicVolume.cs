@@ -13,7 +13,7 @@ namespace UI.Settings.Audio
         private void Start()
         {
             m_Slider = GetComponent<Slider>();
-            m_Slider.value = PlayerPrefs.GetFloat("Volume", 0.5F);
+            m_Slider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5F);
             m_Slider.onValueChanged.AddListener(delegate {ValueChangeCheck();});
         }
 
@@ -23,7 +23,7 @@ namespace UI.Settings.Audio
         public void ValueChangeCheck()
         {
             audioSource.volume = m_Slider.value;
-            PlayerPrefs.SetFloat("Volume", gameObject.GetComponent<AudioSource>().volume);
+            PlayerPrefs.SetFloat("MusicVolume", audioSource.volume);
             PlayerPrefs.Save();
         }
     }
