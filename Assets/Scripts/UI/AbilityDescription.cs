@@ -8,19 +8,15 @@ namespace UI
 {
     internal sealed class AbilityDescription : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField]
-        private string abilityName;
+        [SerializeField] private string abilityName;
 
-        [TextArea(5, 5)][SerializeField]
-        private string abilityDescription;
+        [TextArea(5, 5)] [SerializeField] private string abilityDescription;
 
         private float m_AbilityCost;
         private string m_AbilityCostText;
 
-        [SerializeField]
-        private CanvasGroup descriptionBackground;
-        [SerializeField]
-        private Text descriptionText;
+        [SerializeField] private CanvasGroup descriptionBackground;
+        [SerializeField] private Text descriptionText;
 
         private const string Red = "<color=red>";
         private const string Green = "<color=green>";
@@ -53,6 +49,7 @@ namespace UI
         {
             descriptionText.text = $"<b><color=blue> {abilityName} </color></b>\n " +
                                    $"<i><color=black> {abilityDescription} </color></i>\n" +
-                                   $"<b>Points Required: {colour}{m_AbilityCostText} </color></b>";}
+                                   $"<b>Points Required: {colour}{m_AbilityCostText} </color></b>";
         }
     }
+}

@@ -9,8 +9,10 @@ namespace Player
         public float CurrentStamina { get; private set; }
         public float BoostedDamage { get; private set; }
         public float BoostedDefence { get; private set; }
+        public bool IsDead => CurrentHealth <= 0;
         public bool CanRun { get; private set; }
         public float TotalDamage => baseDamage + BoostedDamage;
+        private Animator Anim => GameManager.Instance.playerAnim;
 
         [SerializeField]
         public float maxHealth;
@@ -65,7 +67,8 @@ namespace Player
 
             if (CurrentHealth <= 0)
             {
-                GameManager.Instance.playerAnim.SetTrigger(Dead);
+                Anim.SetTrigger(Dead);
+                GameManager.Instance.Invoke(nameof(GameManager.GameOver), 1.75F);
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using AI;
+using Objectives;
 using Objects.Destructible.Definition;
 using Player;
 using UnityEngine;
@@ -64,6 +65,7 @@ namespace Objects.Destructible.Objects
 
             if (!m_HasHappenedOnce)
             {
+                ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Building);
                 InstantiateExplosion();
                 ScoreManager.AddScore(scoreAwarded);
                 m_HasHappenedOnce = true;

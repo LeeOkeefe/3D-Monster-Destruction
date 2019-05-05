@@ -34,11 +34,11 @@ internal sealed class KeyBinding : MonoBehaviour
             { "Back", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Back", "S"))},
             { "Left", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Left", "A"))},
             { "Right", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Right", "D"))},
-            { "Punch", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Punch", "Space"))},
-            { "Jump", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Jump", "LeftControl"))},
+            { "Punch", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Punch", "Mouse0"))},
+            { "Jump", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Jump", "Space"))},
             { "Sprint", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Sprint", "LeftShift"))},
-            { "Pickup", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Pickup", "Mouse0"))},
-            { "Throw", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Throw", "Mouse1"))},
+            { "Pickup", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Pickup", "E"))},
+            { "Throw", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Throw", "Mouse1"))}
         };
 
         UpdateLabels();
@@ -124,15 +124,17 @@ internal sealed class KeyBinding : MonoBehaviour
         m_KeyCodes["Back"] = KeyCode.S;
         m_KeyCodes["Left"] = KeyCode.A;
         m_KeyCodes["Right"] = KeyCode.D;
-        m_KeyCodes["Punch"] = KeyCode.Space;
-        m_KeyCodes["Jump"] = KeyCode.LeftControl;
+        m_KeyCodes["Punch"] = KeyCode.Mouse0;
+        m_KeyCodes["Jump"] = KeyCode.Space;
         m_KeyCodes["Sprint"] = KeyCode.LeftShift;
-        m_KeyCodes["Pickup"] = KeyCode.Mouse0;
+        m_KeyCodes["Pickup"] = KeyCode.E;
         m_KeyCodes["Throw"] = KeyCode.Mouse1;
 
         PlayerPrefs.Save();
 
         UpdateLabels();
+        m_Punch.text = GetTextForMouseButton(m_KeyCodes["Punch"]);
+        m_Throw.text = GetTextForMouseButton(m_KeyCodes["Throw"]);
     }
 
     /// <summary>
@@ -147,6 +149,9 @@ internal sealed class KeyBinding : MonoBehaviour
         m_ErrorMessage.ToggleGroup(false);
     }
 
+    /// <summary>
+    /// Convert button input to keycode
+    /// </summary>
     private KeyCode GetButtonKeyCode(int button)
     {
         switch (button)
@@ -162,6 +167,9 @@ internal sealed class KeyBinding : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Modify text for mouse input from default numbering
+    /// </summary>
     private string GetTextForMouseButton(KeyCode keycode)
     {
         switch (keycode)

@@ -53,11 +53,11 @@ internal sealed class GameManager : MonoBehaviour
     //
     public void Awake()
     {
+        if (Instance != null)
+            Destroy(this);
+
         if (Instance == null)
             Instance = this;
-
-        else if (Instance != this)
-            Destroy(gameObject);
     }
 
     // Only update timer/text when the main level is active

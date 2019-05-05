@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using AI;
 using Extensions;
+using Objectives;
 using Objects.Destructible.Definition;
 using Player;
 using UnityEngine;
@@ -204,6 +205,7 @@ namespace Objects.Destructible.Objects
 
             if (IsObjectDestroyed && !m_HasHappenedOnce)
             {
+                ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Building);
                 m_Regular = true;
                 m_HasHappenedOnce = true;
                 Destruct();

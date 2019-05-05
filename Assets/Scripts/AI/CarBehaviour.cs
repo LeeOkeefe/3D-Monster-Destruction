@@ -1,4 +1,5 @@
-﻿using Objects.Destructible.Objects;
+﻿using Objectives;
+using Objects.Destructible.Objects;
 using UnityEngine;
 
 namespace AI
@@ -63,6 +64,8 @@ namespace AI
 
             ScoreManager.AddScore(scoreAwarded, 10);
             Destroy(gameObject);
+
+            ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Car);
         }
     }
 }

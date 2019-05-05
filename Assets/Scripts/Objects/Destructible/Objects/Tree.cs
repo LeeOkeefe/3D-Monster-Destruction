@@ -1,4 +1,5 @@
 ﻿using AI.Enemies;
+using Objectives;
 using Objects.Destructible.Definition;
 using UnityEngine;
 
@@ -24,6 +25,8 @@ namespace Objects.Destructible.Objects
                 other.gameObject.CompareTag("Car") || 
                 other.gameObject.CompareTag("Tank") && other.transform.rotation != other.GetComponent<Tank>().OriginalRotation)
             {
+
+                ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Tree);
                 currentHealth -= currentHealth;
                 AddScore();
                 DestroyObject();

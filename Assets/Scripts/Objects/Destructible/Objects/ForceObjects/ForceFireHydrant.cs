@@ -1,4 +1,5 @@
-﻿using Objects.Destructible.Definition;
+﻿using Objectives;
+using Objects.Destructible.Definition;
 using UnityEngine;
 
 namespace Objects.Destructible.Objects.ForceObjects
@@ -20,6 +21,8 @@ namespace Objects.Destructible.Objects.ForceObjects
             AddForce(other, Rb);
             Instantiate(particleEffect, transform.position, Quaternion.Euler(-90, 0, 0));
             Destroy(this);
+
+            ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.FireHydrant);
         }
     }
 }

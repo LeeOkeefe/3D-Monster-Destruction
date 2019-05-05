@@ -18,7 +18,8 @@ namespace UI.Settings.Audio
             if (Instance != null)
                 Destroy(this);
 
-            Instance = this;
+            if (Instance == null)
+                Instance = this;
 
             m_Slider = GetComponent<Slider>();
             m_Slider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
@@ -26,6 +27,9 @@ namespace UI.Settings.Audio
             m_Volume = m_Slider.value;
         }
 
+        /// <summary>
+        /// Adds sound effect to the collection if it doesn't already exist
+        /// </summary>
         public void RegisterAudioSource(AudioSource audioSource)
         {
             if (m_SoundEffects.Contains(audioSource))
