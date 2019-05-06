@@ -31,6 +31,7 @@ namespace AI.Enemies
         /// </summary>
         public void Underwater()
         {
+            gameObject.GetComponent<Collider>().isTrigger = true;
             Damage(CurrentHealth);
 
             if (!EnemyIsDead)

@@ -60,5 +60,21 @@ namespace UI.Settings.Audio
                 m_SoundEffects[i].volume = m_Volume;
             }
         }
+
+        /// <summary>
+        /// Creates a temporary gameObject with an audioSource to play the passed in clip
+        /// at the position, then destroys itself once the clip has finished
+        /// </summary>
+        public AudioSource PlayClipAtPoint(AudioClip clip, Vector3 pos)
+        {
+            var tempGameObject = new GameObject("TempAudio");
+            tempGameObject.transform.position = pos;
+            var audioSource = tempGameObject.AddComponent<AudioSource>();
+            tempGameObject.AddComponent<SoundEffectSource>();
+            audioSource.clip = clip;
+            audioSource.Play();
+            Destroy(tempGameObject, clip.length); 
+            return audioSource; 
+        }
     }
 }

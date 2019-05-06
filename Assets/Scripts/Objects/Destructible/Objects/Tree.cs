@@ -1,6 +1,7 @@
 ﻿using AI.Enemies;
 using Objectives;
 using Objects.Destructible.Definition;
+using UI.Settings.Audio;
 using UnityEngine;
 
 namespace Objects.Destructible.Objects
@@ -15,8 +16,8 @@ namespace Objects.Destructible.Objects
         private GameObject fireEffect;
         [SerializeField]
         private GameObject burntStump;
-
-        private AudioSource AudioSource => GetComponent<AudioSource>();
+        [SerializeField]
+        private AudioClip audioClip;
 
         // Deduct health by existing health, add score and check to DestroyObject,
         // instantiate particle effects if we are destroyed
@@ -27,7 +28,7 @@ namespace Objects.Destructible.Objects
                 other.gameObject.CompareTag("Car") || 
                 other.gameObject.CompareTag("Tank") && other.transform.rotation != other.GetComponent<Tank>().OriginalRotation)
             {
-                AudioSource.Play();
+                SoundEffectManager.Instance.PlayClipAtPoint(audioClip, transform.position);
                 ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Tree);
                 currentHealth -= currentHealth;
                 AddScore();
@@ -63,7 +64,7 @@ namespace Objects.Destructible.Objects
         //
         public override void Destruct()
         {
-                AudioSource.Play();
+            SoundEffectManager.Instance.PlayClipAtPoint(audioClip, transform.position);
 
             var position = transform.position;
             Instantiate(particleEffect, position, Quaternion.identity);

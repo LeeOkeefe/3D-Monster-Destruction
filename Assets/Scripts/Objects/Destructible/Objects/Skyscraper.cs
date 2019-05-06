@@ -4,6 +4,7 @@ using Extensions;
 using Objectives;
 using Objects.Destructible.Definition;
 using Player;
+using UI.Settings.Audio;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,13 +19,10 @@ namespace Objects.Destructible.Objects
         [SerializeField]
         private GameObject regularRubble, burntRubble;
 
-
         [SerializeField]
         private AudioClip hit;
         [SerializeField]
         private AudioClip collapse;
-
-        private AudioSource m_AudioSource;
 
         private Vector3 m_Pos;
 
@@ -44,7 +42,6 @@ namespace Objects.Destructible.Objects
         {
             m_Pos = transform.position;
             GenerateRandomColour();
-            m_AudioSource = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -121,7 +118,7 @@ namespace Objects.Destructible.Objects
                 return;
 
             Instantiate(explosion, m_Pos, Quaternion.identity);
-            m_AudioSource.PlayOneShot(collapse);
+            SoundEffectManager.Instance.PlayClipAtPoint(collapse, transform.position);
 
 
             foreach (var fragment in fragments)
@@ -163,7 +160,7 @@ namespace Objects.Destructible.Objects
 
             //ScoreManager.AddScore(damage * scorePerHit, 10);
 
-            m_AudioSource.PlayOneShot(hit);
+            SoundEffectManager.Instance.PlayClipAtPoint(hit, transform.position);
         }
 
         /// <summary>

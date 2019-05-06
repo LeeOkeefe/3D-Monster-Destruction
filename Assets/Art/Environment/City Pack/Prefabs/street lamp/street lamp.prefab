@@ -167,3 +167,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 150
+  audioClip: {fileID: 8300000, guid: 480f52a8429cf444cbc03db259a20a82, type: 3}

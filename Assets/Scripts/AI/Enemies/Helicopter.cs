@@ -1,6 +1,7 @@
 ﻿using Objects.Destructible.Definition;
 using Objects.Destructible.Objects;
 using Objects.Interactable;
+using UI.Settings.Audio;
 using UnityEngine;
 
 namespace AI.Enemies
@@ -23,8 +24,8 @@ namespace AI.Enemies
 
         [SerializeField]
         private AudioClip gunshot;
-
-        private AudioSource m_AudioSource;
+        [SerializeField]
+        private AudioClip explosion;
 
         private bool CanShoot => m_TimeTillShoot <= 0;
 
@@ -34,11 +35,6 @@ namespace AI.Enemies
 
         private bool IsHoldingObject => GetComponent<ObjectInteraction>().HoldingObject;
         private GameObject Target => GameManager.Instance.playerShootingPosition;
-
-        private void Start()
-        {
-            m_AudioSource = GetComponent<AudioSource>();
-        }
 
         private void Update()
         {
@@ -75,7 +71,7 @@ namespace AI.Enemies
                 return;
 
             Instantiate(projectile, gun.transform.position, transform.rotation);
-            m_AudioSource.PlayOneShot(gunshot);
+            SoundEffectManager.Instance.PlayClipAtPoint(gunshot, transform.position);
             m_TimeTillShoot = timeBetweenAttacks;
         }
 
@@ -142,6 +138,7 @@ namespace AI.Enemies
 
             CurrentHealth -= CurrentHealth;
 
+            SoundEffectManager.Instance.PlayClipAtPoint(explosion, transform.position);
             ScoreManager.AddScore(scoreAwarded);
             Destroy(gameObject);
             Instantiate(helicopterExplosion, position, Quaternion.identity);
