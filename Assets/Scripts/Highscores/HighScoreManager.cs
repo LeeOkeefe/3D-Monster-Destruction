@@ -8,17 +8,16 @@ namespace Highscores
         [SerializeField]
         private Text rank1, rank2, rank3;
 
-        // Load top three high scores and set the text components to their value
+        // Load top three high scores from Json binding
+        // and set the text components to their value
         //
         private void Start ()
         {
-            var score1 = PlayerPrefs.GetFloat("HighScore1");
-            var score2 = PlayerPrefs.GetFloat("HighScore2");
-            var score3 = PlayerPrefs.GetFloat("HighScore3");
+            var binding = HighscoreDataHandler.RetrieveHighscores();
 
-            rank1.text = $"Rank1: {score1}";
-            rank2.text = $"Rank2: {score2}";
-            rank3.text = $"Rank3: {score3}";
+            rank1.text = $"Rank 1: {binding.Highscore1}";
+            rank2.text = $"Rank 2: {binding.Highscore2}";
+            rank3.text = $"Rank 3: {binding.Highscore3}";
         }
     }
 }

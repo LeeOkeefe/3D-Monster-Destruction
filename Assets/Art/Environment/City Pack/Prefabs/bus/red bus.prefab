@@ -453,6 +453,7 @@ MonoBehaviour:
   scoreAwarded: 50
   m_Colour: {r: 0, g: 0, b: 0, a: 0}
   autoColourVehicle: 1
+  audioClip: {fileID: 8300000, guid: 1f27d6f3e2103f946a907efe128f1fb8, type: 3}
 --- !u!136 &136414499802451154
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 33333936706531666}
   - component: {fileID: 23262770081258634}
   - component: {fileID: 54017891039725572}
-  - component: {fileID: 208280575756233906}
+  - component: {fileID: 208045240875013936}
   m_Layer: 0
   m_Name: Chainlink Fence Segment Crushed Type 3
   m_TagString: Untagged
@@ -118,8 +118,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1652231506229260}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.70710677}
-  m_LocalPosition: {x: -51.07, y: -7.94, z: 24.78}
+  m_LocalRotation: {x: -0.5000001, y: -0.49999988, z: 0.49999988, w: 0.5000001}
+  m_LocalPosition: {x: -78.280014, y: -7.5, z: -16.089996}
   m_LocalScale: {x: 2, y: 3, z: 3}
   m_Children:
   - {fileID: 4901295258639924}
@@ -363,7 +363,8 @@ MonoBehaviour:
   force: 300
   brokenFence: {fileID: 1850460280715002}
   brokenFenceRb: {fileID: 54017891039725572}
---- !u!208 &208280575756233906
+  audioClip: {fileID: 8300000, guid: 2905f1f4b61dade45a265730f6062e58, type: 3}
+--- !u!208 &208045240875013936
 NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

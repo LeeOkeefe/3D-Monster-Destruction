@@ -6,20 +6,19 @@ namespace UI.Menu.Main_Menu
     internal sealed class MenuScript : MonoBehaviour
     {
         [SerializeField]
-        private CanvasGroup quitMenu;
-        [SerializeField]
         private CanvasGroup startButton;
         [SerializeField]
         private CanvasGroup options;
         [SerializeField]
         private CanvasGroup exitButton;
         [SerializeField]
+        private CanvasGroup highScoresButton;
+        [SerializeField]
         private CanvasGroup highScores;
 
         private NavigateMenu m_Navigation;
 
         public void StartGame() => m_Navigation.StartGame();
-        public void QuitGame() => m_Navigation.QuitGame();
 
         private void Start()
         {
@@ -43,6 +42,7 @@ namespace UI.Menu.Main_Menu
             startButton.interactable = false;
             options.interactable = false;
             exitButton.interactable = false;
+            highScoresButton.interactable = false;
             highScores.ToggleGroup(true);
         }
 
@@ -54,6 +54,7 @@ namespace UI.Menu.Main_Menu
             startButton.interactable = true;
             options.interactable = true;
             exitButton.interactable = true;
+            highScoresButton.interactable = true;
             highScores.ToggleGroup(false);
         }
     }

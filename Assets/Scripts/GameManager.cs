@@ -32,8 +32,7 @@ internal sealed class GameManager : MonoBehaviour
     public Image gameOverBackground;
     public MouseCursor mouseCursor;
 
-    public Dictionary<string, KeyCode> KeyCodes =>
-        GameObject.FindGameObjectWithTag("KeyBind").GetComponent<KeyBinding>().KeyCodes;
+    public Dictionary<string, KeyCode> KeyCodes => KeybindMap.KeyCodes;
 
     public void CameraShake() => StartCoroutine(Camera.main.Shake(0.5F, 2));
     public bool IsGamePaused => Math.Abs(Time.timeScale) < 0;
@@ -44,14 +43,6 @@ internal sealed class GameManager : MonoBehaviour
 
     public float TimeRemaining { get; private set; }
 
-    private HighScore m_HighScore;
-
-    private void Start()
-    {
-        ScoreManager.Initialize();
-        TimeRemaining = gameTimer;
-    }
-
     // Ensure we only have one instance of GameManager
     //
     public void Awake()
@@ -61,6 +52,12 @@ internal sealed class GameManager : MonoBehaviour
 
         if (Instance == null)
             Instance = this;
+    }
+
+    private void Start()
+    {
+        ScoreManager.Initialize();
+        TimeRemaining = gameTimer;
     }
 
     // Only update timer/text when the main level is active
@@ -102,7 +99,7 @@ internal sealed class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        m_HighScore = new HighScore(ScoreManager.PlayerTotalScore);
+        HighscoreDataHandler.HandleNewScore(ScoreManager.PlayerTotalScore);
         mouseCursor.ToggleMouse(true);
         gameOverUi.ToggleGroup(true);
         pauseButton.enabled = false;

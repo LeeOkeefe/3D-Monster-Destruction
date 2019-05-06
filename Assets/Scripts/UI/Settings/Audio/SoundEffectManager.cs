@@ -49,16 +49,32 @@ namespace UI.Settings.Audio
             PlayerPrefs.SetFloat("SFXVolume", m_Volume);
             PlayerPrefs.Save();
 
-            foreach (var soundEffect in m_SoundEffects)
+            for (var i = 0; i < m_SoundEffects.Count; i++)
             {
-                if (soundEffect == null)
+                if (m_SoundEffects[i] == null)
                 {
-                    m_SoundEffects.Remove(soundEffect);
+                    m_SoundEffects.Remove(m_SoundEffects[i]);
                     continue;
                 }
 
-                soundEffect.volume = m_Volume;
+                m_SoundEffects[i].volume = m_Volume;
             }
+        }
+
+        /// <summary>
+        /// Creates a temporary gameObject with an audioSource to play the passed in clip
+        /// at the position, then destroys itself once the clip has finished
+        /// </summary>
+        public AudioSource PlayClipAtPoint(AudioClip clip, Vector3 pos)
+        {
+            var tempGameObject = new GameObject("TempAudio");
+            tempGameObject.transform.position = pos;
+            var audioSource = tempGameObject.AddComponent<AudioSource>();
+            tempGameObject.AddComponent<SoundEffectSource>();
+            audioSource.clip = clip;
+            audioSource.Play();
+            Destroy(tempGameObject, clip.length); 
+            return audioSource; 
         }
     }
 }

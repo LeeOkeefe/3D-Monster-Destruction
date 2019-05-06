@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
+using UI.Settings.Audio;
 using UnityEngine;
-using Debug = System.Diagnostics.Debug;
 
 namespace Abilities.Definitions
 {
@@ -16,10 +16,13 @@ namespace Abilities.Definitions
         private Transform particlePosition;
         [SerializeField]
         private ParticleSystem m_ParticleSystem;
+        [SerializeField]
+        private AudioClip audioClip;
 
         private Stopwatch m_FlamethrowerAbilityTimer;
 
         private bool m_HasHappenedOnce;
+
 
         private void Start()
         {
@@ -59,6 +62,7 @@ namespace Abilities.Definitions
             HandleCost();
             OnStart();
 
+            SoundEffectManager.Instance.PlayClipAtPoint(audioClip, Camera.main.transform.position);
             m_ParticleSystem.Play();
             m_HasHappenedOnce = false;
             abilityButton.enabled = false;

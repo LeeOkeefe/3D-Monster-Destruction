@@ -1,5 +1,6 @@
 ﻿using Objectives;
 using Objects.Destructible.Objects;
+using UI.Settings.Audio;
 using UnityEngine;
 
 namespace AI
@@ -14,6 +15,8 @@ namespace AI
         private Color m_Colour;
         [SerializeField]
         private bool autoColourVehicle = true;
+        [SerializeField]
+        private AudioClip audioClip;
 
         private Renderer m_Renderer;
 
@@ -62,6 +65,7 @@ namespace AI
                 Instantiate(explosion, transform.position, Quaternion.identity);
             }
 
+            SoundEffectManager.Instance.PlayClipAtPoint(audioClip, transform.position);
             ScoreManager.AddScore(scoreAwarded, 10);
             Destroy(gameObject);
 

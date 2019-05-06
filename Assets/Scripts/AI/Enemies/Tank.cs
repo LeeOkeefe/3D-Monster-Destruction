@@ -1,4 +1,5 @@
 ﻿using Objects.Interactable;
+using UI.Settings.Audio;
 using UnityEngine;
 
 namespace AI.Enemies
@@ -17,6 +18,14 @@ namespace AI.Enemies
         protected GameObject turret;
         [SerializeField]
         private GameObject projectile;
+        [SerializeField]
+        private AudioClip firingClip;
+        [SerializeField]
+        private AudioClip explosion;
+        [SerializeField]
+        private AudioClip damagedClip;
+
+        protected AudioSource AudioSource => GetComponent<AudioSource>();
 
         protected static GameObject FireToPoint => GameManager.Instance.playerShootingPosition;
         protected bool IsHoldingObject => GetComponent<ObjectInteraction>().HoldingObject;
@@ -40,6 +49,7 @@ namespace AI.Enemies
             if (!hit.transform.CompareTag("Player") && !(TimeTillShoot <= 0))
                 return;
 
+            SoundEffectManager.Instance.PlayClipAtPoint(firingClip, transform.position);
             var position = firingPoint.transform.position;
             Instantiate(firingEffect, position, Quaternion.identity);
             Instantiate(projectile, position, firingPoint.transform.rotation);
@@ -54,12 +64,14 @@ namespace AI.Enemies
 
             if (EnemyIsDead)
             {
+                SoundEffectManager.Instance.PlayClipAtPoint(explosion, transform.position);
                 Instantiate(tankExplodingPrefab, transform.position, Quaternion.identity);
                 ScoreManager.AddScore(scoreAwarded);
                 Destroy(gameObject);
             }
             else
             {
+                SoundEffectManager.Instance.PlayClipAtPoint(damagedClip, transform.position);
                 Instantiate(tankDamagePrefab, transform.position, Quaternion.identity);
             }
         }

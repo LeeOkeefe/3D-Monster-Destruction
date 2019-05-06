@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UI.Settings.Audio;
 using UnityEngine;
 
 namespace Player
@@ -16,11 +17,7 @@ namespace Player
         private float walkSpeed = 12.5F, runSpeed = 20F;
 
         [SerializeField]
-        private AudioClip woosh;
-        [SerializeField]
-        private AudioClip hit;
-
-        private AudioSource m_AudioSource;
+        private AudioClip punch;
 
         private static readonly int AnimationSpeed = Animator.StringToHash("Speed");
         private static readonly int Attack = Animator.StringToHash("Attack");
@@ -36,7 +33,6 @@ namespace Player
         {
             m_Animator = GetComponent<Animator>();
             m_PlayerStats = GetComponent<PlayerStats>();
-            m_AudioSource = GetComponent<AudioSource>();
         }
 
         // Check input keys every frame to call control methods i.e. sprint, attack and camera control
@@ -62,7 +58,7 @@ namespace Player
                 if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
                 {
                     m_Animator.SetTrigger(Attack);
-                    m_AudioSource.PlayOneShot(woosh);
+                    SoundEffectManager.Instance.PlayClipAtPoint(punch, transform.position);
                 }
             }
 

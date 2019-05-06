@@ -417,7 +417,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 08730739372d8d34ab2b5d8edccdb00c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e7b7ad3a582096d4b9ba74851acc9600, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -537,6 +537,7 @@ MonoBehaviour:
   backRotor: {fileID: 1707118616888498}
   gun: {fileID: 1540943978027526}
   gunshot: {fileID: 8300000, guid: 79888e69ebc16f141b94b3ead8b13b53, type: 3}
+  explosion: {fileID: 8300000, guid: 1f27d6f3e2103f946a907efe128f1fb8, type: 3}
 --- !u!114 &114769037290086544
 MonoBehaviour:
   m_ObjectHideFlags: 1

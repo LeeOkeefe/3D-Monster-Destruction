@@ -1,6 +1,8 @@
 ﻿using AI.Waypoints;
 using System.Collections;
+using Extensions;
 using Objectives;
+using UI.Settings.Audio;
 using UnityEngine;
 
 namespace AI.Human
@@ -43,7 +45,7 @@ namespace AI.Human
             yield return new WaitUntil(() => GameManager.Instance.IsPlayerInRange(transform, 10));
 
             m_Animator.SetBool(Terrified, true);
-            m_AudioSource.PlayOneShot(scream);
+            SoundEffectManager.Instance.PlayClipAtPoint(scream, transform.position);
 
             yield return new WaitUntil(() => !GameManager.Instance.IsPlayerInRange(transform, 10));
 
@@ -85,10 +87,10 @@ namespace AI.Human
         //
         public void HandleDeath()
         {
-            m_AudioSource.PlayOneShot(splat);
+            AudioSource.PlayClipAtPoint(splat, Camera.main.transform.position);
             Instantiate(bloodSplatter, transform.position, Quaternion.Euler(0, 0, 90));
             ScoreManager.AddScore(scoreAwarded);
-            Destroy(gameObject, 0.1F);
+            Destroy(gameObject);
 
             ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Human);
         }

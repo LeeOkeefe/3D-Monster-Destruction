@@ -120,6 +120,7 @@ MonoBehaviour:
   treeStump: {fileID: 1957179249956944, guid: fc93ac52a188bb44c8024a97d64482a4, type: 2}
   fireEffect: {fileID: 100002, guid: 2522b91780559a44794173d3dae9723b, type: 2}
   burntStump: {fileID: 1138838564699330, guid: 4ce13464f9b06b646872aabb8ff40958, type: 2}
+  audioClip: {fileID: 8300000, guid: fa29a3930c98bb94d9c10d50d35d852f, type: 3}
 --- !u!136 &136091435447619754
 CapsuleCollider:
   m_ObjectHideFlags: 1
