@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4100,7 +4100,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4290772991
 --- !u!114 &931758391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4176,10 +4176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34359f12604522d42aad96c8dbd91c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitMenu: {fileID: 0}
   startButton: {fileID: 239644371}
   options: {fileID: 1444220614}
   exitButton: {fileID: 2122964965}
+  highScoresButton: {fileID: 1832760426}
   highScores: {fileID: 1840500417}
 --- !u!1 &939762971
 GameObject:
@@ -7482,6 +7482,7 @@ GameObject:
   - component: {fileID: 1832760423}
   - component: {fileID: 1832760422}
   - component: {fileID: 1832760421}
+  - component: {fileID: 1832760426}
   m_Layer: 5
   m_Name: Highscores
   m_TagString: Untagged
@@ -7626,6 +7627,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1832760419}
+--- !u!225 &1832760426
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1832760419}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1833588536
 GameObject:
   m_ObjectHideFlags: 0

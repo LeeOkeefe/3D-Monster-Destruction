@@ -11,8 +11,6 @@ namespace Keybindings
     {
         public static KeyBinding Instance { get; private set; }
 
-        public Dictionary<string, KeyCode> KeyCodes { get; private set; }
-
         [SerializeField] private Text m_Forward, m_Back, m_Left, m_Right;
         [SerializeField] private Text m_Punch, m_Jump, m_Sprint, m_Pickup, m_Throw;
         [SerializeField] private Text m_Ability1, m_Ability2, m_Ability3, m_Ability4;
@@ -31,22 +29,7 @@ namespace Keybindings
 
             DontDestroyOnLoad(this);
 
-            KeyCodes = new Dictionary<string, KeyCode>
-            {
-                { "Forward", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Forward", "W"))},
-                { "Back", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Back", "S"))},
-                { "Left", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Left", "A"))},
-                { "Right", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Right", "D"))},
-                { "Punch", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Punch", "Mouse0"))},
-                { "Jump", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Jump", "Space"))},
-                { "Sprint", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Sprint", "LeftShift"))},
-                { "Pickup", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Pickup", "E"))},
-                { "Throw", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Throw", "Mouse1"))},
-                { "Ability1", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Ability1", "Alpha1"))},
-                { "Ability2", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Ability2", "Alpha2"))},
-                { "Ability3", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Ability3", "Alpha3"))},
-                { "Ability4", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Ability4", "Alpha4"))}
-            };
+            
 
             UpdateLabels();
         }
@@ -56,19 +39,21 @@ namespace Keybindings
         /// </summary>
         public void UpdateLabels()
         {
-            m_Forward.text = KeyCodes["Forward"].ToString();
-            m_Back.text = KeyCodes["Back"].ToString();
-            m_Left.text = KeyCodes["Left"].ToString();
-            m_Right.text = KeyCodes["Right"].ToString();
-            m_Punch.text = KeyCodes["Punch"].ToString();
-            m_Jump.text = KeyCodes["Jump"].ToString();
-            m_Sprint.text = KeyCodes["Sprint"].ToString();
-            m_Pickup.text = KeyCodes["Pickup"].ToString();
-            m_Throw.text = KeyCodes["Throw"].ToString();
-            m_Ability1.text = KeyCodes["Ability1"].ToString();
-            m_Ability2.text = KeyCodes["Ability2"].ToString();
-            m_Ability3.text = KeyCodes["Ability3"].ToString();
-            m_Ability4.text = KeyCodes["Ability4"].ToString();
+            var keyCodes = KeybindMap.KeyCodes;
+
+            m_Forward.text = keyCodes["Forward"].ToString();
+            m_Back.text = keyCodes["Back"].ToString();
+            m_Left.text = keyCodes["Left"].ToString();
+            m_Right.text = keyCodes["Right"].ToString();
+            m_Punch.text = keyCodes["Punch"].ToString();
+            m_Jump.text = keyCodes["Jump"].ToString();
+            m_Sprint.text = keyCodes["Sprint"].ToString();
+            m_Pickup.text = keyCodes["Pickup"].ToString();
+            m_Throw.text = keyCodes["Throw"].ToString();
+            m_Ability1.text = keyCodes["Ability1"].ToString();
+            m_Ability2.text = keyCodes["Ability2"].ToString();
+            m_Ability3.text = keyCodes["Ability3"].ToString();
+            m_Ability4.text = keyCodes["Ability4"].ToString();
         }
 
         // OnGUI so we can use Events to track which keys have been pressed
@@ -90,14 +75,14 @@ namespace Keybindings
             if (keyPressed == KeyCode.None)
                 return;
 
-            if (KeyCodes.ContainsValue(keyPressed))
+            if (KeybindMap.KeyCodes.ContainsValue(keyPressed))
             {
                 StartCoroutine(nameof(ErrorMessage));
                 m_CurrentKey = null;
                 return;
             }
 
-            KeyCodes[m_CurrentKey.name] = keyPressed;
+            KeybindMap.KeyCodes[m_CurrentKey.name] = keyPressed;
             m_CurrentKey.GetComponentInChildren<Text>().text = currentEvent.isKey
                 ? currentEvent.keyCode.ToString()
                 : GetTextForMouseButton(keyPressed);
@@ -118,7 +103,7 @@ namespace Keybindings
         /// </summary>
         public void SaveData()
         {
-            foreach (var keyCode in KeyCodes)
+            foreach (var keyCode in KeybindMap.KeyCodes)
             {
                 PlayerPrefs.SetString(keyCode.Key, keyCode.Value.ToString());
             }
@@ -133,25 +118,27 @@ namespace Keybindings
         /// </summary>
         public void DefaultSettings()
         {
-            KeyCodes["Forward"] = KeyCode.W;
-            KeyCodes["Back"] = KeyCode.S;
-            KeyCodes["Left"] = KeyCode.A;
-            KeyCodes["Right"] = KeyCode.D;
-            KeyCodes["Punch"] = KeyCode.Mouse0;
-            KeyCodes["Jump"] = KeyCode.Space;
-            KeyCodes["Sprint"] = KeyCode.LeftShift;
-            KeyCodes["Pickup"] = KeyCode.E;
-            KeyCodes["Throw"] = KeyCode.Mouse1;
-            KeyCodes["Ability1"] = KeyCode.Alpha1;
-            KeyCodes["Ability2"] = KeyCode.Alpha2;
-            KeyCodes["Ability3"] = KeyCode.Alpha3;
-            KeyCodes["Ability4"] = KeyCode.Alpha4;
+            var keyCodes = KeybindMap.KeyCodes;
+
+            keyCodes["Forward"] = KeyCode.W;
+            keyCodes["Back"] = KeyCode.S;
+            keyCodes["Left"] = KeyCode.A;
+            keyCodes["Right"] = KeyCode.D;
+            keyCodes["Punch"] = KeyCode.Mouse0;
+            keyCodes["Jump"] = KeyCode.Space;
+            keyCodes["Sprint"] = KeyCode.LeftShift;
+            keyCodes["Pickup"] = KeyCode.E;
+            keyCodes["Throw"] = KeyCode.Mouse1;
+            keyCodes["Ability1"] = KeyCode.Alpha1;
+            keyCodes["Ability2"] = KeyCode.Alpha2;
+            keyCodes["Ability3"] = KeyCode.Alpha3;
+            keyCodes["Ability4"] = KeyCode.Alpha4;
 
             PlayerPrefs.Save();
 
             UpdateLabels();
-            m_Punch.text = GetTextForMouseButton(KeyCodes["Punch"]);
-            m_Throw.text = GetTextForMouseButton(KeyCodes["Throw"]);
+            m_Punch.text = GetTextForMouseButton(keyCodes["Punch"]);
+            m_Throw.text = GetTextForMouseButton(keyCodes["Throw"]);
         }
 
         /// <summary>
