@@ -38,6 +38,7 @@ namespace Objects.Destructible.Objects
         private bool m_Regular;
         private bool m_HasHappenedOnce;
         private bool m_SpawnedRubble;
+        private bool m_Objective;
 
         private void Start()
         {
@@ -157,10 +158,10 @@ namespace Objects.Destructible.Objects
         //
         public override void Damage(float damage)
         {
-            var scorePerHit = scoreAwarded / maxHealth;
+            //var scorePerHit = scoreAwarded / maxHealth;
             currentHealth -= damage;
 
-            ScoreManager.AddScore(damage * scorePerHit, 10);
+            //ScoreManager.AddScore(damage * scorePerHit, 10);
 
             m_AudioSource.PlayOneShot(hit);
         }
@@ -191,6 +192,13 @@ namespace Objects.Destructible.Objects
                 Damage(playerStats.TotalDamage);
 
                 CheckBuildingHealth();
+
+                if (IsObjectDestroyed && !m_Objective)
+                {
+                    ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Building);
+                    ScoreManager.AddScore(scoreAwarded);
+                    m_Objective = true;
+                }
             }
 
             if (other.gameObject.CompareTag("Car"))
@@ -205,7 +213,6 @@ namespace Objects.Destructible.Objects
 
             if (IsObjectDestroyed && !m_HasHappenedOnce)
             {
-                ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Building);
                 m_Regular = true;
                 m_HasHappenedOnce = true;
                 Destruct();
