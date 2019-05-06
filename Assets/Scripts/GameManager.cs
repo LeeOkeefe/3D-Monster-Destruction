@@ -43,12 +43,6 @@ internal sealed class GameManager : MonoBehaviour
 
     public float TimeRemaining { get; private set; }
 
-    private void Start()
-    {
-        ScoreManager.Initialize();
-        TimeRemaining = gameTimer;
-    }
-
     // Ensure we only have one instance of GameManager
     //
     public void Awake()
@@ -58,6 +52,12 @@ internal sealed class GameManager : MonoBehaviour
 
         if (Instance == null)
             Instance = this;
+    }
+
+    private void Start()
+    {
+        ScoreManager.Initialize();
+        TimeRemaining = gameTimer;
     }
 
     // Only update timer/text when the main level is active
