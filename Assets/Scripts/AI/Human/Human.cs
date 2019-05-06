@@ -1,5 +1,6 @@
 ﻿using AI.Waypoints;
 using System.Collections;
+using Extensions;
 using Objectives;
 using UnityEngine;
 
@@ -85,10 +86,11 @@ namespace AI.Human
         //
         public void HandleDeath()
         {
-            m_AudioSource.PlayOneShot(splat);
+            //m_AudioSource.PlayOneShot(splat);
+            AudioSource.PlayClipAtPoint(splat, Camera.main.transform.position);
             Instantiate(bloodSplatter, transform.position, Quaternion.Euler(0, 0, 90));
             ScoreManager.AddScore(scoreAwarded);
-            Destroy(gameObject, 0.1F);
+            Destroy(gameObject);
 
             ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Human);
         }

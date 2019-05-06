@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using UnityEngine;
-using Debug = System.Diagnostics.Debug;
 
 namespace Abilities.Definitions
 {
@@ -20,6 +19,8 @@ namespace Abilities.Definitions
         private Stopwatch m_FlamethrowerAbilityTimer;
 
         private bool m_HasHappenedOnce;
+
+        private AudioSource AudioSource => GetComponent<AudioSource>();
 
         private void Start()
         {
@@ -59,6 +60,7 @@ namespace Abilities.Definitions
             HandleCost();
             OnStart();
 
+            AudioSource.Play();
             m_ParticleSystem.Play();
             m_HasHappenedOnce = false;
             abilityButton.enabled = false;

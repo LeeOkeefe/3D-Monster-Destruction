@@ -49,15 +49,15 @@ namespace UI.Settings.Audio
             PlayerPrefs.SetFloat("SFXVolume", m_Volume);
             PlayerPrefs.Save();
 
-            foreach (var soundEffect in m_SoundEffects)
+            for (var i = 0; i < m_SoundEffects.Count; i++)
             {
-                if (soundEffect == null)
+                if (m_SoundEffects[i] == null)
                 {
-                    m_SoundEffects.Remove(soundEffect);
+                    m_SoundEffects.Remove(m_SoundEffects[i]);
                     continue;
                 }
 
-                soundEffect.volume = m_Volume;
+                m_SoundEffects[i].volume = m_Volume;
             }
         }
     }

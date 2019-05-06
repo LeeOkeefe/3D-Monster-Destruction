@@ -779,7 +779,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 22d06f92f1961de4c9b8ebf0771db36f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b6820f09c47d9194bb8a80bafbb9a303, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -927,7 +927,7 @@ MonoBehaviour:
   bloodSplatter: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 2}
   scoreAwarded: 5
   scream: {fileID: 8300000, guid: 22d06f92f1961de4c9b8ebf0771db36f, type: 3}
-  splat: {fileID: 8300000, guid: a4676e0119a23ce458ff7530a8a4f7cf, type: 3}
+  splat: {fileID: 8300000, guid: b6820f09c47d9194bb8a80bafbb9a303, type: 3}
 --- !u!137 &137773810853327492
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
