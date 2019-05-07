@@ -261,7 +261,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1043866728762744}
   m_LocalRotation: {x: -0.70710677, y: -2.7021175e-15, z: -0.00000006181724, w: 0.7071068}
-  m_LocalPosition: {x: 146.61, y: 0.4497496, z: 173.03}
+  m_LocalPosition: {x: 61.76, y: 27.98636, z: -5.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4936841563583056}
@@ -1281,7 +1281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6d3dfe35b6cee4b89ccaece9cc1edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosiveForce: 15
-  explosiveRadius: 15
+  explosiveForce: 50
+  explosiveRadius: 50
   fragmentsParent: {fileID: 1403786586723248}
   scoreAwarded: 2.5
+  woodbreak: {fileID: 8300000, guid: 2c406377ebbb40843a7e84ec620b49f4, type: 3}

@@ -1534,9 +1534,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1637950246027108}
-  m_LocalRotation: {x: -0, y: 0.7071016, z: -0, w: -0.7071121}
-  m_LocalPosition: {x: 58.910004, y: 0, z: -40.67999}
-  m_LocalScale: {x: 0.9, y: 1, z: 0.9}
+  m_LocalRotation: {x: -0, y: -0.7071099, z: -0, w: -0.7071037}
+  m_LocalPosition: {x: 98.91993, y: 0, z: -47.109993}
+  m_LocalScale: {x: 0.90000045, y: 1, z: 0.90000045}
   m_Children:
   - {fileID: 4133259963378224}
   - {fileID: 4899579147093794}
@@ -1547,7 +1547,7 @@ Transform:
   - {fileID: 4869841461837520}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -449.999, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -269.999, z: 0}
 --- !u!4 &4318780199344328
 Transform:
   m_ObjectHideFlags: 1
@@ -5203,3 +5203,4 @@ MonoBehaviour:
   destroyedHouse: {fileID: 1569941372122638}
   particlePosition: {fileID: 1344620508451022}
   particleEffect: {fileID: 100006, guid: e4704660d196fac40802911e12ac76f1, type: 2}
+  collapse: {fileID: 8300000, guid: f877fa57105158a4587659b7eb72a762, type: 3}

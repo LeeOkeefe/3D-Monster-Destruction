@@ -407,8 +407,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1955093965421072}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.000008791684}
-  m_LocalPosition: {x: 70.30002, y: 0.68203545, z: -27.81}
+  m_LocalRotation: {x: -0, y: 0.000011652706, z: -0, w: 1}
+  m_LocalPosition: {x: 9.719629, y: 0.68203545, z: -52.11998}
   m_LocalScale: {x: 143.43437, y: 145, z: 143.43445}
   m_Children:
   - {fileID: 4929299402081384}
@@ -1157,6 +1157,8 @@ MonoBehaviour:
   rubble: {fileID: 1447191628214894, guid: 2b1897816d31ee8499305dba502ac44e, type: 2}
   burntRubble: {fileID: 1116758171201644, guid: b8faff09ddaf4344080eded1fe385921,
     type: 2}
+  collapse: {fileID: 8300000, guid: f877fa57105158a4587659b7eb72a762, type: 3}
+  hit: {fileID: 8300000, guid: 68ac7fb6003454449baac567640a3da0, type: 3}
 --- !u!208 &208330353106952922
 NavMeshObstacle:
   m_ObjectHideFlags: 1
