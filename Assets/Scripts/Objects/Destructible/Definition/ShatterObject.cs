@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UI.Settings.Audio;
 
 namespace Objects.Destructible.Definition
 {
@@ -17,6 +18,9 @@ namespace Objects.Destructible.Definition
         [SerializeField]
         private float scoreAwarded;
 
+        [SerializeField]
+        AudioClip woodbreak;
+
         private IEnumerable<Rigidbody> m_Fragments;
 
         private void Start()
@@ -31,6 +35,7 @@ namespace Objects.Destructible.Definition
         {
             fragmentsParent.SetActive(true);
             transform.DetachChildren();
+            SoundEffectManager.Instance.PlayClipAtPoint(woodbreak, transform.position);
             Destroy(gameObject);
 
             foreach (var fragment in m_Fragments)

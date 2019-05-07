@@ -2,6 +2,7 @@
 using Objectives;
 using Objects.Destructible.Definition;
 using UnityEngine;
+using UI.Settings.Audio;
 
 namespace Objects.Destructible.Objects
 {
@@ -13,6 +14,8 @@ namespace Objects.Destructible.Objects
         private GameObject particlePosition;
         [SerializeField]
         private GameObject particleEffect;
+        [SerializeField]
+        AudioClip collapse;
 
         // Instantiate particle effect and enable/disable building + destruction
         // - Don't like this way, but the models transforms are all messed up
@@ -35,6 +38,7 @@ namespace Objects.Destructible.Objects
             if (other.gameObject.CompareTag("Player"))
             {
                 Destruct();
+                SoundEffectManager.Instance.PlayClipAtPoint(collapse, transform.position);
 
                 ScoreManager.AddScore(scoreAwarded);
             }

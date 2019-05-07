@@ -4,6 +4,7 @@ using Objectives;
 using Objects.Destructible.Definition;
 using Player;
 using UnityEngine;
+using UI.Settings.Audio;
 
 namespace Objects.Destructible.Objects
 {
@@ -30,6 +31,11 @@ namespace Objects.Destructible.Objects
         private Color m_Colour;
         private Color m_EmissionColour;
         private float m_Intensity;
+
+        [SerializeField]
+        AudioClip collapse;
+        [SerializeField]
+        AudioClip hit;
 
         private const float BelowGroundLevel = -8;
 
@@ -67,6 +73,7 @@ namespace Objects.Destructible.Objects
             {
                 ObjectiveManager.Instance.ObjectiveProgressEvent(ObjectiveType.Building);
                 InstantiateExplosion();
+                SoundEffectManager.Instance.PlayClipAtPoint(collapse, transform.position);
                 ScoreManager.AddScore(scoreAwarded);
                 m_HasHappenedOnce = true;
             }
@@ -147,6 +154,7 @@ namespace Objects.Destructible.Objects
             {
                 var playerStats = other.GetComponentInParent<PlayerStats>();
                 m_Building.Damage(this, playerStats.TotalDamage);
+                SoundEffectManager.Instance.PlayClipAtPoint(hit, transform.position);
                 Destruct();
             }
 
