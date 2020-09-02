@@ -136,7 +136,7 @@ namespace AI.Enemies
 
             Instantiate(fireEffect, position, Quaternion.identity);
 
-            CurrentHealth -= CurrentHealth;
+            CurrentHealth = 0;
 
             SoundEffectManager.Instance.PlayClipAtPoint(explosion, transform.position);
             ScoreManager.AddScore(scoreAwarded);
